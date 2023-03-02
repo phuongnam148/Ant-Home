@@ -1,25 +1,41 @@
 
+import { Fragment } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import './App.css';
-import { Navbar,Home,GioiThieu,Products,Footer ,Header } from './components';
-
+import DefaultLayout from './components/Layout/DefaultLayout';
+import { publicRoutes } from './routes';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App = () => (
   <BrowserRouter>
+
+    {/* <Route path='/' exact element={<Home />} /> */}
     <div>
-      <Header />
-      <Navbar />
       <Routes>
-        <Route path='/' exact element={<Home />} />
-        <Route path='/gioi-thieu' exact element={<GioiThieu />} />
-        <Route path='/products' exact element={<Products />} />
+        {publicRoutes.map((route, index) => {
+          let Layout = DefaultLayout
+          if (route.layout) {
+            Layout = route.layout
+          } else if (route.layout === null) {
+            Layout = Fragment
+          }
 
+          const Page = route.component;
+          return (
+            <Route
+              key={index}
+              path={route.path}
+              element={
+                <Layout>
+                  <Page />
+                </Layout>
+              }
+            />
+          );
+        })}
       </Routes>
-      <Footer />
-
     </div>
-  </BrowserRouter>
 
+  </BrowserRouter>
 )
 
 export default App;
