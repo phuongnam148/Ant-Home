@@ -1,4 +1,3 @@
-export { default as Navbar } from './pages/Navbar';
 export { default as Home } from './pages/Home';
 export { default as Products } from './pages/Products';
 export { default as GioiThieu } from './pages/GioiThieu';

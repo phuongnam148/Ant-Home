@@ -66,10 +66,10 @@ const Header = () => {
 							<Link className='nav-link' to='/home'>
 								<li className='list-group-item-link px-3 link-active'>Trang chủ</li>
 							</Link>
-							<Link className='nav-link' to='/'>
+							<Link className='nav-link' to='/gioi-thieu'>
 								<li className='list-group-item-link px-3'>Giới thiệu</li>
 							</Link>
-							<Link className='nav-link' to='/home'>
+							<Link className='nav-link' to='/products'>
 								<li className='list-group-item-link px-3'>
 									<div className='d-flex justify-content-between'>
 										<div>Sản phẩm</div>
