@@ -1,9 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 const GioiThieu = () => {
-  return (
-    <div>Giới thiệu</div>
-  )
-}
+	return <div>Giới thiệu</div>;
+};
 
-export default GioiThieu
+export default GioiThieu;
