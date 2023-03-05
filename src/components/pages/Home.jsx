@@ -6,6 +6,9 @@ const Home = () => {
 		<div className='container-fluid'>
 			<img className='img-fluid' src={banner} alt='' />
 			<div>Home Component</div>
+			<div className='.container-lg'>
+				<div className=''></div>
+			</div>
 		</div>
 	);
 };
