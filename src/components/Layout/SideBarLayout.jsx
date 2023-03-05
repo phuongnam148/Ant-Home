@@ -2,7 +2,6 @@ import React from 'react';
 
 import Footer from '../blocks/footer/Footer';
 import Header from '../blocks/header/Header';
-import { Alert } from 'react-bootstrap';
 
 // eslint-disable-next-line react/prop-types
 const SideBarLayout = ({ children }) => {
@@ -10,7 +9,7 @@ const SideBarLayout = ({ children }) => {
 		<div>
 			<Header />
 			<div className='container'>
-				<Alert variant='primary'>
+				<div className='primary'>
 					<div className='row'>
 						<div className='sm-4'>
 							<h1>SideBar</h1>
@@ -19,7 +18,7 @@ const SideBarLayout = ({ children }) => {
 							<h1>{children}</h1>
 						</div>
 					</div>
-				</Alert>
+				</div>
 			</div>
 			<Footer />
 		</div>
