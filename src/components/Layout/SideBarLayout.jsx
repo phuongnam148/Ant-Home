@@ -11,10 +11,10 @@ const SideBarLayout = ({ children }) => {
 			<div className='container'>
 				<div className='primary'>
 					<div className='row'>
-						<div className='sm-4'>
+						<div className='col-4'>
 							<h1>SideBar</h1>
 						</div>
-						<div className='sm-8'>
+						<div className='col-8'>
 							<h1>{children}</h1>
 						</div>
 					</div>
