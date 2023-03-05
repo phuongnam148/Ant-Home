@@ -20,7 +20,7 @@ const Home = () => {
 						</p>
 					</div>
 					<div className='cate-main'>
-						<div className='row'>
+						<div className='row row-cols-6'>
 							<div className='col'>Nội thất</div>
 							<div className='col'>Chăn ra gối nệm</div>
 							<div className='col'>Lọ bình trang trí</div>
@@ -28,7 +28,7 @@ const Home = () => {
 							<div className='col'>Đèn</div>
 							<div className='col'>Phòng khách</div>
 						</div>
-						<div className='row'>
+						<div className='row row-cols-6'>
 							<div className='col'>Đồ dùng chứa, lưu trữ</div>
 							<div className='col'>Đồ gia dụng</div>
 							<div className='col'>Đồ dùng nhà tắm</div>
@@ -46,6 +46,7 @@ const Home = () => {
 				<div className='section-7'></div>
 				<div className='section-8'></div>
 				<div className='section-9'></div>
+				<div className='section-10'></div>
 			</div>
 		</div>
 	);
