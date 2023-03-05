@@ -7,7 +7,9 @@ const Home = () => {
 			<img className='img-fluid' src={banner} alt='' />
 			<div>Home Component</div>
 			<div className='.container-lg'>
-				<div className='cate'></div>
+				<div className='cate'>
+					<h1></h1>
+				</div>
 			</div>
 		</div>
 	);
