@@ -1,58 +1,98 @@
 .evo-header-padding {
-    padding: 15px 0;
+	padding: 15px 0;
 }
 
 .header {
-    .header-logo {
-        .box-logo {
-            height: 80%;
-        }
-        img {
-            width: 100%;
-            max-height: 70px;
-        }
-    }
-    .menu-icon i {
-        font-size: 2rem;
-    }
-    .header-account i {
-        font-size: 1.7rem;
-    }
+	.header-logo {
+		.box-logo {
+			height: 80%;
+		}
+		img {
+			width: 100%;
+			max-height: 70px;
+		}
+	}
+	.menu-icon i {
+		font-size: 2rem;
+	}
+	.header-account i {
+		font-size: 1.7rem;
+		.i-cart {
+			border-radius: 50%;
+			width: 20px;
+			height: 20px;
+			background-color: #e87229;
+			color: #fff;
+			font-size: 0.8rem;
+			font-weight: 200;
+		}
+	}
+	// Search
+	.header-search {
+		border: 1px solid #e5e5e5;
+		input[type='text'] {
+			border: none;
+			outline: none;
+		}
+		.btn-s {
+			color: #a3a3a3;
+			font-size: 1.3rem;
+		}
+	}
 }
+.btn-cart {
+	background-color: #e87229;
+	color: #fff;
+	border-radius: 5px;
+	height: 35px;
+}
+
+.search-box {
+	input[type='text'] {
+		outline: none;
+		border: 1px solid #e5e5e5;
+		box-shadow: none;
+		padding: 0.4rem;
+	}
+	.btn-search {
+		background-color: #e87229;
+		color: #fff;
+		font-size: 1.3rem;
+	}
+}
+
 // List group nav
 .list-group {
-    border-radius: none;
-    .list-group-item-link {
-        border-top: 1px solid #d4d4d4;
-        padding: .5rem;
-        font-weight: 500;
-        font-size: 15px;
-        text-transform: uppercase;
-        // &:hover {
-        //     background-color: aqua;
-        // }
-    }
-    &:last-child {
-        border-bottom: 1px solid #d4d4d4;
-    }
+	border-radius: none;
+	.list-group-item-link {
+		border-top: 1px solid #d4d4d4;
+		padding: 0.5rem;
+		font-weight: 500;
+		font-size: 15px;
+		text-transform: uppercase;
+		// &:hover {
+		//     background-color: aqua;
+		// }
+	}
+	&:last-child {
+		border-bottom: 1px solid #d4d4d4;
+	}
 }
 
 .link-active {
-    color: rgb(251, 115, 12);
+	color: rgb(251, 115, 12);
 }
 
 // Md Screen
 @media screen and (min-width: 768px) {
-    .menu-icon i {
-        font-size: 2rem;
-    }
-    .header-account i {
-        font-size: 1.7rem;
-    }
+	.menu-icon i {
+		font-size: 2rem;
+	}
+	.header-account i {
+		font-size: 1.7rem;
+	}
 }
 
 // Lg Screen
 @media screen and (min-width: 992px) {
 }
-
-

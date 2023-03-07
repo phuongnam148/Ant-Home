@@ -3,7 +3,7 @@ import banner from '../../images/slider_1.jpg';
 import './scss/home.scss';
 const Home = () => {
 	return (
-		<div className='container-fluid'>
+		<div className='container-fluid px-0'>
 			<img className='img-fluid' src={banner} alt='' />
 
 			<div className='home-section-1'>

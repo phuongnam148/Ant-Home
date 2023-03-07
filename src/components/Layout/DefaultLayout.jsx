@@ -6,14 +6,14 @@ import Header from '../blocks/header/Header';
 // eslint-disable-next-line react/prop-types
 const DefaultLayout = ({ children }) => {
 	return (
-		<div className='container-fluid'>
+		<div className='container-fluid px-0'>
 			<Header />
 			{/* <Container>
 				<Alert variant='primary'>
 					<h1> {children} </h1>
 				</Alert>
 			</Container> */}
-			<div className='container-fluid'>{children}</div>
+			<div className='container-fluid px-0'>{children}</div>
 			<Footer />
 		</div>
 	);
