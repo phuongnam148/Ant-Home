@@ -28,16 +28,17 @@ const Header = () => {
 							</Link>
 						</div>
 					</div>
-					<div className='d-none d-lg-block col-lg-5'>
+					{/* Box tìm kiếm */}
+					<div className='d-none d-lg-block col-lg-4'>
 						<div className='header-search d-flex align-items-center p-1'>
 							<input type='text' placeholder='Tìm sản phẩm ...' />
-							<div className='btn-s'>
+							<div className='btn-s w-auto'>
 								<i className='fa-solid fa-magnifying-glass'></i>
 							</div>
 						</div>
 					</div>
 					{/* Account */}
-					<div className='header-account d-flex col-2 col-md-2 col-lg-5 justify-content-evenly'>
+					<div className='header-account d-flex col-2 col-md-2 col-lg-4 justify-content-evenly'>
 						{/* Icon menu */}
 						<div
 							className='btn-search d-block d-lg-none text-end w-50'
@@ -49,33 +50,100 @@ const Header = () => {
 						</div>
 						{/* Box */}
 						<div className='box-account d-flex align-items-center justify-content-between'>
-							<div className='d-none d-lg-block d-flex'>
-								<div>
-									<i className='fa-regular fa-heart'></i>
-								</div>
-								<div>
-									<span>Yêu thích</span>
-								</div>
+							{/* Yêu thích */}
+							<div className='d-none d-lg-block justify-content-center p-0 p-lg-2'>
+								<Link className='text-black' to='/'>
+									<div className='box-a d-flex justify-content-center'>
+										<i className='fa-regular fa-heart w-auto'></i>
+										<span className='text-center position-relative'>
+											Yêu thích
+											<div className='i-count-box d-block position-absolute top-0 start-100 translate-middle d-flex justify-content-center align-items-center'>
+												<div className='i-count'>0</div>
+											</div>
+										</span>
+									</div>
+								</Link>
 							</div>
-							<div className='d-none d-lg-block'>
-								<i className='fa-regular fa-user'></i>
-								<span>Tài khoản</span>
+							{/* Tài khoản */}
+							<div className='d-none d-lg-block p-0 p-lg-2'>
+								<Link className='text-black' to='/'>
+									<div className='box-a w-auto d-flex'>
+										<i className='fa-regular fa-user w-auto'></i>
+										<span>Tài khoản</span>
+									</div>
+								</Link>
 							</div>
 							{/* Button giỏ hàng */}
-							<div
-								className='d-flex text-end w-50 ms-2 ms-lg-0 position-relative'
-								data-bs-toggle='offcanvas'
-								data-bs-target='#offcanvasCart'
-								aria-controls='offcanvasCart'
-							>
-								<i className='fa-solid fa-cart-shopping'></i>
-								<span className='d-none d-lg-block'>Giỏ hàng</span>
-								<div className='i-cart d-block position-absolute top-0 start-100 translate-middle d-flex justify-content-center align-items-center'>
-									<span className='d-flex justify-content-center align-items-center'>0</span>
-								</div>
+							<div className='p-0 p-lg-2'>
+								<Link
+									className='text-black'
+									to='/'
+									data-bs-toggle='offcanvas'
+									data-bs-target='#offcanvasCart'
+									aria-controls='offcanvasCart'
+								>
+									<div className='box-a d-flex justify-content-center'>
+										<i className='fa-solid fa-cart-shopping w-auto'></i>
+										<span className='text-center position-relative'>
+											Giỏ hàng
+											<div className='i-count-box d-block position-absolute top-0 start-100 translate-middle d-flex justify-content-center align-items-center'>
+												<div className='i-count'>0</div>
+											</div>
+										</span>
+									</div>
+								</Link>
 							</div>
 						</div>
 					</div>
+				</div>
+			</div>
+			{/* Navbar */}
+			<div className='navbar d-none d-lg-block p-0'>
+				<div className='d-flex justify-content-center align-items-center p-0 m-0'>
+					<ul className='d-flex container p-0 m-0'>
+						<li>
+							<Link className='text-center' to='/'>
+								Trang chủ
+							</Link>
+						</li>
+						<li>
+							<Link className='text-center' to='/'>
+								Giới thiệu
+							</Link>
+						</li>
+						<li>
+							<Link className='text-center' to='/'>
+								<span className='d-flex'>
+									Sản phẩm <i className='fa-solid fa-chevron-down w-auto ms-1 pt-1'></i>
+								</span>
+							</Link>
+						</li>
+						<li>
+							<Link className='text-center' to='/'>
+								Deal Hot
+							</Link>
+						</li>
+						<li>
+							<Link className='text-center' to='/'>
+								Thương hiệu nổi bật
+							</Link>
+						</li>
+						<li>
+							<Link className='text-center' to='/'>
+								Tin tức
+							</Link>
+						</li>
+						<li>
+							<Link className='text-center' to='/'>
+								Liên hệ
+							</Link>
+						</li>
+						<li>
+							<Link className='text-center' to='/'>
+								FAQ
+							</Link>
+						</li>
+					</ul>
 				</div>
 			</div>
 			{/* Offcanvas Menu */}

@@ -14,17 +14,68 @@
 	}
 	.menu-icon i {
 		font-size: 2rem;
-	}
-	.header-account i {
-		font-size: 1.7rem;
-		.i-cart {
-			border-radius: 50%;
+		&:before {
 			width: 20px;
 			height: 20px;
-			background-color: #e87229;
-			color: #fff;
-			font-size: 0.8rem;
-			font-weight: 200;
+		}
+	}
+	.box-account {
+		a {
+			display: inline;
+			.box-a {
+				span {
+					display: flex;
+					align-items: center;
+					padding-top: 0.3rem;
+					margin-left: 0.4rem;
+					width: auto;
+					font-size: 14px;
+					// span
+					.i-count-box {
+						width: 22px;
+						height: 22px;
+						text-align: center;
+						border-radius: 50%;
+						background-color: #ec4f21;
+						color: #fff;
+						line-height: 20px;
+						font-size: 13px;
+						margin: 0 0 5px 5px;
+					}
+				}
+				i {
+					&:before {
+						// width: 20px;
+						// height: 20px;
+						font-size: 1.5rem;
+					}
+				}
+
+				&:hover {
+					color: #ec4f21;
+				}
+			}
+		}
+	}
+	// Navbar
+	.navbar {
+		border-top: 1px solid rgba(0, 0, 0, 0.05);
+		ul {
+			width: auto;
+			list-style: none;
+			li {
+				width: auto;
+				padding: 14px 15px;
+				a {
+					color: #000;
+					font-weight: 500;
+					letter-spacing: 0.25px;
+					line-height: 27.2px;
+					&:hover {
+						color: #ec4f21;
+					}
+				}
+			}
 		}
 	}
 	// Search

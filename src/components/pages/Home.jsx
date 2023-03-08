@@ -1,4 +1,9 @@
 import React from 'react';
+// Import Swiper
+// eslint-disable-next-line no-unused-vars
+import { Swiper, SwiperSlide } from 'swiper/react';
+// Import Swiper styles
+import 'swiper/css';
 import banner from '../../images/slider_1.jpg';
 import './scss/home.scss';
 const Home = () => {
@@ -6,7 +11,7 @@ const Home = () => {
 		<div className='container-fluid px-0'>
 			<img className='img-fluid' src={banner} alt='' />
 
-			<div className='.container-md'>
+			<div className='container-lg'>
 				{/* Loại sản phẩm */}
 				<div className='home-section-1'>
 					<div className='home-cate-head'>
