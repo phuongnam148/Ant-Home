@@ -32,17 +32,17 @@ const Header = () => {
 					{/* Box tìm kiếm */}
 					<div className='d-none d-lg-block col-lg-4 col-xl-5 pt-lg-2 ms-lg-3 ms-xl-0'>
 						<div className='header-search d-flex align-items-center p-1'>
-							<input className='px-2' type='text' placeholder='Tìm sản phẩm ...' />
+							<input className='px-2 w-100' type='text' placeholder='Tìm sản phẩm ...' />
 							<div className='me-2 btn-s w-auto'>
 								<i className='fa-solid fa-magnifying-glass'></i>
 							</div>
 						</div>
 					</div>
 					{/* Account */}
-					<div className='header-account gap-3 gap-lg-0 d-flex col-2 col-lg-5 col-xl-4 justify-content-evenly'>
+					<div className='header-account gap-2 gap-md-1 gap-lg-0 d-flex col-2 col-lg-5 col-xl-4 justify-content-evenly'>
 						{/* Icon tìm kiếm MD */}
 						<div
-							className='btn-search d-flex d-lg-none text-end w-50'
+							className='btn-search d-flex d-lg-none text-end w-auto'
 							data-bs-toggle='offcanvas'
 							data-bs-target='#offcanvasSearch'
 							aria-controls='offcanvasSearch'
