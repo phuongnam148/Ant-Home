@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import './Header.scss';
 import logo from '../../../images/logo.webp';
 import store from '../../../images/store.png';
+import img1 from '../../../images/mega-1-image.webp';
 
 const Header = () => {
 	return (
@@ -21,7 +22,7 @@ const Header = () => {
 						</div>
 					</div>
 					{/* Logo */}
-					<div className='header-logo col-5 col-md-3 col-lg-2'>
+					<div className='header-logo col-4 col-md-4 mb-md-1 col-xl-2'>
 						<div className='box-logo'>
 							<Link to='/home'>
 								<img className='img-fluid' src={logo} alt='' />
@@ -29,19 +30,19 @@ const Header = () => {
 						</div>
 					</div>
 					{/* Box tìm kiếm */}
-					<div className='d-none d-lg-block col-lg-4'>
+					<div className='d-none d-lg-block col-lg-4 col-xl-5 pt-lg-2 ms-lg-3 ms-xl-0'>
 						<div className='header-search d-flex align-items-center p-1'>
-							<input type='text' placeholder='Tìm sản phẩm ...' />
-							<div className='btn-s w-auto'>
+							<input className='px-2' type='text' placeholder='Tìm sản phẩm ...' />
+							<div className='me-2 btn-s w-auto'>
 								<i className='fa-solid fa-magnifying-glass'></i>
 							</div>
 						</div>
 					</div>
 					{/* Account */}
-					<div className='header-account d-flex col-2 col-md-2 col-lg-4 justify-content-evenly'>
-						{/* Icon menu */}
+					<div className='header-account gap-3 gap-lg-0 d-flex col-2 col-lg-5 col-xl-4 justify-content-evenly'>
+						{/* Icon tìm kiếm MD */}
 						<div
-							className='btn-search d-block d-lg-none text-end w-50'
+							className='btn-search d-flex d-lg-none text-end w-50'
 							data-bs-toggle='offcanvas'
 							data-bs-target='#offcanvasSearch'
 							aria-controls='offcanvasSearch'
@@ -49,23 +50,21 @@ const Header = () => {
 							<i className='fa-solid fa-magnifying-glass'></i>
 						</div>
 						{/* Box */}
-						<div className='box-account d-flex align-items-center justify-content-between'>
+						<div className='box-account d-flex align-items-center gap-2 ms-lg-3 ms-xl-0'>
 							{/* Yêu thích */}
-							<div className='d-none d-lg-block justify-content-center p-0 p-lg-2'>
+							<div className='d-none d-lg-block justify-content-center col-3 p-0 p-lg-2 w-auto'>
 								<Link className='text-black' to='/'>
-									<div className='box-a d-flex justify-content-center'>
+									<div className='box-a d-flex justify-content-center position-relative'>
 										<i className='fa-regular fa-heart w-auto'></i>
-										<span className='text-center position-relative'>
-											Yêu thích
-											<div className='i-count-box d-block position-absolute top-0 start-100 translate-middle d-flex justify-content-center align-items-center'>
-												<div className='i-count'>0</div>
-											</div>
-										</span>
+										<span className='text-center'>Yêu thích</span>
+										<div className='i-count-box d-block position-absolute top-0 start-100 translate-middle d-flex justify-content-center align-items-center'>
+											<div className='i-count'>0</div>
+										</div>
 									</div>
 								</Link>
 							</div>
 							{/* Tài khoản */}
-							<div className='d-none d-lg-block p-0 p-lg-2'>
+							<div className='d-none d-lg-block col-3 p-0 p-lg-2 w-auto ms-lg-2 ms-xl-3'>
 								<Link className='text-black' to='/'>
 									<div className='box-a w-auto d-flex'>
 										<i className='fa-regular fa-user w-auto'></i>
@@ -73,8 +72,8 @@ const Header = () => {
 									</div>
 								</Link>
 							</div>
-							{/* Button giỏ hàng */}
-							<div className='p-0 p-lg-2'>
+							{/* Giỏ hàng */}
+							<div className='col-3 p-0 p-lg-2 w-auto'>
 								<Link
 									className='text-black'
 									to='/'
@@ -82,14 +81,12 @@ const Header = () => {
 									data-bs-target='#offcanvasCart'
 									aria-controls='offcanvasCart'
 								>
-									<div className='box-a d-flex justify-content-center'>
+									<div className='box-a d-flex justify-content-center position-relative'>
 										<i className='fa-solid fa-cart-shopping w-auto'></i>
-										<span className='text-center position-relative'>
-											Giỏ hàng
-											<div className='i-count-box d-block position-absolute top-0 start-100 translate-middle d-flex justify-content-center align-items-center'>
-												<div className='i-count'>0</div>
-											</div>
-										</span>
+										<span className='text-center d-none d-lg-block'>Giỏ hàng</span>
+										<div className='i-count-box d-block position-absolute top-0 start-100 translate-middle d-flex justify-content-center align-items-center'>
+											<div className='i-count'>0</div>
+										</div>
 									</div>
 								</Link>
 							</div>
@@ -117,6 +114,116 @@ const Header = () => {
 									Sản phẩm <i className='fa-solid fa-chevron-down w-auto ms-1 pt-1'></i>
 								</span>
 							</Link>
+							<div className='mega-menu'>
+								<div className='container-lg'>
+									<div className='d-flex'>
+										<div className='col-lg-9'>
+											{/* Top */}
+											<div className='d-flex'>
+												<div className='col-3 p-1'>
+													<div className=''>
+														<h6>
+															<Link to='/'>Nội thất</Link>
+														</h6>
+														<ul className='ul-list-item'>
+															<li>
+																<Link to='/'>Phòng khách</Link>
+															</li>
+															<li>
+																<Link to='/'>Phòng ăn</Link>
+															</li>
+															<li>
+																<Link to='/'>Phòng ngủ</Link>
+															</li>
+															<li>
+																<Link to='/'>Phòng làm việc</Link>
+															</li>
+															<li>
+																<Link to='/'>Phòng cho bé</Link>
+															</li>
+															<li>
+																<Link to='/'>Nội thất thông minh</Link>
+															</li>
+														</ul>
+													</div>
+												</div>
+												<div className='col-3 p-1'>
+													<div className=''>
+														<h6>
+															<Link to='/'>Đồ trang trí</Link>
+														</h6>
+														<ul className='ul-list-item'>
+															<li>
+																<Link to='/'>Tranh & Khung ảnh</Link>
+															</li>
+															<li>
+																<Link to='/'>Lọ & Bình trang trí</Link>
+															</li>
+															<li>
+																<Link to='/'>Đồng hồ</Link>
+															</li>
+															<li>
+																<Link to='/'>Nến thơm & Đèn tinh dầu</Link>
+															</li>
+															<li>
+																<Link to='/'>Đồ dùng uống trà & Cafe</Link>
+															</li>
+														</ul>
+													</div>
+												</div>
+												<div className='col-3 p-1'>
+													<h6>
+														<Link to='/'>Đèn</Link>
+													</h6>
+													<ul className='ul-list-item'>
+														<li>
+															<Link to='/'>Đèn bàn</Link>
+														</li>
+														<li>
+															<Link to='/'>Đèn sàn</Link>
+														</li>
+														<li>
+															<Link to='/'>Đèn trần</Link>
+														</li>
+														<li>
+															<Link to='/'>Đèn treo tường</Link>
+														</li>
+													</ul>
+												</div>
+												<div className='col-3 p-1'>
+													<h6>
+														<Link to='/'>Ngoại thất</Link>
+													</h6>
+													<ul className='ul-list-item'>
+														<li>
+															<Link to='/'>Trang trí ngoài trời</Link>
+														</li>
+														<li>
+															<Link to='/'>Trang trí sân vườn</Link>
+														</li>
+													</ul>
+												</div>
+											</div>
+											{/* Bottom */}
+											<div className='d-flex'>
+												<div className='col-3 p-1'>
+													<h6>
+														<Link to='/'>Chăn, Ga, Gối & Nệm</Link>
+													</h6>
+												</div>
+												<div className='col-3 p-1'>
+													<h6>
+														<Link to='/'>Đồ dùng nhà tắm</Link>
+													</h6>
+												</div>
+											</div>
+										</div>
+										<div className='col-lg-3'>
+											<img className='img-fluid' src={img1} alt='' />
+										</div>
+									</div>
+								</div>
+							</div>
 						</li>
 						<li>
 							<Link className='text-center' to='/'>
