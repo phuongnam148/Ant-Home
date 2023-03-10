@@ -1,5 +1,27 @@
 @import 'normalize.css';
 
 .login{
-    
+    .login-container{
+        display: flex;
+        width: 800px;
+        margin: auto;
+
+    }
+    .rigtn{
+        padding: 20px;
+    }
+    .dangky-dangnhap{
+        display: flex;
+        margin-bottom: 10px;
+        width: 100%;
+        text-align: center;
+    }
+    .dangky,.dangnhap{
+        padding: 20px 30px;
+        border-bottom: 1px solid #eee;
+        width: 50%;
+    }
+    .dangky{
+        border-right: 1px solid #eee;
+    }
 }
