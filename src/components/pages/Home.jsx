@@ -6,12 +6,13 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import banner from '../../images/slider_1.jpg';
 import './scss/home.scss';
+import Product_card from '../product-card/Product_card';
 const Home = () => {
 	return (
-		<div className='container-fluid px-0'>
+		<div className='home'>
 			<img className='img-fluid' src={banner} alt='' />
 
-			<div className='container-lg'>
+			<div className='container-md'>
 				{/* Loại sản phẩm */}
 				<div className='home-section-1'>
 					<div className='home-cate-head'>
@@ -153,10 +154,11 @@ const Home = () => {
 					</div>
 				</div>
 				<div className='home-section-2'>
-					<img
-						src='https://bizweb.dktcdn.net/100/396/362/themes/777022/assets/feature_banner.jpg?1678155521674'
-						alt=''
-					/>
+					<a href=''>
+						<div className='img-img-banner1 w-100'>
+							<div className='overlay'></div>
+						</div>
+					</a>
 				</div>
 				<div className='home-section-3'>
 					<div className='home-top-product'>
@@ -164,80 +166,56 @@ const Home = () => {
 							TOP SẢN PHẨM BÁN CHẠY
 						</a>
 
-						<div className='h-topp row'>
-							<div className='h-top-pro-card col-3'>
-								<a href='' className='card-img-top'>
-									<img
-										src='https://bizweb.dktcdn.net/thumb/large/100/396/362/products/da0045c9e48defd093797dfc83fa2c67-1590389087.jpg?v=1595556715920'
-										alt=''
-									/>
-								</a>
-								<div className='thumb-list'>
-									<div className='thumb-list-item'>
+						<div className='h-topp row row-cols-4 justify-content-between'>
+							<div className='h-top-pro-card col'>
+								<a href='' className='card-img-top tab-content' id='nav-tabContent'>
+									<div
+										className='tab-pane fade show active'
+										id='list-home'
+										role='tabpanel'
+										aria-labelledby='list-home-list'
+									>
 										<img
-											src='https://bizweb.dktcdn.net/thumb/small/100/396/362/products/da0045c9e48defd093797dfc83fa2c67-1590389087.jpg?v=1595556715920'
+											src='https://bizweb.dktcdn.net/thumb/large/100/396/362/products/da0045c9e48defd093797dfc83fa2c67-1590389087.jpg?v=1595556715920'
 											alt=''
 										/>
 									</div>
-									<div className='thumb-list-item'>
+									<div
+										className='tab-pane fade show'
+										id='list-profile'
+										role='tabpanel'
+										aria-labelledby='list-profile-list'
+									>
 										<img
-											src='https://bizweb.dktcdn.net/thumb/small/100/396/362/products/z1404288110190-af6a21b6662a892b18ddb3ea9f7795fc-1595478380.jpg?v=1595556722557'
+											src='https://bizweb.dktcdn.net/thumb/large/100/396/362/products/z1404288110190-af6a21b6662a892b18ddb3ea9f7795fc-1595478380.jpg?v=1595556722557'
 											alt=''
 										/>
 									</div>
-								</div>
-								<a href='' className='card-text'>
-									Bộ 2 Bàn Sofa IGEA Việt Nam Phong Cách Scanvadian Màu Trắng
 								</a>
-								<div className='price-box'>
-									<span className='price'>569.000 VNĐ</span>
-								</div>
-							</div>
-							<div className='h-top-pro-card col-3'>
-								<a href='' className='card-img-top'>
-									<img
-										src='https://bizweb.dktcdn.net/thumb/large/100/396/362/products/da0045c9e48defd093797dfc83fa2c67-1590389087.jpg?v=1595556715920'
-										alt=''
-									/>
-								</a>
-								<div className='thumb-list'>
-									<div className='thumb-list-item'>
+								<div className='thumb-list list-group id=list-tab' role='tablist'>
+									<div
+										className='thumb-list-item list-group-item list-group-item-action active'
+										id='list-home-list'
+										data-bs-toggle='list'
+										href='#list-home'
+										role='tab'
+										aria-controls='list-home'
+									>
 										<img
-											src='https://bizweb.dktcdn.net/thumb/small/100/396/362/products/da0045c9e48defd093797dfc83fa2c67-1590389087.jpg?v=1595556715920'
+											src='https://bizweb.dktcdn.net/thumb/large/100/396/362/products/da0045c9e48defd093797dfc83fa2c67-1590389087.jpg?v=1595556715920'
 											alt=''
 										/>
 									</div>
-									<div className='thumb-list-item'>
+									<div
+										className='thumb-list-item list-group-item list-group-item-action'
+										id='list-profile-list'
+										data-bs-toggle='list'
+										href='#list-profile'
+										role='tab'
+										aria-controls='list-profile'
+									>
 										<img
-											src='https://bizweb.dktcdn.net/thumb/small/100/396/362/products/z1404288110190-af6a21b6662a892b18ddb3ea9f7795fc-1595478380.jpg?v=1595556722557'
-											alt=''
-										/>
-									</div>
-								</div>
-								<a href='' className='card-text'>
-									Bộ 2 Bàn Sofa IGEA Việt Nam Phong Cách Scanvadian Màu Trắng
-								</a>
-								<div className='price-box'>
-									<span className='price'>569.000 VNĐ</span>
-								</div>
-							</div>
-							<div className='h-top-pro-card col-3'>
-								<a href='' className='card-img-top'>
-									<img
-										src='https://bizweb.dktcdn.net/thumb/large/100/396/362/products/da0045c9e48defd093797dfc83fa2c67-1590389087.jpg?v=1595556715920'
-										alt=''
-									/>
-								</a>
-								<div className='thumb-list'>
-									<div className='thumb-list-item'>
-										<img
-											src='https://bizweb.dktcdn.net/thumb/small/100/396/362/products/da0045c9e48defd093797dfc83fa2c67-1590389087.jpg?v=1595556715920'
-											alt=''
-										/>
-									</div>
-									<div className='thumb-list-item'>
-										<img
-											src='https://bizweb.dktcdn.net/thumb/small/100/396/362/products/z1404288110190-af6a21b6662a892b18ddb3ea9f7795fc-1595478380.jpg?v=1595556722557'
+											src='https://bizweb.dktcdn.net/thumb/large/100/396/362/products/z1404288110190-af6a21b6662a892b18ddb3ea9f7795fc-1595478380.jpg?v=1595556722557'
 											alt=''
 										/>
 									</div>
@@ -249,23 +227,175 @@ const Home = () => {
 									<span className='price'>569.000 VNĐ</span>
 								</div>
 							</div>
-							<div className='h-top-pro-card col-3'>
-								<a href='' className='card-img-top'>
-									<img
-										src='https://bizweb.dktcdn.net/thumb/large/100/396/362/products/da0045c9e48defd093797dfc83fa2c67-1590389087.jpg?v=1595556715920'
-										alt=''
-									/>
-								</a>
-								<div className='thumb-list'>
-									<div className='thumb-list-item'>
+							<div className='h-top-pro-card col'>
+								<a href='' className='card-img-top tab-content' id='nav-tabContent'>
+									<div
+										className='tab-pane fade show active'
+										id='list-home1'
+										role='tabpanel'
+										aria-labelledby='list-home-list1'
+									>
 										<img
-											src='https://bizweb.dktcdn.net/thumb/small/100/396/362/products/da0045c9e48defd093797dfc83fa2c67-1590389087.jpg?v=1595556715920'
+											src='https://bizweb.dktcdn.net/thumb/large/100/396/362/products/da0045c9e48defd093797dfc83fa2c67-1590389087.jpg?v=1595556715920'
 											alt=''
 										/>
 									</div>
-									<div className='thumb-list-item'>
+									<div
+										className='tab-pane fade show'
+										id='list-profile1'
+										role='tabpanel'
+										aria-labelledby='list-profile-list1'
+									>
 										<img
-											src='https://bizweb.dktcdn.net/thumb/small/100/396/362/products/z1404288110190-af6a21b6662a892b18ddb3ea9f7795fc-1595478380.jpg?v=1595556722557'
+											src='https://bizweb.dktcdn.net/thumb/large/100/396/362/products/z1404288110190-af6a21b6662a892b18ddb3ea9f7795fc-1595478380.jpg?v=1595556722557'
+											alt=''
+										/>
+									</div>
+								</a>
+								<div className='thumb-list list-group id=list-tab' role='tablist'>
+									<div
+										className='thumb-list-item list-group-item list-group-item-action active'
+										id='list-home-list1'
+										data-bs-toggle='list'
+										href='#list-home1'
+										role='tab'
+										aria-controls='list-home1'
+									>
+										<img
+											src='https://bizweb.dktcdn.net/thumb/large/100/396/362/products/da0045c9e48defd093797dfc83fa2c67-1590389087.jpg?v=1595556715920'
+											alt=''
+										/>
+									</div>
+									<div
+										className='thumb-list-item list-group-item list-group-item-action'
+										id='list-profile-list1'
+										data-bs-toggle='list'
+										href='#list-profile1'
+										role='tab'
+										aria-controls='list-profile1'
+									>
+										<img
+											src='https://bizweb.dktcdn.net/thumb/large/100/396/362/products/z1404288110190-af6a21b6662a892b18ddb3ea9f7795fc-1595478380.jpg?v=1595556722557'
+											alt=''
+										/>
+									</div>
+								</div>
+								<a href='' className='card-text'>
+									Bộ 2 Bàn Sofa IGEA Việt Nam Phong Cách Scanvadian Màu Trắng
+								</a>
+								<div className='price-box'>
+									<span className='price'>569.000 VNĐ</span>
+								</div>
+							</div>
+							<div className='h-top-pro-card col'>
+								<a href='' className='card-img-top tab-content' id='nav-tabContent'>
+									<div
+										className='tab-pane fade show active'
+										id='list-home2'
+										role='tabpanel'
+										aria-labelledby='list-home-list2'
+									>
+										<img
+											src='https://bizweb.dktcdn.net/thumb/large/100/396/362/products/da0045c9e48defd093797dfc83fa2c67-1590389087.jpg?v=1595556715920'
+											alt=''
+										/>
+									</div>
+									<div
+										className='tab-pane fade show'
+										id='list-profile2'
+										role='tabpanel'
+										aria-labelledby='list-profile-list2'
+									>
+										<img
+											src='https://bizweb.dktcdn.net/thumb/large/100/396/362/products/z1404288110190-af6a21b6662a892b18ddb3ea9f7795fc-1595478380.jpg?v=1595556722557'
+											alt=''
+										/>
+									</div>
+								</a>
+								<div className='thumb-list list-group id=list-tab' role='tablist'>
+									<div
+										className='thumb-list-item list-group-item list-group-item-action active'
+										id='list-home-list2'
+										data-bs-toggle='list'
+										href='#list-home2'
+										role='tab'
+										aria-controls='list-home2'
+									>
+										<img
+											src='https://bizweb.dktcdn.net/thumb/large/100/396/362/products/da0045c9e48defd093797dfc83fa2c67-1590389087.jpg?v=1595556715920'
+											alt=''
+										/>
+									</div>
+									<div
+										className='thumb-list-item list-group-item list-group-item-action'
+										id='list-profile-list2'
+										data-bs-toggle='list'
+										href='#list-profile2'
+										role='tab'
+										aria-controls='list-profile2'
+									>
+										<img
+											src='https://bizweb.dktcdn.net/thumb/large/100/396/362/products/z1404288110190-af6a21b6662a892b18ddb3ea9f7795fc-1595478380.jpg?v=1595556722557'
+											alt=''
+										/>
+									</div>
+								</div>
+								<a href='' className='card-text'>
+									Bộ 2 Bàn Sofa IGEA Việt Nam Phong Cách Scanvadian Màu Trắng
+								</a>
+								<div className='price-box'>
+									<span className='price'>569.000 VNĐ</span>
+								</div>
+							</div>
+							<div className='h-top-pro-card col'>
+								<a href='' className='card-img-top tab-content' id='nav-tabContent'>
+									<div
+										className='tab-pane fade show active'
+										id='list-home3'
+										role='tabpanel'
+										aria-labelledby='list-home-list3'
+									>
+										<img
+											src='https://bizweb.dktcdn.net/thumb/large/100/396/362/products/da0045c9e48defd093797dfc83fa2c67-1590389087.jpg?v=1595556715920'
+											alt=''
+										/>
+									</div>
+									<div
+										className='tab-pane fade show'
+										id='list-profile3'
+										role='tabpanel'
+										aria-labelledby='list-profile-list3'
+									>
+										<img
+											src='https://bizweb.dktcdn.net/thumb/large/100/396/362/products/z1404288110190-af6a21b6662a892b18ddb3ea9f7795fc-1595478380.jpg?v=1595556722557'
+											alt=''
+										/>
+									</div>
+								</a>
+								<div className='thumb-list list-group id=list-tab' role='tablist'>
+									<div
+										className='thumb-list-item list-group-item list-group-item-action active'
+										id='list-home-list3'
+										data-bs-toggle='list'
+										href='#list-home3'
+										role='tab'
+										aria-controls='list-home3'
+									>
+										<img
+											src='https://bizweb.dktcdn.net/thumb/large/100/396/362/products/da0045c9e48defd093797dfc83fa2c67-1590389087.jpg?v=1595556715920'
+											alt=''
+										/>
+									</div>
+									<div
+										className='thumb-list-item list-group-item list-group-item-action'
+										id='list-profile-list3'
+										data-bs-toggle='list'
+										href='#list-profile3'
+										role='tab'
+										aria-controls='list-profile3'
+									>
+										<img
+											src='https://bizweb.dktcdn.net/thumb/large/100/396/362/products/z1404288110190-af6a21b6662a892b18ddb3ea9f7795fc-1595478380.jpg?v=1595556722557'
 											alt=''
 										/>
 									</div>
@@ -281,254 +411,145 @@ const Home = () => {
 						<button className='viewmore'>Xem tất cả</button>
 					</div>
 				</div>
-			</div>
-			<div className='home-section-4'>
-				<div className='slick-track row'>
-					<a href='' className='slick-item col'>
-						<img
-							src='https://bizweb.dktcdn.net/100/396/362/themes/777022/assets/partner_1.jpg?1678155521674'
-							alt=''
-						/>
-					</a>
-					<a href='' className='slick-item col'>
-						<img
-							src='https://bizweb.dktcdn.net/100/396/362/themes/777022/assets/partner_2.jpg?1678155521674'
-							alt=''
-						/>
-					</a>
-					<a href='' className='slick-item col'>
-						<img
-							src='https://bizweb.dktcdn.net/100/396/362/themes/777022/assets/partner_3.jpg?1678155521674'
-							alt=''
-						/>
-					</a>
-					<a href='' className='slick-item col'>
-						<img
-							src='https://bizweb.dktcdn.net/100/396/362/themes/777022/assets/partner_4.jpg?1678155521674'
-							alt=''
-						/>
-					</a>
-					<a href='' className='slick-item col'>
-						<img
-							src='https://bizweb.dktcdn.net/100/396/362/themes/777022/assets/partner_5.jpg?1678155521674'
-							alt=''
-						/>
-					</a>
-					<a href='' className='slick-item col'>
-						<img
-							src='https://bizweb.dktcdn.net/100/396/362/themes/777022/assets/partner_6.jpg?1678155521674'
-							alt=''
-						/>
-					</a>
+				<div className='home-section-4'>
+					<div className='slick-track row row-cols-6'>
+						<a href='' className='slick-item col'>
+							<img
+								src='https://bizweb.dktcdn.net/100/396/362/themes/777022/assets/partner_1.jpg?1678155521674'
+								alt=''
+							/>
+						</a>
+						<a href='' className='slick-item col'>
+							<img
+								src='https://bizweb.dktcdn.net/100/396/362/themes/777022/assets/partner_2.jpg?1678155521674'
+								alt=''
+							/>
+						</a>
+						<a href='' className='slick-item col'>
+							<img
+								src='https://bizweb.dktcdn.net/100/396/362/themes/777022/assets/partner_3.jpg?1678155521674'
+								alt=''
+							/>
+						</a>
+						<a href='' className='slick-item col'>
+							<img
+								src='https://bizweb.dktcdn.net/100/396/362/themes/777022/assets/partner_4.jpg?1678155521674'
+								alt=''
+							/>
+						</a>
+						<a href='' className='slick-item col'>
+							<img
+								src='https://bizweb.dktcdn.net/100/396/362/themes/777022/assets/partner_5.jpg?1678155521674'
+								alt=''
+							/>
+						</a>
+						<a href='' className='slick-item col'>
+							<img
+								src='https://bizweb.dktcdn.net/100/396/362/themes/777022/assets/partner_6.jpg?1678155521674'
+								alt=''
+							/>
+						</a>
+					</div>
 				</div>
-			</div>
-			<div className='home-section-5'>
-				<div className='home-top-product'>
-					<a href='' className='h-title-toppro' title='TOP SẢN PHẨM BÁN CHẠY'>
-						SẢN PHẨM NHÀ XANH
-					</a>
-
-					<div className='h-topp row'>
-						<div className='h-top-pro-card col-3'>
-							<a href='' className='card-img-top'>
-								<img
-									src='https://bizweb.dktcdn.net/thumb/large/100/396/362/products/da0045c9e48defd093797dfc83fa2c67-1590389087.jpg?v=1595556715920'
-									alt=''
-								/>
-							</a>
-							<div className='thumb-list'>
-								<div className='thumb-list-item'>
-									<img
-										src='https://bizweb.dktcdn.net/thumb/small/100/396/362/products/da0045c9e48defd093797dfc83fa2c67-1590389087.jpg?v=1595556715920'
-										alt=''
-									/>
-								</div>
-								<div className='thumb-list-item'>
-									<img
-										src='https://bizweb.dktcdn.net/thumb/small/100/396/362/products/z1404288110190-af6a21b6662a892b18ddb3ea9f7795fc-1595478380.jpg?v=1595556722557'
-										alt=''
-									/>
-								</div>
-							</div>
-							<a href='' className='card-text'>
-								Bộ 2 Bàn Sofa IGEA Việt Nam Phong Cách Scanvadian Màu Trắng
-							</a>
-							<div className='price-box'>
-								<span className='price'>569.000 VNĐ</span>
-							</div>
+				<div className='home-section-5'>
+					<div className='home-top-product'>
+						<a href='' className='h-title-toppro' title='TOP SẢN PHẨM BÁN CHẠY'>
+							SẢN PHẨM NHÀ XANH
+						</a>
+						<div className='h-topp row row-cols-4 justify-content-between'>
+							<Product_card id='4' />
+							<Product_card id='5' />
+							<Product_card id='6' />
+							<Product_card id='7' />
 						</div>
-						<div className='h-top-pro-card col-3'>
-							<a href='' className='card-img-top'>
-								<img
-									src='https://bizweb.dktcdn.net/thumb/large/100/396/362/products/da0045c9e48defd093797dfc83fa2c67-1590389087.jpg?v=1595556715920'
-									alt=''
-								/>
-							</a>
-							<div className='thumb-list'>
-								<div className='thumb-list-item'>
+						<button className='viewmore'>Xem tất cả</button>
+					</div>
+				</div>
+				<div className='home-section-6'>
+					<div className='section-banner'>
+						<div className='row'>
+							<div className='col-lg-4 col-md-4 col-sm-4 col-12'>
+								<a href='' className='banner'>
 									<img
-										src='https://bizweb.dktcdn.net/thumb/small/100/396/362/products/da0045c9e48defd093797dfc83fa2c67-1590389087.jpg?v=1595556715920'
+										src='https://bizweb.dktcdn.net/100/396/362/themes/777022/assets/feature_banner_1.jpg?1678155521674'
 										alt=''
+										className='banner-image'
 									/>
-								</div>
-								<div className='thumb-list-item'>
-									<img
-										src='https://bizweb.dktcdn.net/thumb/small/100/396/362/products/z1404288110190-af6a21b6662a892b18ddb3ea9f7795fc-1595478380.jpg?v=1595556722557'
-										alt=''
-									/>
-								</div>
+								</a>
 							</div>
-							<a href='' className='card-text'>
-								Bộ 2 Bàn Sofa IGEA Việt Nam Phong Cách Scanvadian Màu Trắng
-							</a>
-							<div className='price-box'>
-								<span className='price'>569.000 VNĐ</span>
-							</div>
-						</div>
-						<div className='h-top-pro-card col-3'>
-							<a href='' className='card-img-top'>
-								<img
-									src='https://bizweb.dktcdn.net/thumb/large/100/396/362/products/da0045c9e48defd093797dfc83fa2c67-1590389087.jpg?v=1595556715920'
-									alt=''
-								/>
-							</a>
-							<div className='thumb-list'>
-								<div className='thumb-list-item'>
+							<div className='col-lg-4 col-md-4 col-sm-4 col-12'>
+								<a href=''>
 									<img
-										src='https://bizweb.dktcdn.net/thumb/small/100/396/362/products/da0045c9e48defd093797dfc83fa2c67-1590389087.jpg?v=1595556715920'
+										src='https://bizweb.dktcdn.net/100/396/362/themes/777022/assets/feature_banner_2.jpg?1678155521674'
 										alt=''
 									/>
-								</div>
-								<div className='thumb-list-item'>
+								</a>
+							</div>
+							<div className='col-lg-4 col-md-4 col-sm-4 col-12'>
+								<a href=''>
 									<img
-										src='https://bizweb.dktcdn.net/thumb/small/100/396/362/products/z1404288110190-af6a21b6662a892b18ddb3ea9f7795fc-1595478380.jpg?v=1595556722557'
+										src='https://bizweb.dktcdn.net/100/396/362/themes/777022/assets/feature_banner_3.jpg?1678155521674'
 										alt=''
 									/>
-								</div>
-							</div>
-							<a href='' className='card-text'>
-								Bộ 2 Bàn Sofa IGEA Việt Nam Phong Cách Scanvadian Màu Trắng
-							</a>
-							<div className='price-box'>
-								<span className='price'>569.000 VNĐ</span>
-							</div>
-						</div>
-						<div className='h-top-pro-card col-3'>
-							<a href='' className='card-img-top'>
-								<img
-									src='https://bizweb.dktcdn.net/thumb/large/100/396/362/products/da0045c9e48defd093797dfc83fa2c67-1590389087.jpg?v=1595556715920'
-									alt=''
-								/>
-							</a>
-							<div className='thumb-list'>
-								<div className='thumb-list-item'>
-									<img
-										src='https://bizweb.dktcdn.net/thumb/small/100/396/362/products/da0045c9e48defd093797dfc83fa2c67-1590389087.jpg?v=1595556715920'
-										alt=''
-									/>
-								</div>
-								<div className='thumb-list-item'>
-									<img
-										src='https://bizweb.dktcdn.net/thumb/small/100/396/362/products/z1404288110190-af6a21b6662a892b18ddb3ea9f7795fc-1595478380.jpg?v=1595556722557'
-										alt=''
-									/>
-								</div>
-							</div>
-							<a href='' className='card-text'>
-								Bộ 2 Bàn Sofa IGEA Việt Nam Phong Cách Scanvadian Màu Trắng
-							</a>
-							<div className='price-box'>
-								<span className='price'>569.000 VNĐ</span>
+								</a>
 							</div>
 						</div>
 					</div>
-					<button className='viewmore'>Xem tất cả</button>
 				</div>
-			</div>
-
-			<div className='home-section-6'>
-				<div className='section-banner'>
-					<div className='row'>
-						<div className='col-lg-4 col-md-4 col-sm-4 col-12'>
-							<a href=''>
-								<img
-									src='https://bizweb.dktcdn.net/100/396/362/themes/777022/assets/feature_banner_1.jpg?1678155521674'
-									alt=''
-								/>
-							</a>
-						</div>
-						<div className='col-lg-4 col-md-4 col-sm-4 col-12'>
-							<a href=''>
-								<img
-									src='https://bizweb.dktcdn.net/100/396/362/themes/777022/assets/feature_banner_2.jpg?1678155521674'
-									alt=''
-								/>
-							</a>
-						</div>
-						<div className='col-lg-4 col-md-4 col-sm-4 col-12'>
-							<a href=''>
-								<img
-									src='https://bizweb.dktcdn.net/100/396/362/themes/777022/assets/feature_banner_3.jpg?1678155521674'
-									alt=''
-								/>
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div className='home-section-7'>
-				<div className='section-blog'>
-					<a href='' className='blog-title'>
-						CẨM NANG NỘI THẤT
-					</a>
-					<div className='row'>
-						<div className='col-lg-4 col-md-4 col-10 item-news-image'>
-							<a href='' className='thumb'>
-								<img
-									src='https://bizweb.dktcdn.net/thumb/grande/100/396/362/articles/bloglist-1-963x600-1.jpg?v=1595229357487'
-									alt=''
-								/>
-							</a>
-							<a href='' className='a-title'>
-								Nhà phố hai mái giúp gia chủ không cần điều hòa
-							</a>
-							<div className='author'>20/07/2020</div>
-							<p>
-								Căn nhà trên mảnh đất 68 m2 ở quận 9 của một gia đình ba người. Để ngôi nhà thông gió và ít
-								cần sử dụng điều hòa, kiế...
-							</p>
-						</div>
-						<div className='col-lg-4 col-md-4 col-10 item-news-image'>
-							<a href='' className='thumb'>
-								<img
-									src='https://bizweb.dktcdn.net/thumb/grande/100/396/362/articles/bloglist-1-963x600-1.jpg?v=1595229357487'
-									alt=''
-								/>
-							</a>
-							<a href='' className='a-title'>
-								Nhà phố hai mái giúp gia chủ không cần điều hòa
-							</a>
-							<div className='author'>20/07/2020</div>
-							<p>
-								Căn nhà trên mảnh đất 68 m2 ở quận 9 của một gia đình ba người. Để ngôi nhà thông gió và ít
-								cần sử dụng điều hòa, kiế...
-							</p>
-						</div>
-						<div className='col-lg-4 col-md-4 col-10 item-news-image'>
-							<a href='' className='thumb'>
-								<img
-									src='https://bizweb.dktcdn.net/thumb/grande/100/396/362/articles/bloglist-1-963x600-1.jpg?v=1595229357487'
-									alt=''
-								/>
-							</a>
-							<a href='' className='a-title'>
-								Nhà phố hai mái giúp gia chủ không cần điều hòa
-							</a>
-							<div className='author'>20/07/2020</div>
-							<p>
-								Căn nhà trên mảnh đất 68 m2 ở quận 9 của một gia đình ba người. Để ngôi nhà thông gió và ít
-								cần sử dụng điều hòa, kiế...
-							</p>
+				<div className='home-section-7'>
+					<div className='section-blog'>
+						<a href='' className='blog-title'>
+							CẨM NANG NỘI THẤT
+						</a>
+						<div className='row'>
+							<div className='col-lg-4 col-md-4 col-10 item-news-image'>
+								<a href='' className='thumb'>
+									<img
+										src='https://bizweb.dktcdn.net/thumb/grande/100/396/362/articles/bloglist-1-963x600-1.jpg?v=1595229357487'
+										alt=''
+									/>
+								</a>
+								<a href='' className='a-title'>
+									Nhà phố hai mái giúp gia chủ không cần điều hòa
+								</a>
+								<div className='author'>20/07/2020</div>
+								<p>
+									Căn nhà trên mảnh đất 68 m2 ở quận 9 của một gia đình ba người. Để ngôi nhà thông gió và ít
+									cần sử dụng điều hòa, kiế...
+								</p>
+							</div>
+							<div className='col-lg-4 col-md-4 col-10 item-news-image'>
+								<a href='' className='thumb'>
+									<img
+										src='https://bizweb.dktcdn.net/thumb/grande/100/396/362/articles/bloglist-1-963x600-1.jpg?v=1595229357487'
+										alt=''
+									/>
+								</a>
+								<a href='' className='a-title'>
+									Nhà phố hai mái giúp gia chủ không cần điều hòa
+								</a>
+								<div className='author'>20/07/2020</div>
+								<p>
+									Căn nhà trên mảnh đất 68 m2 ở quận 9 của một gia đình ba người. Để ngôi nhà thông gió và ít
+									cần sử dụng điều hòa, kiế...
+								</p>
+							</div>
+							<div className='col-lg-4 col-md-4 col-10 item-news-image'>
+								<a href='' className='thumb'>
+									<img
+										src='https://bizweb.dktcdn.net/thumb/grande/100/396/362/articles/bloglist-1-963x600-1.jpg?v=1595229357487'
+										alt=''
+									/>
+								</a>
+								<a href='' className='a-title'>
+									Nhà phố hai mái giúp gia chủ không cần điều hòa
+								</a>
+								<div className='author'>20/07/2020</div>
+								<p>
+									Căn nhà trên mảnh đất 68 m2 ở quận 9 của một gia đình ba người. Để ngôi nhà thông gió và ít
+									cần sử dụng điều hòa, kiế...
+								</p>
+							</div>
 						</div>
 					</div>
 				</div>
