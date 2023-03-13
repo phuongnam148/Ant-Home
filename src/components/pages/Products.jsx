@@ -1,6 +1,6 @@
 import React from 'react';
 import './scss/products.scss';
-
+import Product_card from '../product-card/Product_card';
 import Slide from '../Slide/Slide';
 
 // import { Swiper, SwiperSlide } from 'swiper/react';
@@ -36,7 +36,7 @@ const Products = () => {
 									>
 										Top sản phẩm bán chạy
 									</div>
-									<div className='product-page-favorites-wrap slick-initialized slick-slider'>
+									<div className='product-page-favorites-wrap slick-initialized slick-slider '>
 										<Slide />
 									</div>
 								</div>
@@ -864,9 +864,18 @@ const Products = () => {
 								</div>
 							</div>
 							<hr className='hr' />
-							<section className='products-view products-view-grid row'>
-								<div className='col-6 col-sm-4 col-md-4 col-lg-4'>div</div>
-							</section>
+							<div className='products-view  row row-cols-3 justify-content-between'>
+								<Product_card id='5' />
+								<Product_card id='6' />
+								<Product_card id='7' />
+								<Product_card id='8' />
+								<Product_card id='9' />
+								<Product_card id='10' />
+
+								{/* <div className='col-6 col-sm-4 col-md-4 col-lg-4'>
+									
+								</div> */}
+							</div>
 							<div className='row'>
 								<div className='col-lg-12 col-sm-12 col-12 margin-top-20 fix-page'>
 									<nav aria-label='Page navigation example' id='pt'>

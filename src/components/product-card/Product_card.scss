@@ -4,7 +4,11 @@
 	border: 1px solid rgba(161, 161, 161, 0.37);
 	transition: box-shadow 0.3s;
 	background: #fff;
-	max-width: 24% !important;
+	max-width: 24% ;
+	// margin-right: 5px ;
+	img{
+		width: 100%;
+	}
 	&:hover {
 		box-shadow: 0 2px 5px 0 rgb(0 0 0 / 24%);
 		transition: box-shadow 0.3s;
