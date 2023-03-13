@@ -1,6 +1,6 @@
 import React from 'react';
 import './scss/products.scss';
-
+import '../scss/app.scss';
 import Slide from '../Slide/Slide';
 // import { Swiper, SwiperSlide } from 'swiper/react';
 // import 'swiper/css';
@@ -41,6 +41,114 @@ const Products = () => {
 								</div>
 							</div>
 						</div>
+					</div>
+					<div className='row my-5'>
+						<aside className='sidebar col-lg-3 col-md-12 col-sm-12 col-12 left-content'>
+							<div className='aside-category card d-lg-block d-none margin-bottom-20'>
+								<div className='aside-title text-center card-header text-uppercase fs-6 fw-bold'>
+									Danh mục sản phẩm
+								</div>
+								<div className='aside-content'>
+									<ul className='navbar-pills my-2 '>
+										<li className='nav-item list-unstyled my-1 '>
+											<div>
+												<a
+													className='nav-link dropdown-toggle'
+													data-bs-toggle='collapse'
+													href='#contentId'
+													aria-expanded='false'
+													aria-controls='contentId'
+												>
+													Nội thất
+												</a>
+											</div>
+											<div className='collapse' id='contentId'>
+												<ul>
+													<li className='nav-item list-unstyled my-1'>
+														<a href='#' className='nav-link'>
+															Phòng khách
+														</a>
+													</li>
+													<li className='nav-item list-unstyled my-1'>
+														<a href='#' className='nav-link'>
+															Phòng ăn
+														</a>
+													</li>
+													<li className='nav-item list-unstyled my-1'>
+														<a href='#' className='nav-link'>
+															Phòng ngủ
+														</a>
+													</li>
+													<li className='nav-item list-unstyled my-1'>
+														<a href='#' className='nav-link'>
+															Phòng làm việc
+														</a>
+													</li>
+													<li className='nav-item list-unstyled my-1'>
+														<a href='#' className='nav-link'>
+															Phòng cho bé
+														</a>
+													</li>
+													<li className='nav-item list-unstyled my-1'>
+														<a href='#' className='nav-link'>
+															Nội thất thông minh
+														</a>
+													</li>
+												</ul>
+											</div>
+										</li>
+										<li className='nav-item list-unstyled my-1'>
+											<div>
+												<a
+													className='nav-link dropdown-toggle'
+													data-bs-toggle='collapse'
+													href='#contentId1'
+													aria-expanded='false'
+													aria-controls='contentId1'
+												>
+													Đồ trang trí
+												</a>
+												<i className='bi bi-arrow-down'></i>
+											</div>
+											<div className='collapse' id='contentId1'>
+												<ul>
+													<li className='nav-item list-unstyled my-1'>
+														<a href='#' className='nav-link'>
+															Phòng khách
+														</a>
+													</li>
+													<li className='nav-item list-unstyled my-1'>
+														<a href='#' className='nav-link'>
+															Phòng ăn
+														</a>
+													</li>
+													<li className='nav-item list-unstyled my-1'>
+														<a href='#' className='nav-link'>
+															Phòng ngủ
+														</a>
+													</li>
+													<li className='nav-item list-unstyled my-1'>
+														<a href='#' className='nav-link'>
+															Phòng làm việc
+														</a>
+													</li>
+													<li className='nav-item list-unstyled my-1'>
+														<a href='#' className='nav-link'>
+															Phòng cho bé
+														</a>
+													</li>
+													<li className='nav-item list-unstyled my-1'>
+														<a href='#' className='nav-link'>
+															Nội thất thông minh
+														</a>
+													</li>
+												</ul>
+											</div>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</aside>
 					</div>
 				</section>
 			</div>
