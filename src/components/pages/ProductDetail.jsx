@@ -23,10 +23,10 @@ const ProductDetail = () => {
 	const [productDetail, setProductDetail] = useState(
 		'Mô tả chi tiết sản phẩm Mô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩm	'
 	);
-	const [showMore, setShowMore] = useState(true);
+	const [showMore, setShowMore] = useState(false);
 
 	const handleShowMore = () => {
-		setShowMore(false);
+		setShowMore(!showMore);
 	};
 
 	return (
@@ -230,9 +230,9 @@ const ProductDetail = () => {
 						</div>
 						{/* Thông tin chi tiết */}
 						<div>
-							<p className={showMore ? 'show-more' : ''}>{productDetail}</p>
-							{showMore && <button onClick={handleShowMore}>Xem thêm </button>}
-							{showMore && <button onClick={() => setShowMore(true)}>Thu gọn</button>}
+							<p className={!showMore ? 'show-more' : ''}>{productDetail}</p>
+							{<button onClick={handleShowMore}>Xem thêm </button>}
+							{<button onClick={() => setShowMore(true)}>Thu gọn</button>}
 						</div>
 					</div>
 				</div>
