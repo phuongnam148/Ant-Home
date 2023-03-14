@@ -4,9 +4,9 @@
 	border: 1px solid rgba(161, 161, 161, 0.37);
 	transition: box-shadow 0.3s;
 	background: #fff;
-	max-width: 24% ;
-	// margin-right: 5px ;
-	img{
+	max-width: 24%; //Set lai max-width theo y muon bang !important
+	// margin-right: 5px;
+	img {
 		width: 100%;
 	}
 	&:hover {

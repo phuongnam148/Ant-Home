@@ -7,6 +7,7 @@ import 'swiper/css';
 import banner from '../../images/slider_1.jpg';
 import './scss/home.scss';
 import Product_card from '../product-card/Product_card';
+import { cards } from '../../data';
 const Home = () => {
 	return (
 		<div className='home'>
@@ -166,11 +167,10 @@ const Home = () => {
 							TOP SẢN PHẨM BÁN CHẠY
 						</a>
 
-						<div className='h-topp row row-cols-4 justify-content-between'>
-							<Product_card id='1' />
-							<Product_card id='2' />
-							<Product_card id='3' />
-							<Product_card id='4' />
+						<div className='h-topp row row-cols-4 justify-content-between '>
+							{cards.map((cards) => (
+								<Product_card key={cards.id} card={cards} />
+							))}
 						</div>
 						<button className='viewmore'>Xem tất cả</button>
 					</div>
@@ -221,10 +221,9 @@ const Home = () => {
 							SẢN PHẨM NHÀ XANH
 						</a>
 						<div className='h-topp row row-cols-4 justify-content-between'>
-							<Product_card id='5' />
-							<Product_card id='6' />
-							<Product_card id='7' />
-							<Product_card id='8' />
+							{cards.map((cards) => (
+								<Product_card key={cards.id} card={cards} />
+							))}
 						</div>
 						<button className='viewmore'>Xem tất cả</button>
 					</div>
