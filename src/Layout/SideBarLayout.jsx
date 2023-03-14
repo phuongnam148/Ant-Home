@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Footer from '../blocks/footer/Footer';
-import Header from '../blocks/header/Header';
+import Footer from '../components/blocks/footer/Footer';
+import Header from '../components/blocks/header/Header';
 
 // eslint-disable-next-line react/prop-types
 const SideBarLayout = ({ children }) => {
