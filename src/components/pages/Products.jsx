@@ -2,6 +2,7 @@ import React from 'react';
 import './scss/products.scss';
 import Product_card from '../product-card/Product_card';
 import Slide from '../Slide/Slide';
+import { cards } from '../../data';
 
 // import { Swiper, SwiperSlide } from 'swiper/react';
 // import 'swiper/css';
@@ -865,12 +866,9 @@ const Products = () => {
 							</div>
 							<hr className='hr' />
 							<div className='products-view  row row-cols-3 justify-content-between gap-1'>
-								<Product_card id='5' />
-								<Product_card id='6' />
-								<Product_card id='7' />
-								<Product_card id='8' />
-								<Product_card id='9' />
-								<Product_card id='10' />
+								{cards.map((cards) => (
+									<Product_card key={cards.id} card={cards} />
+								))}
 
 								{/* <div className='col-6 col-sm-4 col-md-4 col-lg-4'>
 									
