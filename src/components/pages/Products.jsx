@@ -864,7 +864,7 @@ const Products = () => {
 								</div>
 							</div>
 							<hr className='hr' />
-							<div className='products-view  row row-cols-3 justify-content-between'>
+							<div className='products-view  row row-cols-3 justify-content-between gap-1'>
 								<Product_card id='5' />
 								<Product_card id='6' />
 								<Product_card id='7' />
