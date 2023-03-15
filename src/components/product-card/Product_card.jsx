@@ -8,7 +8,7 @@ const Product_card = ({ card }) => {
 	let [clickedImage, changeImage] = useState(0);
 
 	if (card) {
-		console.log(card);
+		// console.log(card);
 
 		return (
 			<div className='h-top-pro-card g-col'>
@@ -24,8 +24,8 @@ const Product_card = ({ card }) => {
 								onClick={() => {
 									changeImage(index);
 								}}
-								className={`thumb-list-item list-group-item list-group-item-action `}
-								role='tab'
+								className={`thumb-list-item list-group-item list-group-item-action`}
+								aria-current='img-card'
 								key={index}
 							>
 								<img src={item} alt='' />

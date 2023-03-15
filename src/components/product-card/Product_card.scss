@@ -31,6 +31,7 @@
 		height: 63px;
 		display: inline-block;
 		border: 1px solid transparent;
+		border: #ff4e00;
 
 		img {
 			width: 100%;
@@ -41,6 +42,10 @@
 			left: 0;
 			right: 0;
 			padding: 3px;
+		}
+		&:hover {
+			border: 1px #ff4e00 solid;
+			border-radius: 1px;
 		}
 	}
 }
