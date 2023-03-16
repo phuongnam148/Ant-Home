@@ -24,8 +24,8 @@ const Product_card = ({ card }) => {
 								onClick={() => {
 									changeImage(index);
 								}}
-								className={`thumb-list-item list-group-item list-group-item-action `}
-								role='tab'
+								className={`thumb-list-item list-group-item list-group-item-action`}
+								aria-current='img-card'
 								key={index}
 							>
 								<img src={item} alt='' />

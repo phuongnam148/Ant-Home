@@ -11,6 +11,7 @@ import DefaultLayout from './Layout/DefaultLayout';
 import ProductDetail from './components/pages/ProductDetail';
 import Login from './components/pages/login/Login';
 import Pagenotfound from './components/pages/Pagenotfound';
+import Register from './components/pages/login/Register';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const router = createBrowserRouter([
 	{
@@ -23,6 +24,7 @@ const router = createBrowserRouter([
 			{ path: '/gioi-thieu', element: <GioiThieu /> },
 			{ path: '/products', element: <Products /> },
 			{ path: '/login', element: <Login /> },
+			{ path: '/register', element: <Register /> },
 		],
 	},
 	{ path: '/check-out', element: <CheckOut /> },

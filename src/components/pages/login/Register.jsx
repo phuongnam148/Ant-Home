@@ -1,7 +1,7 @@
 import React from 'react';
 import './Login.scss';
 
-const Login = () => {
+const Register = () => {
 	return (
 		<div className='login'>
 			<div className='login-container row'>
@@ -15,14 +15,39 @@ const Login = () => {
 				</div>
 				<div className='right col'>
 					<ul className='auth-menu-list d-flex'>
-						<li className='loginform active'>
-							<a href='#'>Đăng nhập</a>
+						<li className='loginform '>
+							<a href='/login'>Đăng nhập</a>
 						</li>
-						<li className='regisform'>
-							<a href='/register'>Đăng kí</a>
+						<li className='regisform active'>
+							<a href='#'>Đăng kí</a>
 						</li>
 					</ul>
-					<form method='post' id='customer-login'>
+					<form method='post' id='customer-name'>
+						<div className='mb-3'>
+							<label htmlFor='InputFName' className='form-label'>
+								HỌ <span>*</span>
+							</label>
+							<input type='text' className='form-control' id='InputFName' placeholder='Nhập Họ' required />
+						</div>
+						<div className='mb-3'>
+							<label htmlFor='InputName' className='form-label'>
+								TÊN <span>*</span>
+							</label>
+							<input type='text' className='form-control' id='InputName' placeholder='Nhập Tên' required />
+						</div>
+						<div className='mb-3'>
+							<label htmlFor='phone' className='form-label'>
+								SỐ ĐIỆN THOẠI <span>*</span>
+							</label>
+							<input
+								type='tel'
+								className='form-control'
+								id='phone'
+								placeholder='Nhập Số điện thoại'
+								required
+								pattern='[0-9]{3}-[0-9]{2}-[0-9]{3}'
+							/>
+						</div>
 						<div className='mb-3'>
 							<label htmlFor='InputEmail' className='form-label'>
 								Email <span>*</span>
@@ -32,10 +57,9 @@ const Login = () => {
 								className='form-control'
 								id='InputEmail'
 								placeholder='Nhập Địa chỉ Email'
-								aria-describedby='emailHelp'
 								required
+								aria-describedby='emailHelp'
 								pattern='[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$'
-								data-validation-error-msg='Email sai định dạng'
 							/>
 							<div id='emailHelp' className='form-text'></div>
 						</div>
@@ -51,24 +75,16 @@ const Login = () => {
 								required
 							/>
 						</div>
-						<p className='recover'>
-							<a href='' className='btn-link-style'>
-								Quên mật khẩu?
-							</a>
-						</p>
+
 						<button type='submit' className='btn'>
-							Đăng nhập
+							Tạo tài khoản
 						</button>
-						<p className='login-note'>
-							Ant Home cam kết bảo mật và sẽ không bao giờ đăng <br /> hay chia sẻ thông tin mà chưa có được
-							sự đồng ý của bạn.
-						</p>
 					</form>
 					<div className='line-break'>
 						<span>hoặc đăng nhập qua</span>
 					</div>
 
-					<div className='social-login row row-cols-2'>
+					<div className='social-login row row-cols-2 my-4'>
 						<a href='' className='fb-login col'>
 							<img
 								width='192px'
@@ -92,4 +108,4 @@ const Login = () => {
 	);
 };
 
-export default Login;
+export default Register;
