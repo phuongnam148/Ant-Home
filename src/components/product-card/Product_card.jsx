@@ -8,7 +8,7 @@ const Product_card = ({ card }) => {
 	let [clickedImage, changeImage] = useState(0);
 
 	if (card) {
-		console.log(card);
+		// console.log(card);
 
 		return (
 			<div className='h-top-pro-card g-col'>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './scss/product-detail.scss';
+import Slide from '../Slide/Slide';
 
 const ProductDetail = () => {
 	const [value, setValue] = useState(1);
@@ -229,206 +230,273 @@ const ProductDetail = () => {
 							<span>Thêm vào yêu thích</span>
 						</div>
 						{/* Thông tin chi tiết */}
-						<div>
+						<div className='showmore'>
 							<p className={!showMore ? 'show-more' : ''}>{productDetail}</p>
-							{<button onClick={handleShowMore}>Xem thêm </button>}
-							{<button onClick={() => setShowMore(true)}>Thu gọn</button>}
+
+							<button className='xemthem' onClick={handleShowMore}>
+								<p className='more-text m-1'>{showMore ? 'Thu gọn' : 'Xem thêm'}</p>
+								<i className='fa fa-angle-down '></i>
+							</button>
+
+							{/* {<button onClick={() => setShowMore(true)}>Rút gọn</button>} */}
 						</div>
 					</div>
 				</div>
 			</div>
 			<hr />
-			{/* Thông tin chi tiết sản phẩm */}
 			<div className='container'>
-				<div className='justify-content-center'>
-					<ul className='nav nav-tabs justify-content-center' id='myTab' role='tablist'>
-						<li className='nav-item' role='presentation'>
+				<div className='d-flex justify-content-center'>
+					<nav>
+						<div className='nav nav-tabs' id='nav-tab' role='tablist'>
 							<button
 								className='nav-link active'
-								id='home-tab'
+								id='nav-home-tab'
 								data-bs-toggle='tab'
-								data-bs-target='#home-tab-pane'
+								data-bs-target='#nav-home'
 								type='button'
 								role='tab'
-								aria-controls='home-tab-pane'
+								aria-controls='nav-home'
 								aria-selected='true'
 							>
 								Mô tả sản phẩm
 							</button>
-						</li>
-						<li className='nav-item' role='presentation'>
 							<button
 								className='nav-link'
-								id='profile-tab'
+								id='nav-profile-tab'
 								data-bs-toggle='tab'
-								data-bs-target='#profile-tab-pane'
+								data-bs-target='#nav-profile'
 								type='button'
 								role='tab'
-								aria-controls='profile-tab-pane'
+								aria-controls='nav-profile'
 								aria-selected='false'
 							>
 								Thông số
 							</button>
-						</li>
-						<li className='nav-item' role='presentation'>
 							<button
 								className='nav-link'
-								id='contact-tab'
+								id='nav-contact-tab'
 								data-bs-toggle='tab'
-								data-bs-target='#contact-tab-pane'
+								data-bs-target='#nav-contact'
 								type='button'
 								role='tab'
-								aria-controls='contact-tab-pane'
+								aria-controls='nav-contact'
 								aria-selected='false'
 							>
 								Hướng dẫn bảo quản
 							</button>
-						</li>
-					</ul>
-					<div className='tab-content' id='myTabContent'>
-						<div
-							className='tab-pane fade show active '
-							id='home-tab-pane'
-							role='tabpanel'
-							aria-labelledby='home-tab'
-							tabIndex={0}
-						>
-							<span className='fw-bold'>Sản phẩm chỉ bao gồm 1 bàn 1 ghế, không kèm các phụ kiện khác</span>
-							<ul>
-								<li>Sản phẩm thân thiện với môi trường</li>
-								<li>Sản phẩm đạt tiêu chuẩn xuất khẩu, đóng gói theo chuẩn xuất khẩu</li>
-								<li>Chất liệu: Gỗ MDF đạt tiêu chuẩn E1 nhập khẩu Singapore được phủ Melamine chống thấm</li>
-								<li>Đã qua xử lí chống cong vênh, mối mọt</li>
-								<li>Khó trầy xước, những vết xước nhẹ sẽ không ảnh hưởng đến sản phẩm</li>
-								<li>Thiết kế thông minh, tinh tế sang trọng</li>
-								<li>Kích thước: Ngang x Sâu x Cao(cm): 715 x 40 x 136.5</li>
-								<li>Lắp đặt đơn giản (có hướng dẫn lắp đặt đính kèm)</li>
-							</ul>
 						</div>
-						<div
-							className='tab-pane fade'
-							id='profile-tab-pane'
-							role='tabpanel'
-							aria-labelledby='profile-tab'
-							tabIndex={0}
-						>
-							<span className='fw-bold'>Anthome</span> là sàn thương mại điện tử chuyên cung cấp các sản phẩm
-							nội thất và trang trí nội thất cho thị trường Việt Nam. Chúng tôi tin rằng hạnh phúc của mỗi gia
-							đình đều được vun đắp từ nhà, không gian sống tạo dựng giá trị cuộc sống. Chính vì vậy mục tiêu,
-							sứ mệnh mà <span className='fw-bold'> Ant Home</span> hướng tới là đem đến những giải pháp tối
-							ưu về nội thất cho nhà ở, văn phòng… Với con đường mà Ant Home đã chọn, chúng tôi mong muốn được
-							cùng xây tổ ấm với triệu gia đình Việt đồng thời cùng chung tay kiến tạo không gian làm việc
-							chuyên nghiệp với các doanh nghiệp tại Việt Nam.
+					</nav>
+				</div>
+
+				<div className='tab-content' id='nav-tabContent'>
+					<div
+						className='tab-pane fade show active'
+						id='nav-home'
+						role='tabpanel'
+						aria-labelledby='nav-home-tab'
+					>
+						<p className='fw-bold'>Bộ 2 Bàn Sofa IGEA Việt Nam Phong Cách Scanvadian Màu trắng</p>
+						<p>
+							{' '}
+							Bạn đang cần tìm bàn trà sofa, bàn trà cafe mà chưa tìm được sản phẩm ưng ý
+							<br />
+							Bạn muốn sở hữu mẫu bàn trà sofa hiện đại trẻ trung tiết kiệm diện tích, dễ dàng kết hợp nội
+							thất đặc biệt là ghế sofa.
+							<br />
+							Bạn muốn sở hữu mẫu bàn trà cafe có kích thước hợp lý có thế làm tag đầu giường bàn học, bàn làm
+							việc, bàn uống trà thư giãn tại không gian bạn yêu thích.
+							<br />
+							Bàn cần tìm sản phầm bàn trà sofa độc đáo để tặng quà tân gia.
+							<br />
+							Nhưng bàn trà sofa bạn cần phải có giá thành hợp lý và chất lượng.
+							<br />
+							Nhưng bàn trà sofa bạn cần phải có giá thành hợp lý và chất lượng.
+							<br />
+							THÔNG TIN CHI TIẾT
+							<br />
+							- Kích thước: Bàn trứng (90x50x42cm), bàn tròn (50x50x45cm).
+							<br />
+							- Màu sắc: Trắng.
+							<br />
+							- Chất liệu: Mặt bàn gỗ MDF phủ melamin chống xước chống nước. Chân gỗ sồi tự nhiên.
+							<br />
+							- Chất liệu: Mặt bàn gỗ MDF phủ melamin chống xước chống nước. Chân gỗ sồi tự nhiên.
+							<br />- Công năng: Bàn trà cafe tại nhà tại văn phòng, bàn.
+						</p>
+					</div>
+					<div className='tab-pane fade' id='nav-profile' role='tabpanel' aria-labelledby='nav-profile-tab'>
+						<p>
+							<b>Ant home</b>là sàn thương mại điện tử chuyên cung cấp các sản phẩm nội thất và trang trí nội
+							thất cho thị trường Việt Nam. Chúng tôi tin rằng hạnh phúc của mỗi gia đình đều được vun đắp từ
+							nhà, không gian sống tạo dựng giá trị cuộc sống. Chính vì vậy mục tiêu, sứ mệnh <b>Ant home</b>{' '}
+							hướng tới là đem đến những giải pháp tối ưu về nội thất cho nhà ở, văn phòng… Với con đường mà
+							Ant Home đã chọn, chúng tôi mong muốn được cùng xây tổ ấm với triệu gia đình Việt đồng thời cùng
+							chung tay kiến tạo không gian làm việc chuyên nghiệp với các doanh nghiệp tại Việt Nam.
+						</p>
+						<p>
 							<img
 								src='https://bizweb.dktcdn.net/100/396/362/files/baya-service-01.jpg?v=1595211750325'
 								alt=''
 							/>
-							<h4>GIÁ TRỊ</h4>
-							<h6>
-								{' '}
-								<i>VÌ KHÁCH HÀNG</i>{' '}
-							</h6>
-							<p>Mang đến những sản phẩm và dịch vụ tốt nhất cho mỗi khách hàng.</p>
-							<h6>
-								{' '}
-								<i>CHÍNH TRỰC</i>{' '}
-							</h6>
+						</p>
+						<h4>
+							<strong>GIÁ TRỊ</strong>
+						</h4>
+						<p>
+							<em>
+								<strong>VÌ KHÁCH HÀNG</strong>
+							</em>
+						</p>
+						<p>Mang đến những sản phẩm và dịch vụ tốt nhất cho mỗi khách hàng.</p>
+						<p>
+							<em>
+								<strong>CHÍNH TRỰC</strong>
+							</em>
+						</p>
+						<p>
+							Luôn lựa chọn giải pháp tối ưu nhất cho khách hàng, nhân viên, đối tác và cộng đồng xung quanh.
+						</p>
+						<p>
+							<em>
+								<strong>CHẤT LƯỢNG</strong>
+							</em>
+						</p>
+						<p>Không ngừng theo đuổi những tiêu chuẩn chất lượng khắt khe trong mọi quy trình.</p>
+						<p>
 							<p>
-								Luôn lựa chọn giải pháp tối ưu nhất cho khách hàng, nhân viên, đối tác và cộng đồng xung
-								quanh.
+								<em>
+									<strong>TÔN TRỌNG</strong>
+								</em>
 							</p>
-							<h6>
-								{' '}
-								<i>CHẤT LƯỢNG</i>{' '}
-							</h6>
-							<p>Không ngừng theo đuổi những tiêu chuẩn chất lượng khắt khe trong mọi quy trình.</p>
-							<h6>
-								{' '}
-								<i>TÔN TRỌNG</i>{' '}
-							</h6>
-							<p>
-								Hướng tới trải nghiệm mua sắm và môi trường làm việc không có sự phân biệt đối xử dưới mọi
-								hình thức.
-							</p>
-							<h6>
-								{' '}
-								<i>TINH THẦN ĐỒNG ĐỘI</i>{' '}
-							</h6>
 							<p>
 								Sẵn sàng đồng hành cùng khách hàng, đồng nghiệp và nhà cung cấp để đạt tới những kết quả tốt
 								nhất.
 							</p>
-							<h6>
-								{' '}
-								<i>CẢI TIẾN KHÔNG NGỪNG</i>{' '}
-							</h6>
-							<p>Không bao giờ tự hài lòng, chúng tôi sẽ luôn không ngừng phát triển bản thân.</p>
-						</div>
-					</div>
-					<div
-						className='tab-pane fade'
-						id='contact-tab-pane'
-						role='tabpanel'
-						aria-labelledby='contact-tab'
-						tabIndex={0}
-					>
-						<span className='fw-bold'>Ant Home</span> là sàn thương mại điện tử chuyên cung cấp các sản phẩm
-						nội thất và trang trí nội thất cho thị trường Việt Nam. Chúng tôi tin rằng hạnh phúc của mỗi gia
-						đình đều được vun đắp từ nhà, không gian sống tạo dựng giá trị cuộc sống. Chính vì vậy mục tiêu,
-						sứ mệnh mà <span className='fw-bold'>Ant Home</span> hướng tới là đem đến những giải pháp tối ưu
-						về nội thất cho nhà ở, văn phòng… Với con đường mà Ant Home đã chọn, chúng tôi mong muốn được cùng
-						xây tổ ấm với triệu gia đình Việt đồng thời cùng chung tay kiến tạo không gian làm việc chuyên
-						nghiệp với các doanh nghiệp tại Việt Nam.
-						<img
-							src='https://bizweb.dktcdn.net/100/396/362/files/baya-service-01.jpg?v=1595211750325'
-							alt=''
-						/>
-						<h4>GIÁ TRỊ</h4>
-						<h6>
-							{' '}
-							<i>VÌ KHÁCH HÀNG</i>{' '}
-						</h6>
-						<p>Mang đến những sản phẩm và dịch vụ tốt nhất cho mỗi khách hàng.</p>
-						<h6>
-							{' '}
-							<i>CHÍNH TRỰC</i>{' '}
-						</h6>
-						<p>
-							Luôn lựa chọn giải pháp tối ưu nhất cho khách hàng, nhân viên, đối tác và cộng đồng xung quanh.
 						</p>
-						<h6>
-							{' '}
-							<i>CHẤT LƯỢNG</i>{' '}
-						</h6>
-						<p>Không ngừng theo đuổi những tiêu chuẩn chất lượng khắt khe trong mọi quy trình.</p>
-						<h6>
-							{' '}
-							<i>TÔN TRỌNG</i>{' '}
-						</h6>
+						<p>
+							<p>
+								<em>
+									<strong>TING THẦN ĐỒNG ĐỘI</strong>
+								</em>
+							</p>
+							<p>
+								Sẵn sàng đồng hành cùng khách hàng, đồng nghiệp và nhà cung cấp để đạt tới những kết quả tốt
+								nhất.
+							</p>
+						</p>
+						<p>
+							<em>
+								<strong>CẢI TIẾN KHÔNG NGỪNG</strong>
+							</em>
+						</p>
 						<p>
 							Hướng tới trải nghiệm mua sắm và môi trường làm việc không có sự phân biệt đối xử dưới mọi hình
 							thức.
 						</p>
-						<h6>
-							{' '}
-							<i>TINH THẦN ĐỒNG ĐỘI</i>{' '}
-						</h6>
+					</div>
+					<div className='tab-pane fade' id='nav-contact' role='tabpanel' aria-labelledby='nav-contact-tab'>
 						<p>
-							Sẵn sàng đồng hành cùng khách hàng, đồng nghiệp và nhà cung cấp để đạt tới những kết quả tốt
-							nhất.
+							<b>Ant home</b>là sàn thương mại điện tử chuyên cung cấp các sản phẩm nội thất và trang trí nội
+							thất cho thị trường Việt Nam. Chúng tôi tin rằng hạnh phúc của mỗi gia đình đều được vun đắp từ
+							nhà, không gian sống tạo dựng giá trị cuộc sống. Chính vì vậy mục tiêu, sứ mệnh <b>Ant home</b>{' '}
+							hướng tới là đem đến những giải pháp tối ưu về nội thất cho nhà ở, văn phòng… Với con đường mà
+							Ant Home đã chọn, chúng tôi mong muốn được cùng xây tổ ấm với triệu gia đình Việt đồng thời cùng
+							chung tay kiến tạo không gian làm việc chuyên nghiệp với các doanh nghiệp tại Việt Nam.
 						</p>
-						<h6>
-							{' '}
-							<i>CẢI TIẾN KHÔNG NGỪNG</i>{' '}
-						</h6>
-						<p>Không bao giờ tự hài lòng, chúng tôi sẽ luôn không ngừng phát triển bản thân.</p>
+						<p>
+							<img
+								src='https://bizweb.dktcdn.net/100/396/362/files/baya-service-01.jpg?v=1595211750325'
+								alt=''
+							/>
+						</p>
+						<h4>
+							<strong>GIÁ TRỊ</strong>
+						</h4>
+						<p>
+							<em>
+								<strong>VÌ KHÁCH HÀNG</strong>
+							</em>
+						</p>
+						<p>Mang đến những sản phẩm và dịch vụ tốt nhất cho mỗi khách hàng.</p>
+						<p>
+							<em>
+								<strong>CHÍNH TRỰC</strong>
+							</em>
+						</p>
+						<p>
+							Luôn lựa chọn giải pháp tối ưu nhất cho khách hàng, nhân viên, đối tác và cộng đồng xung quanh.
+						</p>
+						<p>
+							<em>
+								<strong>CHẤT LƯỢNG</strong>
+							</em>
+						</p>
+						<p>Không ngừng theo đuổi những tiêu chuẩn chất lượng khắt khe trong mọi quy trình.</p>
+						<p>
+							<p>
+								<em>
+									<strong>TÔN TRỌNG</strong>
+								</em>
+							</p>
+							<p>
+								Sẵn sàng đồng hành cùng khách hàng, đồng nghiệp và nhà cung cấp để đạt tới những kết quả tốt
+								nhất.
+							</p>
+						</p>
+						<p>
+							<p>
+								<em>
+									<strong>TING THẦN ĐỒNG ĐỘI</strong>
+								</em>
+							</p>
+							<p>
+								Sẵn sàng đồng hành cùng khách hàng, đồng nghiệp và nhà cung cấp để đạt tới những kết quả tốt
+								nhất.
+							</p>
+						</p>
+						<p>
+							<em>
+								<strong>CẢI TIẾN KHÔNG NGỪNG</strong>
+							</em>
+						</p>
+						<p>
+							Hướng tới trải nghiệm mua sắm và môi trường làm việc không có sự phân biệt đối xử dưới mọi hình
+							thức.
+						</p>
 					</div>
 				</div>
 			</div>
 			{/* Sản phẩm bạn vừa xem */}
-			<div className='product-new'>
-				<h2 className='fw-bold'>Sản phẩm bạn vừa xem</h2>
+			<div className='product-new my-5 container '>
+				<div className='spvx row'>
+					<div className='hr col'>
+						<hr />
+					</div>
+					<h2 className='fw-bold text-center col'>SẢN PHẨM BẠN VỪA XEM</h2>
+					<div className='hr col'>
+						<hr />
+					</div>
+				</div>
+				<div className='product-page-favorites-wrap slick-initialized slick-slider my-5'>
+					<Slide />
+				</div>
 			</div>
+			{/* Sản phẩm liên quan  */}
+			<div className='product-new my-5 container '>
+				<div className='spvx row'>
+					<div className='hr col'>
+						<hr />
+					</div>
+					<h2 className='fw-bold text-center col'>SẢN PHẨM LIÊN QUAN</h2>
+					<div className='hr col'>
+						<hr />
+					</div>
+				</div>
+				<div className='product-page-favorites-wrap slick-initialized slick-slider my-5'>
+					<Slide />
+				</div>
+			</div>
+			<hr />
 		</div>
 	);
 };

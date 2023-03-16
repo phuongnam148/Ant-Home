@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
-// import GlobalStyles from './components/GlobalStyles';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import './components/scss/app.scss';
 import './components/GlobalStyles/GlobalStyles.scss';
@@ -19,13 +18,10 @@ const router = createBrowserRouter([
 		element: <DefaultLayout />,
 		errorElement: <Pagenotfound />,
 		children: [
-			{
-				path: '/',
-				element: <Home />,
-			},
+			{ path: '/', element: <Home /> },
+			{ path: '/product/:id', element: <ProductDetail /> },
 			{ path: '/gioi-thieu', element: <GioiThieu /> },
 			{ path: '/products', element: <Products /> },
-			{ path: '/product-detail', element: <ProductDetail /> },
 			{ path: '/login', element: <Login /> },
 		],
 	},
