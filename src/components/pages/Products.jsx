@@ -27,6 +27,18 @@ const Products = () => {
 			<div className='row'>
 				<section className='main_container collection col-md-12 col-lg-12 margin-bottom-5 order-lg-first order-md-first order-sm-last order-last'>
 					<div className='product-gray product_recent product-page-favorites'>
+						<nav aria-label='breadcrumb'>
+							<ol className='breadcrumb'>
+								<li className='breadcrumb-item'>
+									<a href='#' className='text-reset'>
+										Trang chủ
+									</a>
+								</li>
+								<li className='breadcrumb-item active' aria-current='page'>
+									Tất cả sản phẩm
+								</li>
+							</ol>
+						</nav>
 						<div className='row'>
 							<div className='col-lg-12'>
 								<div className='related-product'>
