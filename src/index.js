@@ -25,9 +25,9 @@ const router = createBrowserRouter([
 			{ path: '/products', element: <Products /> },
 			{ path: '/login', element: <Login /> },
 			{ path: '/register', element: <Register /> },
+			{ path: '/check-out', element: <CheckOut /> },
 		],
 	},
-	{ path: '/check-out', element: <CheckOut /> },
 ]);
 
 root.render(
