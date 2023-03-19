@@ -62,6 +62,9 @@
 						font-size: 15px;
 						line-height: 22px;
 						color: #999;
+						&:hover {
+							color: #ec4f21;
+						}
 					}
 					&.active a {
 						font-weight: 600;
@@ -110,6 +113,13 @@
 					background-color: #ec4f21;
 					border: 1px solid #ec4f21;
 					color: #fff;
+					&:hover {
+						color: #fff;
+						background-color: #d73f12;
+						border-color: #d73f12;
+						box-shadow: none;
+						outline: none;
+					}
 				}
 				.login-note {
 					text-align: center;
@@ -150,8 +160,12 @@
 				}
 			}
 			.social-login {
+				width: 90%;
 				col {
 					max-width: 45%;
+					img {
+						width: 100%;
+					}
 				}
 			}
 		}
