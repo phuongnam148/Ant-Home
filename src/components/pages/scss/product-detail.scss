@@ -92,22 +92,70 @@
 	div.tym {
 		color: #ec4f21;
 	}
-	button#home-tab {
+	button#nav-home-tab {
 		background-color: #fff;
 		color: #000;
 		font-size: 17px;
 		border: 0;
 	}
-	button#profile-tab {
+	button#nav-profile-tab {
 		background-color: #fff;
 		color: #000;
 		font-size: 17px;
 		border: 0;
 	}
-	button#contact-tab {
+	button#nav-contact-tab {
 		background-color: #fff;
 		color: #000;
 		font-size: 17px;
 		border: 0;
+	}
+	.product-page-favorites-wrap {
+		.swiper-slide {
+			.h-top-pro-card {
+				max-width: 100% !important;
+				.price-box {
+					text-align: center;
+				}
+			}
+		}
+	}
+	.spvx {
+		// display: flex;
+		// justify-content: center;
+		// gap: 15px;
+		// .hr {
+		// 	width: 35%;
+		// }
+		hr {
+			width: 100%;
+		}
+	}
+
+	div.showmore {
+		text-align: center;
+
+		.xemthem {
+			background: none;
+			border: none;
+			color: #000000;
+			cursor: pointer;
+			word-spacing: 0.2em;
+		}
+		.xemthem:hover {
+			color: #ec4f21;
+		}
+	}
+	div button.nav-link.active {
+		border-top: 1px solid black !important;
+		padding: 13px;
+		border-radius: 0px;
+		font-weight: 600;
+	}
+	div button.nav-link:hover {
+		border-top: 1px solid black !important;
+		padding: 13px;
+		border-radius: 0px;
+		font-weight: 600;
 	}
 }
