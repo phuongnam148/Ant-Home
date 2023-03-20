@@ -11,22 +11,22 @@ const Account = () => {
 						<p>Xin chào,...</p> {/* Truyền dữ liệu từ db*/}
 						<ul className='list-unstyled'>
 							<li>
-								<a href='' className='title-info active'>
+								<a href='#' className='title-info active'>
 									Thông tin tài khoản!
 								</a>
 							</li>
 							<li>
-								<a href='' className='title-info'>
+								<a href='/account/orders' className='title-info'>
 									Đơn hàng của bạn
 								</a>
 							</li>
 							<li>
-								<a href='' className='title-info'>
+								<a href='/account/changepassword' className='title-info'>
 									Đổi mật khẩu
 								</a>
 							</li>
 							<li>
-								<a href='' className='title-info'>
+								<a href='/account/addresses' className='title-info'>
 									Số địa chỉ (0)
 								</a>
 							</li>

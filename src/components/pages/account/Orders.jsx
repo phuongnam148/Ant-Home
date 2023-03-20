@@ -9,24 +9,24 @@ const Orders = () => {
 					<div className='nav-side'>
 						<h4>TRANG TÀI KHOẢN</h4>
 						<p>Xin chào,...</p> {/* Truyền dữ liệu từ db*/}
-						<ul className='list-nav list-unstyled'>
+						<ul className='list-unstyled'>
 							<li>
-								<a href='/account' className='title-info'>
+								<a href='#' className='title-info'>
 									Thông tin tài khoản!
 								</a>
 							</li>
 							<li>
-								<a href='' className='title-info active'>
+								<a href='/account/orders' className='title-info active'>
 									Đơn hàng của bạn
 								</a>
 							</li>
 							<li>
-								<a href='' className='title-info'>
+								<a href='/account/changepassword' className='title-info'>
 									Đổi mật khẩu
 								</a>
 							</li>
 							<li>
-								<a href='' className='title-info'>
+								<a href='/account/addresses' className='title-info'>
 									Số địa chỉ (0)
 								</a>
 							</li>
