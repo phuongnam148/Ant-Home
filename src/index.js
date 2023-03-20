@@ -29,14 +29,12 @@ const router = createBrowserRouter([
 			{ path: '/gioi-thieu', element: <GioiThieu /> },
 			{ path: '/products', element: <Products /> },
 			{ path: '/login', element: <Login /> },
-
 			{ path: '/register', element: <Register /> },
 			{ path: '/account', element: <Account /> },
 			{ path: '/account/orders', element: <Orders /> },
 			{ path: '/account/changepassword', element: <Changepassword /> },
 			{ path: '/account/addresses', element: <Addresses /> },
 			{ path: '/check-out', element: <CheckOut /> },
-
 		],
 	},
 ]);
