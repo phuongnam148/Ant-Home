@@ -211,6 +211,11 @@
 				position: relative;
 				overflow: hidden;
 			}
+			&:hover {
+				a {
+					color: red;
+				}
+			}
 			.a-title {
 				display: block;
 				margin-top: 12px;
