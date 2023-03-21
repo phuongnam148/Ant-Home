@@ -16,6 +16,8 @@ import Account from './components/pages/account/Account';
 import Orders from './components/pages/account/Orders';
 import Changepassword from './components/pages/account/Changepassword';
 import Addresses from './components/pages/account/Addresses';
+import Contact from './components/pages/Contact';
+import Faq from './components/pages/faq';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const router = createBrowserRouter([
@@ -35,6 +37,8 @@ const router = createBrowserRouter([
 			{ path: '/account/changepassword', element: <Changepassword /> },
 			{ path: '/account/addresses', element: <Addresses /> },
 			{ path: '/check-out', element: <CheckOut /> },
+			{ path: '/contact', element: <Contact /> },
+			{ path: '/faq', element: <Faq /> },
 		],
 	},
 ]);

@@ -1,0 +1,35 @@
+.slidebar-page ul li {
+	list-style: none;
+	line-height: 30px;
+}
+.slidebar-page ul li a {
+	color: black;
+}
+div.accordion-item button {
+	padding: 8px 10px;
+	font-size: 13px;
+	color: #222;
+	background-color: #f4997f;
+	border: none;
+}
+.contact-image {
+	position: relative;
+}
+.contact-image h1 {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	color: #fff;
+	font-weight: 600;
+	font-size: 40px;
+}
+.p-top {
+	color: #8b8b8b;
+	margin-bottom: 10px;
+	font-style: italic;
+}
+.p-bottom {
+	color: #8b8b8b;
+	margin-bottom: 10px;
+}

@@ -1,0 +1,34 @@
+.contact-image {
+	position: relative;
+}
+.contact-image h1 {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	color: #fff;
+	font-weight: 600;
+	font-size: 40px;
+}
+.p-top {
+	color: #8b8b8b;
+	margin-bottom: 10px;
+	font-style: italic;
+}
+.p-bottom {
+	color: #8b8b8b;
+	margin-bottom: 10px;
+}
+div fieldset button.btn {
+	background-color: #ec4f21;
+	color: #fff;
+	margin: 10px 0px 0px;
+	padding: 8px 28px;
+	float: right;
+}
+.item-contact-store-infor p a {
+	color: black;
+}
+.item-contact-store-infor p a:hover {
+	color: #ec4f21;
+}
