@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Login.scss';
 
 const Register = () => {
@@ -16,10 +17,10 @@ const Register = () => {
 				<div className='right col'>
 					<ul className='auth-menu-list d-flex'>
 						<li className='loginform '>
-							<a href='/login'>Đăng nhập</a>
+							<Link to='/login'>Đăng nhập</Link>
 						</li>
 						<li className='regisform active'>
-							<a href='#'>Đăng kí</a>
+							<Link to='/register'>Đăng kí</Link>
 						</li>
 					</ul>
 					<form method='post' id='customer-name'>
