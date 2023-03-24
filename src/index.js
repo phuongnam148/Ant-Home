@@ -19,6 +19,8 @@ import Addresses from './components/pages/account/Addresses';
 import Contact from './components/pages/Contact';
 import Faq from './components/pages/faq';
 
+import Adminhome from './components/admin/Adminhome';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const router = createBrowserRouter([
 	{
@@ -41,6 +43,7 @@ const router = createBrowserRouter([
 			{ path: '/faq', element: <Faq /> },
 		],
 	},
+	{ path: '/admin', element: <Adminhome /> },
 ]);
 
 root.render(
