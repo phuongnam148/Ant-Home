@@ -18,8 +18,10 @@ import Changepassword from './components/pages/account/Changepassword';
 import Addresses from './components/pages/account/Addresses';
 import Contact from './components/pages/Contact';
 import Faq from './components/pages/faq';
-
 import Adminhome from './components/admin/Adminhome';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+const queryClient = new QueryClient();
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const router = createBrowserRouter([
@@ -48,6 +50,8 @@ const router = createBrowserRouter([
 
 root.render(
 	<React.StrictMode>
-		<RouterProvider router={router} />
+		<QueryClientProvider client={queryClient}>
+			<RouterProvider router={router} />
+		</QueryClientProvider>
 	</React.StrictMode>
 );

@@ -1,8 +1,15 @@
 import React, { useState } from 'react';
 import './scss/product-detail.scss';
 import Slide from '../Slide/Slide';
+import { useQuery } from '@tanstack/react-query';
+import newRequest from '../../utils/newRequest';
+import { useParams } from 'react-router-dom';
 
 const ProductDetail = () => {
+	const VND = new Intl.NumberFormat('vi-VN', {
+		style: 'currency',
+		currency: 'VND',
+	});
 	const [value, setValue] = useState(1);
 
 	const handleIncrement = () => {
@@ -21,15 +28,25 @@ const ProductDetail = () => {
 	};
 	//xem thêm
 	// eslint-disable-next-line no-unused-vars
-	const [productDetail, setProductDetail] = useState(
-		'Mô tả chi tiết sản phẩm Mô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩm	'
-	);
+
 	const [showMore, setShowMore] = useState(false);
 
 	const handleShowMore = () => {
 		setShowMore(!showMore);
 	};
 
+	const { id } = useParams();
+
+	const { isLoading, error, data } = useQuery({
+		queryKey: ['productDetail'],
+		queryFn: () =>
+			newRequest.get(`/product?id=${id}`).then((res) => {
+				return res.data;
+			}),
+	});
+	if (isLoading) return 'Loading...';
+
+	if (error) return 'An error has occurred: ' + error.message;
 	return (
 		// Thanh breadcrumb
 		<div className='productDetail'>
@@ -175,11 +192,11 @@ const ProductDetail = () => {
 					</div>
 					<div className='col-12 col-xl-6'>
 						<div className='fw-semibold'>
-							<h3>Bộ 2 Bàn Sofa IGEA Việt Nam Phong Cách Scanvadian Màu Trắng</h3>
+							<h3>{data.name_prod}</h3>
 						</div>
 						<div className='d-flex justify-content-between'>
 							<div className='trademark-product'>
-								<p>Thương hiệu: IGEA Việt Nam</p>
+								<p>Thương hiệu: {data.Brand.name_brand}</p>
 							</div>
 							<div className='code-product'>
 								<p>Mã sản phẩm: 290050037302</p>
@@ -187,7 +204,7 @@ const ProductDetail = () => {
 						</div>
 						<hr />
 						<div className='fw-semibold'>
-							<p className='gia'>569.000₫</p>
+							<p className='gia'>{VND.format(data.price_prod)}</p>
 						</div>
 						<hr />
 						<form action='' className='' onSubmit={handleSubmit}>
@@ -231,7 +248,7 @@ const ProductDetail = () => {
 						</div>
 						{/* Thông tin chi tiết */}
 						<div className='showmore'>
-							<p className={!showMore ? 'show-more' : ''}>{productDetail}</p>
+							<p className={!showMore ? 'show-more' : ''}>{data.DetailProduct.detail_prod}</p>
 
 							<button className='xemthem' onClick={handleShowMore}>
 								<p className='more-text m-1'>{showMore ? 'Thu gọn' : 'Xem thêm'}</p>
@@ -295,7 +312,7 @@ const ProductDetail = () => {
 						role='tabpanel'
 						aria-labelledby='nav-home-tab'
 					>
-						<p className='fw-bold'>Bộ 2 Bàn Sofa IGEA Việt Nam Phong Cách Scanvadian Màu trắng</p>
+						<p className='fw-bold'>{data.prod}</p>
 						<p>
 							{' '}
 							Bạn đang cần tìm bàn trà sofa, bàn trà cafe mà chưa tìm được sản phẩm ưng ý
@@ -362,7 +379,7 @@ const ProductDetail = () => {
 							</em>
 						</p>
 						<p>Không ngừng theo đuổi những tiêu chuẩn chất lượng khắt khe trong mọi quy trình.</p>
-						<p>
+						<div>
 							<p>
 								<em>
 									<strong>TÔN TRỌNG</strong>
@@ -372,8 +389,8 @@ const ProductDetail = () => {
 								Sẵn sàng đồng hành cùng khách hàng, đồng nghiệp và nhà cung cấp để đạt tới những kết quả tốt
 								nhất.
 							</p>
-						</p>
-						<p>
+						</div>
+						<div>
 							<p>
 								<em>
 									<strong>TING THẦN ĐỒNG ĐỘI</strong>
@@ -383,7 +400,7 @@ const ProductDetail = () => {
 								Sẵn sàng đồng hành cùng khách hàng, đồng nghiệp và nhà cung cấp để đạt tới những kết quả tốt
 								nhất.
 							</p>
-						</p>
+						</div>
 						<p>
 							<em>
 								<strong>CẢI TIẾN KHÔNG NGỪNG</strong>
@@ -432,7 +449,7 @@ const ProductDetail = () => {
 							</em>
 						</p>
 						<p>Không ngừng theo đuổi những tiêu chuẩn chất lượng khắt khe trong mọi quy trình.</p>
-						<p>
+						<div>
 							<p>
 								<em>
 									<strong>TÔN TRỌNG</strong>
@@ -442,8 +459,8 @@ const ProductDetail = () => {
 								Sẵn sàng đồng hành cùng khách hàng, đồng nghiệp và nhà cung cấp để đạt tới những kết quả tốt
 								nhất.
 							</p>
-						</p>
-						<p>
+						</div>
+						<div>
 							<p>
 								<em>
 									<strong>TING THẦN ĐỒNG ĐỘI</strong>
@@ -453,7 +470,7 @@ const ProductDetail = () => {
 								Sẵn sàng đồng hành cùng khách hàng, đồng nghiệp và nhà cung cấp để đạt tới những kết quả tốt
 								nhất.
 							</p>
-						</p>
+						</div>
 						<p>
 							<em>
 								<strong>CẢI TIẾN KHÔNG NGỪNG</strong>

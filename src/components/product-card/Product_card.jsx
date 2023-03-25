@@ -2,6 +2,7 @@
 import React from 'react';
 import './Product_card.scss';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 // eslint-disable-next-line react/prop-types
 const Product_card = ({ card }) => {
@@ -12,11 +13,11 @@ const Product_card = ({ card }) => {
 
 		return (
 			<div className='h-top-pro-card g-col'>
-				<a href='' className='card-img-top tab-content' id='nav-tabContent'>
+				<Link to={`/product/${card.id}`} className='card-img-top tab-content' id='nav-tabContent'>
 					<div>
 						<img src={card.img[clickedImage]} alt='' />
 					</div>
-				</a>
+				</Link>
 				<div className='thumb-list list-group id=list-tab' role='tablist'>
 					{card.img.map((item, index) => {
 						return (
