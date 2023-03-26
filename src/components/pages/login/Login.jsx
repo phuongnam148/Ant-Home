@@ -1,8 +1,68 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 import './Login.scss';
 
 const Login = () => {
+	const [username, setEmail] = useState('');
+	const [password, setPassword] = useState('');
+	const [errors, setErrors] = useState({});
+
+	const handleEmailChange = (event) => {
+		setEmail(event.target.value);
+	};
+
+	const handlePasswordChange = (event) => {
+		setPassword(event.target.value);
+	};
+
+	//Validate
+	const validateForm = () => {
+		let formErrors = {};
+		let isValid = true;
+
+		//Validate username
+		if (!username) {
+			formErrors.username = 'Email is required';
+			isValid = false;
+		} else if (!/\S+@\S+\.\S+/.test(username)) {
+			formErrors.username = 'Email is invalid';
+			isValid = false;
+		}
+
+		//Validate password
+		if (!password) {
+			formErrors.password = 'Password is required';
+			isValid = false;
+		} else if (password.length < 8) {
+			formErrors.password = 'Password must be at least 8 characters';
+			isValid = false;
+		}
+
+		setErrors(formErrors);
+
+		return isValid;
+	};
+
+	const handleSubmit = (event) => {
+		event.preventDefault();
+
+		if (validateForm()) {
+			const userData = { username, password };
+			// fetch("http://localhost:3000/api/user", {
+			//   method: "POST",
+			//   headers: {
+			//     "Content-Type": "application/json",
+			//   },
+			//   body: JSON.stringify(userData),
+			// });
+			alert('Đăng kí thành công');
+
+			console.log(userData);
+		} else {
+			alert('Đăng kí thất bại');
+		}
+	};
 	return (
 		<div className='login'>
 			<div className='login-container row'>
@@ -23,7 +83,7 @@ const Login = () => {
 							<Link to='/register'>Đăng kí</Link>
 						</li>
 					</ul>
-					<form method='post' id='customer-login'>
+					<form method='post' id='customer-login' onSubmit={handleSubmit}>
 						<div className='mb-3'>
 							<label htmlFor='InputEmail' className='form-label'>
 								Email <span>*</span>
@@ -37,8 +97,10 @@ const Login = () => {
 								required
 								pattern='[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$'
 								data-validation-error-msg='Email sai định dạng'
+								value={username}
+								onChange={handleEmailChange}
 							/>
-							<div id='emailHelp' className='form-text'></div>
+							{errors.username && <span>{errors.username}</span>}
 						</div>
 						<div className='mb-3'>
 							<label htmlFor='InputPassword' className='form-label'>
@@ -50,7 +112,10 @@ const Login = () => {
 								id='InputPassword'
 								placeholder='Nhập Mật khẩu'
 								required
+								value={password}
+								onChange={handlePasswordChange}
 							/>
+							{errors.password && <span>{errors.password}</span>}
 						</div>
 						<p className='recover'>
 							<a href='' className='btn-link-style'>

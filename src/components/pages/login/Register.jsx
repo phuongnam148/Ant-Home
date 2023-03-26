@@ -1,8 +1,98 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 import './Login.scss';
 
 const Register = () => {
+	const [username, setEmail] = useState('');
+	const [password, setPassword] = useState('');
+	const [firstname, setFirstname] = useState('');
+	const [lastname, setLastname] = useState('');
+	const [sdt, setSDT] = useState('');
+	const [errors, setErrors] = useState({});
+
+	const handleEmailChange = (event) => {
+		setEmail(event.target.value);
+	};
+
+	const handlePasswordChange = (event) => {
+		setPassword(event.target.value);
+	};
+
+	const handleFirstnameChange = (event) => {
+		setFirstname(event.target.value);
+	};
+
+	const handleLastnameChange = (event) => {
+		setLastname(event.target.value);
+	};
+
+	const handleSDTChange = (event) => {
+		setSDT(event.target.value);
+	};
+
+	//Validate
+	const validateForm = () => {
+		let formErrors = {};
+		let isValid = true;
+
+		//Validate username
+		if (!username) {
+			formErrors.username = 'Email is required';
+			isValid = false;
+		} else if (!/\S+@\S+\.\S+/.test(username)) {
+			formErrors.username = 'Email is invalid';
+			isValid = false;
+		}
+
+		//Validate password
+		if (!password) {
+			formErrors.password = 'Password is required';
+			isValid = false;
+		} else if (password.length < 8) {
+			formErrors.password = 'Password must be at least 8 characters';
+			isValid = false;
+		}
+
+		if (!firstname) {
+			formErrors.firstname = 'Không được để trống';
+			isValid = false;
+		}
+
+		if (!lastname) {
+			formErrors.lastname = 'Không được để trống';
+			isValid = false;
+		}
+
+		if (!sdt) {
+			formErrors.lastname = 'Không được để trống';
+			isValid = false;
+		}
+
+		setErrors(formErrors);
+
+		return isValid;
+	};
+
+	const handleSubmit = (event) => {
+		event.preventDefault();
+
+		if (validateForm()) {
+			const userData = { username, password, firstname, lastname, sdt };
+			// fetch('/createuser', {
+			// 	method: 'POST',
+			// 	headers: {
+			// 		'Content-Type': 'application/json',
+			// 	},
+			// 	body: JSON.stringify(userData),
+			// });
+			alert('Đăng kí thành công');
+
+			console.log(userData);
+		} else {
+			alert('Đăng kí thất bại');
+		}
+	};
 	return (
 		<div className='login'>
 			<div className='login-container row'>
@@ -23,18 +113,34 @@ const Register = () => {
 							<Link to='/register'>Đăng kí</Link>
 						</li>
 					</ul>
-					<form method='post' id='customer-name'>
+					<form method='post' id='customer-name' onSubmit={handleSubmit}>
 						<div className='mb-3'>
 							<label htmlFor='InputFName' className='form-label'>
 								HỌ <span>*</span>
 							</label>
-							<input type='text' className='form-control' id='InputFName' placeholder='Nhập Họ' required />
+							<input
+								type='text'
+								className='form-control'
+								id='InputFName'
+								placeholder='Nhập Họ'
+								value={firstname}
+								onChange={handleFirstnameChange}
+							/>
+							{errors.firstname && <span>{errors.firstname}</span>}
 						</div>
 						<div className='mb-3'>
 							<label htmlFor='InputName' className='form-label'>
 								TÊN <span>*</span>
 							</label>
-							<input type='text' className='form-control' id='InputName' placeholder='Nhập Tên' required />
+							<input
+								type='text'
+								className='form-control'
+								id='InputName'
+								placeholder='Nhập Tên'
+								value={lastname}
+								onChange={handleLastnameChange}
+							/>
+							{errors.lastname && <span>{errors.lastname}</span>}
 						</div>
 						<div className='mb-3'>
 							<label htmlFor='phone' className='form-label'>
@@ -45,8 +151,8 @@ const Register = () => {
 								className='form-control'
 								id='phone'
 								placeholder='Nhập Số điện thoại'
-								required
-								pattern='[0-9]{3}-[0-9]{2}-[0-9]{3}'
+								value={sdt}
+								onChange={handleSDTChange}
 							/>
 						</div>
 						<div className='mb-3'>
@@ -61,8 +167,10 @@ const Register = () => {
 								required
 								aria-describedby='emailHelp'
 								pattern='[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$'
+								value={username}
+								onChange={handleEmailChange}
 							/>
-							<div id='emailHelp' className='form-text'></div>
+							{errors.username && <span>{errors.username}</span>}
 						</div>
 						<div className='mb-3'>
 							<label htmlFor='InputPassword' className='form-label'>
@@ -74,7 +182,10 @@ const Register = () => {
 								id='InputPassword'
 								placeholder='Nhập Mật khẩu'
 								required
+								value={password}
+								onChange={handlePasswordChange}
 							/>
+							{errors.password && <span>{errors.password}</span>}
 						</div>
 
 						<button type='submit' className='btn'>
