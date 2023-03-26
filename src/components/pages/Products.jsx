@@ -1,9 +1,9 @@
 import React from 'react';
 import './scss/products.scss';
 import Product_card from '../product-card/Product_card';
-import Slide from '../Slide/Slide';
+// import Slide from '../Slide/Slide';
 import { cards } from '../../data';
-
+import Category from '../Category/Category';
 // import { Swiper, SwiperSlide } from 'swiper/react';
 // import 'swiper/css';
 // import { Navigation, EffectFade, Autoplay, Pagination, Scrollbar, A11y } from 'swiper';
@@ -12,7 +12,8 @@ import { cards } from '../../data';
 // import 'swiper/css/effect-fade';
 // import 'swiper/css/autoplay';
 // import 'swiper/css/pagination';
-
+import { useQuery } from '@tanstack/react-query';
+import newRequest from '../../utils/newRequest.js';
 const Products = () => {
 	// const photo = [
 	// 	'Genshin-Impact-Raiden-Shogun-Wallpaper.jpg',
@@ -22,6 +23,33 @@ const Products = () => {
 	// 	'Ruler.(Artoria.Pendragon).full.2905203.jpg',
 	// 	'dep.jpg',
 	// ];
+	const { isLoading, error, data } = useQuery({
+		queryKey: ['products'],
+		queryFn: () =>
+			newRequest.get('/products').then((res) => {
+				return res.data;
+			}),
+	});
+
+	const {
+		isLoading: isLoadingCate,
+		error: errorCate,
+		data: dataCate,
+	} = useQuery({
+		queryKey: ['Categorys'],
+		queryFn: () =>
+			newRequest.get('/categorys').then((res) => {
+				return res.data;
+			}),
+	});
+
+	if (isLoading) return 'Loading...';
+
+	if (error) return 'An error has occurred: ' + error.message;
+	if (isLoadingCate) return 'Loading...';
+
+	if (error) return 'An error has occurred: ' + errorCate.message;
+	console.log(dataCate);
 	return (
 		<div className='container'>
 			<div className='row'>
@@ -50,7 +78,7 @@ const Products = () => {
 										Top sản phẩm bán chạy
 									</div>
 									<div className='product-page-favorites-wrap slick-initialized slick-slider '>
-										<Slide />
+										{/* <Slide /> */}
 									</div>
 								</div>
 							</div>
@@ -64,63 +92,11 @@ const Products = () => {
 								</div>
 								<div className='aside-content'>
 									<ul className='navbar-pills my-2 '>
-										<li className='nav-item list-unstyled my-2 '>
-											<div className='row'>
-												<a
-													className='nav-link col-10'
-													href='#'
-													data-bs-toggle='collapse'
-													data-bs-target='#contentId'
-													aria-expanded='false'
-													aria-controls='contentId'
-												>
-													Nội thất
-												</a>
+										{dataCate.map((Cate) => (
+											<Category key={Cate.id_category} Cate={Cate} />
+										))}
 
-												<i
-													className='fa-solid fa-caret-down icon2 col-2'
-													data-bs-toggle='collapse'
-													data-bs-target='#contentId'
-													aria-expanded='false'
-													aria-controls='contentId'
-												></i>
-											</div>
-											<div className='collapse' id='contentId'>
-												<ul>
-													<li className='nav-item2 list-unstyled my-2'>
-														<a href='#' className='nav-link'>
-															Phòng khách
-														</a>
-													</li>
-													<li className='nav-item2 list-unstyled my-2'>
-														<a href='#' className='nav-link'>
-															Phòng ăn
-														</a>
-													</li>
-													<li className='nav-item2 list-unstyled my-2'>
-														<a href='#' className='nav-link'>
-															Phòng ngủ
-														</a>
-													</li>
-													<li className='nav-item2 list-unstyled my-2'>
-														<a href='#' className='nav-link'>
-															Phòng làm việc
-														</a>
-													</li>
-													<li className='nav-item2 list-unstyled my-2'>
-														<a href='#' className='nav-link'>
-															Phòng cho bé
-														</a>
-													</li>
-													<li className='nav-item2 list-unstyled my-2'>
-														<a href='#' className='nav-link'>
-															Nội thất thông minh
-														</a>
-													</li>
-												</ul>
-											</div>
-										</li>
-										<li className='nav-item list-unstyled my-2'>
+										{/* <li className='nav-item list-unstyled my-2'>
 											<div className='row'>
 												<a
 													className='nav-link  col-10'
@@ -424,7 +400,7 @@ const Products = () => {
 											<a href='#' className='nav-link col-10'>
 												Đồ dùng trong nhà
 											</a>
-										</li>
+										</li> */}
 									</ul>
 								</div>
 							</div>
@@ -878,8 +854,8 @@ const Products = () => {
 							</div>
 							<hr className='hr' />
 							<div className='products-view  row row-cols-3 justify-content-between gap-1'>
-								{cards.map((cards) => (
-									<Product_card key={cards.id} card={cards} />
+								{data.map((prod, index) => (
+									<Product_card key={prod.id_product} prod={prod} card={cards[index]} />
 								))}
 
 								{/* <div className='col-6 col-sm-4 col-md-4 col-lg-4'>
