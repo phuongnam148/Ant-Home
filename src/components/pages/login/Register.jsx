@@ -3,12 +3,14 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import './Login.scss';
 
+import newRequest from '../../../utils/newRequest';
+
 const Register = () => {
-	const [username, setEmail] = useState('');
+	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
-	const [firstname, setFirstname] = useState('');
-	const [lastname, setLastname] = useState('');
-	const [sdt, setSDT] = useState('');
+	const [first_name, setFirstname] = useState('');
+	const [last_name, setLastname] = useState('');
+	const [phone, setSDT] = useState('');
 	const [errors, setErrors] = useState({});
 
 	const handleEmailChange = (event) => {
@@ -37,11 +39,11 @@ const Register = () => {
 		let isValid = true;
 
 		//Validate username
-		if (!username) {
-			formErrors.username = 'Email is required';
+		if (!email) {
+			formErrors.email = 'Email is required';
 			isValid = false;
-		} else if (!/\S+@\S+\.\S+/.test(username)) {
-			formErrors.username = 'Email is invalid';
+		} else if (!/\S+@\S+\.\S+/.test(email)) {
+			formErrors.email = 'Email is invalid';
 			isValid = false;
 		}
 
@@ -50,21 +52,21 @@ const Register = () => {
 			formErrors.password = 'Password is required';
 			isValid = false;
 		} else if (password.length < 8) {
-			formErrors.password = 'Password must be at least 8 characters';
+			formErrors.password = 'Mật khẩu phải có 8 kí tự';
 			isValid = false;
 		}
 
-		if (!firstname) {
+		if (!first_name) {
 			formErrors.firstname = 'Không được để trống';
 			isValid = false;
 		}
 
-		if (!lastname) {
+		if (!last_name) {
 			formErrors.lastname = 'Không được để trống';
 			isValid = false;
 		}
 
-		if (!sdt) {
+		if (!phone) {
 			formErrors.lastname = 'Không được để trống';
 			isValid = false;
 		}
@@ -78,7 +80,7 @@ const Register = () => {
 		event.preventDefault();
 
 		if (validateForm()) {
-			const userData = { username, password, firstname, lastname, sdt };
+			const userData = { email, password, first_name, last_name, phone };
 			// fetch('/createuser', {
 			// 	method: 'POST',
 			// 	headers: {
@@ -86,6 +88,10 @@ const Register = () => {
 			// 	},
 			// 	body: JSON.stringify(userData),
 			// });
+			newRequest
+				.post('createuser')
+				.then((response) => console.log(response.data))
+				.catch((error) => console.error(error));
 			alert('Đăng kí thành công');
 
 			console.log(userData);
@@ -123,7 +129,7 @@ const Register = () => {
 								className='form-control'
 								id='InputFName'
 								placeholder='Nhập Họ'
-								value={firstname}
+								value={first_name}
 								onChange={handleFirstnameChange}
 							/>
 							{errors.firstname && <span>{errors.firstname}</span>}
@@ -137,7 +143,7 @@ const Register = () => {
 								className='form-control'
 								id='InputName'
 								placeholder='Nhập Tên'
-								value={lastname}
+								value={last_name}
 								onChange={handleLastnameChange}
 							/>
 							{errors.lastname && <span>{errors.lastname}</span>}
@@ -151,7 +157,7 @@ const Register = () => {
 								className='form-control'
 								id='phone'
 								placeholder='Nhập Số điện thoại'
-								value={sdt}
+								value={phone}
 								onChange={handleSDTChange}
 							/>
 						</div>
@@ -167,7 +173,7 @@ const Register = () => {
 								required
 								aria-describedby='emailHelp'
 								pattern='[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$'
-								value={username}
+								value={email}
 								onChange={handleEmailChange}
 							/>
 							{errors.username && <span>{errors.username}</span>}
