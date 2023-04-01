@@ -3,6 +3,8 @@ import Sidebar from '../admin/Sidebar';
 import Navbar from '../admin/Navbar';
 import './admincss/homeadmin.scss';
 import Widget from '../admin/Widget';
+import Featured from './Featured';
+import Chart from './Chart';
 const Adminhome = () => {
 	return (
 		<div className='adminhome'>
@@ -14,6 +16,13 @@ const Adminhome = () => {
 					<Widget type='order' />
 					<Widget type='earning' />
 					<Widget type='balance' />
+				</div>
+				<div className='charts'>
+					<Featured />
+					<Chart />
+				</div>
+				<div className='listContainer'>
+					<div className='listTitle'>Latest Transactions</div>
 				</div>
 			</div>
 		</div>
