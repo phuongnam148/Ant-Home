@@ -3,8 +3,10 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import './Login.scss';
 
+import newRequest from '../../../utils/newRequest';
+
 const Login = () => {
-	const [username, setEmail] = useState('');
+	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [errors, setErrors] = useState({});
 
@@ -22,20 +24,20 @@ const Login = () => {
 		let isValid = true;
 
 		//Validate username
-		if (!username) {
-			formErrors.username = 'Email is required';
+		if (!email) {
+			formErrors.username = 'Nhập email vào';
 			isValid = false;
-		} else if (!/\S+@\S+\.\S+/.test(username)) {
-			formErrors.username = 'Email is invalid';
+		} else if (!/\S+@\S+\.\S+/.test(email)) {
+			formErrors.username = 'Email phải đúng định dạng ';
 			isValid = false;
 		}
 
 		//Validate password
 		if (!password) {
-			formErrors.password = 'Password is required';
+			formErrors.password = 'Nhập mật khẩu vào';
 			isValid = false;
 		} else if (password.length < 8) {
-			formErrors.password = 'Password must be at least 8 characters';
+			formErrors.password = 'Mật khẩu có ít nhất 8 ký tự';
 			isValid = false;
 		}
 
@@ -44,23 +46,26 @@ const Login = () => {
 		return isValid;
 	};
 
-	const handleSubmit = (event) => {
+	const handleSubmit = async (event) => {
 		event.preventDefault();
 
 		if (validateForm()) {
-			const userData = { username, password };
-			// fetch("http://localhost:3000/api/user", {
-			//   method: "POST",
-			//   headers: {
-			//     "Content-Type": "application/json",
-			//   },
-			//   body: JSON.stringify(userData),
-			// });
-			alert('Đăng kí thành công');
+			const userData = { email, password };
+			// const json = JSON.stringify(userData);
+			try {
+				const res = await newRequest.post('/auth', userData);
+				// eslint-disable-next-line no-unused-vars
 
-			console.log(userData);
+				console.log(res);
+				localStorage.setItem('user', JSON.stringify(res.data));
+				window.location.href = '/';
+
+				// eslint-disable-next-line no-unused-vars
+			} catch (error) {
+				alert(error.response.data.message);
+			}
 		} else {
-			alert('Đăng kí thất bại');
+			alert('Nhập lại form đi');
 		}
 	};
 	return (
@@ -97,7 +102,7 @@ const Login = () => {
 								required
 								pattern='[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$'
 								data-validation-error-msg='Email sai định dạng'
-								value={username}
+								value={email}
 								onChange={handleEmailChange}
 							/>
 							{errors.username && <span>{errors.username}</span>}

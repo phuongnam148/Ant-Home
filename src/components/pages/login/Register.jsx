@@ -81,20 +81,21 @@ const Register = () => {
 
 		if (validateForm()) {
 			const userData = { email, password, first_name, last_name, phone };
-			// fetch('/createuser', {
-			// 	method: 'POST',
-			// 	headers: {
-			// 		'Content-Type': 'application/json',
-			// 	},
-			// 	body: JSON.stringify(userData),
-			// });
-			newRequest
-				.post('createuser')
-				.then((response) => console.log(response.data))
-				.catch((error) => console.error(error));
-			alert('Đăng kí thành công');
+			const json = JSON.stringify(userData);
 
-			console.log(userData);
+			newRequest
+				.post('/createuser', json, {
+					headers: {
+						'Content-Type': 'application/json',
+					},
+				})
+				// eslint-disable-next-line no-unused-vars
+				.then((response) => {
+					window.location.href = '/login';
+				})
+				.catch((error) => alert(error.response.data.message));
+
+			console.log(typeof userData);
 		} else {
 			alert('Đăng kí thất bại');
 		}

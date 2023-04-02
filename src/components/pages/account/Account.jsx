@@ -1,7 +1,15 @@
 import React from 'react';
 import './Account.scss';
+import newRequest from '../../../utils/newRequest';
+import { useNavigate } from 'react-router-dom';
 
 const Account = () => {
+	const navigate = useNavigate();
+	const handleLogout = () => {
+		newRequest.post('/logout');
+		localStorage.setItem('user', null);
+		navigate('/');
+	};
 	return (
 		<div className='account container'>
 			<div className='row'>
@@ -31,7 +39,7 @@ const Account = () => {
 								</a>
 							</li>
 							<li>
-								<a href='' className='title-info'>
+								<a href='' className='title-info' onClick={handleLogout}>
 									Đăng xuất
 								</a>
 							</li>

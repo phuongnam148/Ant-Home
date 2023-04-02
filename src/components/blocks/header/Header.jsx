@@ -6,6 +6,14 @@ import store from '../../../images/store.png';
 import img1 from '../../../images/mega-1-image.webp';
 
 const Header = () => {
+	const account = JSON.parse(localStorage.getItem('user'));
+	console.log(account);
+
+	//Xử lí tài khoản
+	const handleAccount = () => {
+		window.location.href = !account ? '/login' : '/account'; //Toán tử ba ngôi
+	};
+
 	return (
 		<header className='header container-fluid px-0'>
 			<div className='container-lg'>
@@ -65,10 +73,11 @@ const Header = () => {
 							</div>
 							{/* Tài khoản */}
 							<div className='d-none d-lg-block col-3 p-0 p-lg-2 w-auto ms-lg-2 ms-xl-3'>
-								<Link className='text-black' to='/'>
+								<Link className='text-black' to='' onClick={handleAccount}>
 									<div className='box-a w-auto d-flex'>
 										<i className='fa-regular fa-user w-auto'></i>
-										<span>Tài khoản</span>
+
+										<span>{account ? account.id_user : 'Tài khoản'}</span>
 									</div>
 								</Link>
 							</div>
