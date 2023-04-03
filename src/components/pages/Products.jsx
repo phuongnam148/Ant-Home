@@ -1,39 +1,74 @@
-import React from 'react';
+/* eslint-disable no-unused-vars */
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import './scss/products.scss';
 import Product_card from '../product-card/Product_card';
-// import Slide from '../Slide/Slide';
+
 import { cards } from '../../data';
 import Category from '../Category/Category';
-// import { Swiper, SwiperSlide } from 'swiper/react';
-// import 'swiper/css';
-// import { Navigation, EffectFade, Autoplay, Pagination, Scrollbar, A11y } from 'swiper';
-// import 'swiper/css/navigation';
-// import 'swiper/css/pagination';
-// import 'swiper/css/effect-fade';
-// import 'swiper/css/autoplay';
-// import 'swiper/css/pagination';
+
 import { useQuery } from '@tanstack/react-query';
 import newRequest from '../../utils/newRequest.js';
-const Products = () => {
-	// const photo = [
-	// 	'Genshin-Impact-Raiden-Shogun-Wallpaper.jpg',
-	// 	'ahri-mua-12.jpg',
-	// 	'raiden shogun and miko.png',
-	// 	'Ruler.(Artoria.Pendragon).full.3666608.jpg',
-	// 	'Ruler.(Artoria.Pendragon).full.2905203.jpg',
-	// 	'dep.jpg',
-	// ];
-	const { isLoading, error, data } = useQuery({
-		queryKey: ['products'],
-		queryFn: () =>
-			newRequest.get('/products').then((res) => {
-				return res.data;
-			}),
-	});
 
+const Products = () => {
+	// http://localhost:3000/products?min=0&max=100000
+
+	// const { isLoading, error, data } = useQuery({
+	// 	queryKey: ['products'],
+	// 	queryFn: () =>
+	// 		newRequest.get('/products').then((res) => {
+	// 			return res.data;
+	// 		}),
+	// });
+
+	const [under100, setUnder100] = useState(false);
+	const [between100And200, setBetween100And200] = useState(false);
+	const [products, setProducts] = useState([]);
+
+	useEffect(() => {
+		newRequest
+			.get('/products')
+			.then((res) => {
+				setProducts(res.data);
+			})
+			.catch((error) => {
+				console.error(error);
+			});
+	}, []);
+	useEffect(() => {
+		let url = '';
+		if (under100) {
+			url += '/products-price?min=0&max=6000';
+		} else if (between100And200) {
+			url += '/products-price?min=7000&max=10000';
+		}
+		if (!under100 && !between100And200) {
+			url = '/products';
+		}
+		newRequest
+			.get(url)
+			.then((response) => {
+				setProducts(response.data);
+			})
+			.catch((error) => {
+				console.error(error);
+			});
+	}, [under100, between100And200]);
+	const handleCheckboxChange = (event) => {
+		const { name, checked } = event.target;
+		if (name === 'under100') {
+			setUnder100(checked);
+			setBetween100And200(false);
+		} else {
+			setBetween100And200(checked);
+			setUnder100(false);
+		}
+	};
+	// isLoading: isLoadingCate,
+	// error: errorCate,
+	// data: dataCate,
 	const {
-		isLoading: isLoadingCate,
-		error: errorCate,
+		isLoading,
+		error,
 		data: dataCate,
 	} = useQuery({
 		queryKey: ['Categorys'],
@@ -42,14 +77,35 @@ const Products = () => {
 				return res.data;
 			}),
 	});
+	// console.log(data);
 
+	// const filterResult = (priceItem) => {
+	// 	// 	// eslint-disable-next-line no-unused-vars
+	// 	// console.log(data.filter());
+	// 	console.log(data);
+	// 	console.log(priceI);
+	// 	// console.log(priceItem); console.log(curData.price_prod);
+	// 	const result = data.filter((curData) => {
+	// 		if (curData.price_prod >= 0 && curData.price_prod < 10000) {
+	// 			console.log(curData.price_prod);
+
+	// 			return curData.price_prod === priceItem;
+	// 		} else if (curData.price_prod >= 10000 && curData.price_prod <= 20000) {
+	// 			console.log(curData.price_prod);
+
+	// 			return curData.price_prod === priceItem;
+	// 		}
+
+	// 		// console.log(curData.price_prod);
+	// 	});
+	// 	setPricei(result);
+	// };
 	if (isLoading) return 'Loading...';
 
 	if (error) return 'An error has occurred: ' + error.message;
-	if (isLoadingCate) return 'Loading...';
 
-	if (error) return 'An error has occurred: ' + errorCate.message;
-	console.log(dataCate);
+	// console.log(dataCate);
+
 	return (
 		<div className='container'>
 			<div className='row'>
@@ -511,6 +567,7 @@ const Products = () => {
 													data-bs-target='#contentId12'
 													aria-expanded='false'
 													aria-controls='contentId12'
+													// selectPrice={handelPrice}
 												>
 													Giá sản phẩm
 												</a>
@@ -529,8 +586,12 @@ const Products = () => {
 														<input
 															className='form-check-input'
 															type='checkbox'
-															value='Giá dưới 100.000đ'
+															name='under100'
+															checked={under100}
+															// value={selectPrice}
 															id='Giá dưới 100.000đ'
+															onChange={handleCheckboxChange}
+															// onClick={() => filterResult()}
 														/>
 														<label className='form-check-label' htmlFor='Giá dưới 100.000đ'>
 															Giá dưới 100.000đ
@@ -542,6 +603,10 @@ const Products = () => {
 															type='checkbox'
 															value='100.000đ - 200.000đ'
 															id='100.000đ - 200.000đ'
+															name='between100And200'
+															checked={between100And200}
+															onChange={handleCheckboxChange}
+															// onClick={() => filterResult()}
 														/>
 														<label className='form-check-label' htmlFor='100.000đ - 200.000đ'>
 															100.000đ - 200.000đ
@@ -854,7 +919,7 @@ const Products = () => {
 							</div>
 							<hr className='hr' />
 							<div className='products-view  row row-cols-3 justify-content-between gap-1'>
-								{data.map((prod, index) => (
+								{products.map((prod, index) => (
 									<Product_card key={prod.id_product} prod={prod} card={cards[index]} />
 								))}
 
