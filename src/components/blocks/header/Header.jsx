@@ -7,7 +7,7 @@ import img1 from '../../../images/mega-1-image.webp';
 
 const Header = () => {
 	const account = JSON.parse(localStorage.getItem('user'));
-	console.log(account);
+	// console.log(account);
 
 	//Xử lí tài khoản
 	const handleAccount = () => {

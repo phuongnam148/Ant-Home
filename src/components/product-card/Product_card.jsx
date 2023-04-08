@@ -8,8 +8,6 @@ const Product_card = ({ prod }) => {
 	// Lấy ảnh và cho nó thành 1 mảng
 	const imgArray = Object.values(prod.ImgProduct);
 	//
-	console.log(imgArray);
-
 	let [clickedImage, changeImage] = useState(0);
 	const VND = new Intl.NumberFormat('vi-VN', {
 		style: 'currency',
@@ -39,7 +37,7 @@ const Product_card = ({ prod }) => {
 					);
 				})}
 			</div>
-			<Link to='' className='card-text'>
+			<Link to={`/product/${prod.id_product}`} className='card-text'>
 				{prod.name_prod}
 			</Link>
 			<div className='price-box'>
