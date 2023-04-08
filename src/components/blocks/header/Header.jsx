@@ -15,7 +15,7 @@ const Header = () => {
 	};
 
 	return (
-		<header className='header container-fluid px-0'>
+		<header className='header-p container-fluid px-0'>
 			<div className='container-lg'>
 				<div className='d-flex align-items-center justify-content-between evo-header-padding'>
 					{/* Menu icon */}

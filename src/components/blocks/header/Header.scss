@@ -2,7 +2,7 @@
 	padding: 15px 0;
 }
 
-.header {
+.header-p {
 	.header-logo {
 		.box-logo {
 			height: 80%;
@@ -190,7 +190,7 @@
 
 // Md Screen
 @media screen and (min-width: 768px) {
-	.header {
+	.header-p {
 		.menu-icon i {
 			font-size: 2rem;
 		}
@@ -199,7 +199,7 @@
 
 // Lg Screen
 @media screen and (min-width: 992px) {
-	.header {
+	.header-p {
 		.menu-icon i {
 			font-size: 2rem;
 		}
