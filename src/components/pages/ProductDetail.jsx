@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './scss/product-detail.scss';
 import Slide from '../Slide/Slide';
-import { useQuery } from '@tanstack/react-query';
 import newRequest from '../../utils/newRequest';
 import { useParams } from 'react-router-dom';
 
 const ProductDetail = () => {
+	const [product, setProduct] = useState(null);
+
 	const VND = new Intl.NumberFormat('vi-VN', {
 		style: 'currency',
 		currency: 'VND',
@@ -35,18 +36,23 @@ const ProductDetail = () => {
 		setShowMore(!showMore);
 	};
 
+	// Lấy data
 	const { id } = useParams();
+	console.log(id);
 
-	const { isLoading, error, data } = useQuery({
-		queryKey: ['productDetail'],
-		queryFn: () =>
-			newRequest.get(`/product?id=${id}`).then((res) => {
-				return res.data;
-			}),
-	});
-	if (isLoading) return 'Loading...';
+	useEffect(() => {
+		newRequest
+			.get(`/product?id=${id}`)
+			.then((res) => {
+				console.log(res.data);
+				setProduct(res.data);
+			})
+			.catch((error) => {
+				console.error(error);
+			});
+	}, [id]);
+	// console.log(product);
 
-	if (error) return 'An error has occurred: ' + error.message;
 	return (
 		// Thanh breadcrumb
 		<div className='productDetail'>
@@ -62,41 +68,6 @@ const ProductDetail = () => {
 					</ol>
 				</nav>
 				<div className='mt-2 row'>
-					{/* <div className='col-12 col-xl-6'>
-						<div className='d-flex flex-column flex-md-row-reverse'>
-							<div className='col-12 col-md-8'>
-								<div>
-									<img
-										className='img-fluid'
-										src='https://bizweb.dktcdn.net/thumb/large/100/396/362/products/da0045c9e48defd093797dfc83fa2c67-1590389087.jpg?v=1595556715920'
-										alt=''
-									/>
-								</div>
-								<div className='text-center'>
-									<i className='fa-solid fa-magnifying-glass me-2'></i>
-									<span>Click chuột lên hình để phóng to</span>
-								</div>
-							</div>
-							<div className='col-12 col-md-4'>
-								<div className='list-group img-product'>
-									<div href='#' className='list-group-item list-group-item-action'>
-										<img
-											className='img-fluid'
-											src='https://bizweb.dktcdn.net/thumb/large/100/396/362/products/z1404288110190-af6a21b6662a892b18ddb3ea9f7795fc-1595478380.jpg?v=1595556722557'
-											alt=''
-										/>
-									</div>
-									<div href='#' className='list-group-item list-group-item-action'>
-										<img
-											className='img-fluid'
-											src='https://bizweb.dktcdn.net/thumb/large/100/396/362/products/z1404288110190-af6a21b6662a892b18ddb3ea9f7795fc-1595478380.jpg?v=1595556722557'
-											alt=''
-										/>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div> */}
 					<div className='row col-12 col-xl-6'>
 						<div className='col-2'>
 							<div className='list-group img-product' id='list-tab' role='tablist'>
@@ -192,11 +163,11 @@ const ProductDetail = () => {
 					</div>
 					<div className='col-12 col-xl-6'>
 						<div className='fw-semibold'>
-							<h3>{data.name_prod}</h3>
+							<h3>{product.name_prod}</h3>
 						</div>
 						<div className='d-flex justify-content-between'>
 							<div className='trademark-product'>
-								<p>Thương hiệu: {data.Brand.name_brand}</p>
+								<p>Thương hiệu: {product.Brand.name_brand}</p>
 							</div>
 							<div className='code-product'>
 								<p>Mã sản phẩm: 290050037302</p>
@@ -204,7 +175,7 @@ const ProductDetail = () => {
 						</div>
 						<hr />
 						<div className='fw-semibold'>
-							<p className='gia'>{VND.format(data.price_prod)}</p>
+							<p className='gia'>{VND.format(product.price_prod)}</p>
 						</div>
 						<hr />
 						<form action='' className='' onSubmit={handleSubmit}>
@@ -248,7 +219,7 @@ const ProductDetail = () => {
 						</div>
 						{/* Thông tin chi tiết */}
 						<div className='showmore'>
-							<p className={!showMore ? 'show-more' : ''}>{data.DetailProduct.detail_prod}</p>
+							<p className={!showMore ? 'show-more' : ''}>{product.DetailProduct.detail_prod}</p>
 
 							<button className='xemthem' onClick={handleShowMore}>
 								<p className='more-text m-1'>{showMore ? 'Thu gọn' : 'Xem thêm'}</p>
@@ -312,7 +283,7 @@ const ProductDetail = () => {
 						role='tabpanel'
 						aria-labelledby='nav-home-tab'
 					>
-						<p className='fw-bold'>{data.prod}</p>
+						<p className='fw-bold'>{product.prod}</p>
 						<p>
 							{' '}
 							Bạn đang cần tìm bàn trà sofa, bàn trà cafe mà chưa tìm được sản phẩm ưng ý

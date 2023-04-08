@@ -118,7 +118,7 @@ const Header = () => {
 							</Link>
 						</li>
 						<li>
-							<Link className='text-center' to='/'>
+							<Link className='text-center' to='/products'>
 								<span className='d-flex'>
 									Sản phẩm <i className='fa-solid fa-chevron-down w-auto ms-1 pt-1'></i>
 								</span>

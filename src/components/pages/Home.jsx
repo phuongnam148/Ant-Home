@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 // Import Swiper
 // eslint-disable-next-line no-unused-vars
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -7,20 +8,20 @@ import 'swiper/css';
 import banner from '../../images/slider_1.jpg';
 import './scss/home.scss';
 import Product_card from '../product-card/Product_card';
-import { cards } from '../../data';
 //Import react-query
-import { useQuery } from '@tanstack/react-query';
 import newRequest from '../../utils/newRequest.js';
 const Home = () => {
-	const { isLoading, error, data } = useQuery({
-		queryKey: ['products'],
-		queryFn: () =>
-			newRequest.get('/products').then((res) => {
-				return res.data;
-			}),
-	});
-	if (isLoading) return 'Loading...';
-	if (error) return 'An error has occurred: ' + error.message;
+	const [products, setProducts] = useState([]);
+	useEffect(() => {
+		newRequest
+			.get('/products')
+			.then((res) => {
+				setProducts(res.data);
+			})
+			.catch((error) => {
+				console.error(error);
+			});
+	}, []);
 	return (
 		<div className='home'>
 			<img className='img-fluid' src={banner} alt='' />
@@ -180,11 +181,14 @@ const Home = () => {
 						</a>
 
 						<div className='h-topp row row-cols-4 justify-content-between '>
-							{data.map((prod, index) => (
-								<Product_card key={prod.id_product} prod={prod} card={cards[index]} />
+							{products.map((prod) => (
+								<Product_card key={prod.id_product} prod={prod} />
 							))}
 						</div>
-						<button className='viewmore'>Xem tất cả</button>
+						<Link className='btn btn-danger' to='/products'>
+							Xem tất cả
+						</Link>
+						{/* <button className='viewmore'>Xem tất cả</button> */}
 					</div>
 				</div>
 				<div className='home-section-4'>
@@ -233,11 +237,14 @@ const Home = () => {
 							SẢN PHẨM NHÀ XANH
 						</a>
 						<div className='h-topp row row-cols-4 justify-content-between'>
-							{data.map((prod, index) => (
-								<Product_card key={prod.id_product} prod={prod} card={cards[index]} />
+							{products.map((prod) => (
+								<Product_card key={prod.id_product} prod={prod} />
 							))}
 						</div>
-						<button className='viewmore'>Xem tất cả</button>
+						<Link className='viewmore' to='/products'>
+							Xem tất cả
+						</Link>
+						{/* <button >Xem tất cả</button> */}
 					</div>
 				</div>
 				<div className='home-section-6'>
