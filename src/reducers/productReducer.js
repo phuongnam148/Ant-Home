@@ -21,7 +21,7 @@ export const INITIAL_STATE = {
 	},
 };
 
-export const gigReducer = (state, action) => {
+export const ProductReducer = (state, action) => {
 	switch (action.type) {
 		case 'CHANGE_INPUT':
 			return {
