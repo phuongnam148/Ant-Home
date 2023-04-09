@@ -13,16 +13,9 @@ import Addresses from './components/pages/account/Addresses';
 import Contact from './components/pages/Contact';
 import Faq from './components/pages/faq';
 import Unauthorized from './components/pages/Unauthorized';
-// import RequireAuth from './components/RequireAuth';
 // Admin
 import AdminLayout from './Layout/AdminLayout';
 import Admin from './page/admin/Admin';
-
-// const ROLES = {
-// 	User: 2001,
-// 	Editor: 1984,
-// 	Admin: 5150,
-// };
 
 const App = () => {
 	return (
@@ -37,12 +30,7 @@ const App = () => {
 				<Route path='/login' element={<Login />} />
 				<Route path='/register' element={<Register />} />
 				<Route path='/unauthorized' element={<Unauthorized />} />
-
-				{/* <Router element={<RequireAuth allowedRoles={[ROLES.User]} />}>
-					<Route path='account' element={<Account />} />
-				</Router> */}
 				<Route path='/account' element={<Account />} />
-
 				<Route path='/account/orders' element={<Orders />} />
 				<Route path='/account/changepassword' element={<Changepassword />} />
 				<Route path='/account/addresses' element={<Addresses />} />
