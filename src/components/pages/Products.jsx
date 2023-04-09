@@ -1,5 +1,8 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { getProductData } from '../../redux/productSlide.js';
 import './scss/products.scss';
 import Product_card from '../product-card/Product_card';
 
@@ -9,23 +12,23 @@ import { useQuery } from '@tanstack/react-query';
 import newRequest from '../../utils/newRequest.js';
 
 const Products = () => {
-	// http://localhost:3000/products?min=0&max=100000
+	// Lấy dữ liệu từ Store
+	const dispatch = useDispatch();
+	const productData = useSelector((state) => state.product.data);
+	const status = useSelector((state) => state.product.status);
 
+	// Lấy data products
+	useEffect(() => {
+		dispatch(getProductData());
+	}, [dispatch]);
+	// Check data Products
+	console.log(productData);
+
+	// Lọc sản phẩm
 	const [under100, setUnder100] = useState(false);
 	const [between100And200, setBetween100And200] = useState(false);
-	const [products, setProducts] = useState([]);
 
-	useEffect(() => {
-		newRequest
-			.get('/products')
-			.then((res) => {
-				setProducts(res.data);
-			})
-			.catch((error) => {
-				console.error(error);
-			});
-	}, []);
-	//
+	// Lấy data sản phẩm lọc theo giá
 	useEffect(() => {
 		let url = '';
 		if (under100) {
@@ -45,6 +48,7 @@ const Products = () => {
 				console.error(error);
 			});
 	}, [under100, between100And200]);
+	// Kiểm tra checkbox lọc
 	const handleCheckboxChange = (event) => {
 		const { name, checked } = event.target;
 		if (name === 'under100') {
@@ -55,9 +59,7 @@ const Products = () => {
 			setUnder100(false);
 		}
 	};
-	// isLoading: isLoadingCate,
-	// error: errorCate,
-	// data: dataCate,
+	// Lấy lữ liệu Category
 	const {
 		isLoading,
 		error,
@@ -70,7 +72,6 @@ const Products = () => {
 			}),
 	});
 	if (isLoading) return 'Đang tải dữ liệu...';
-
 	if (error) return 'An error has occurred: ' + error.message;
 
 	return (
@@ -191,9 +192,11 @@ const Products = () => {
 							</div>
 							<hr className='hr' />
 							<div className='products-view row row-cols-3 justify-content-between gap-1 mb-3'>
-								{products.map((prod) => (
-									<Product_card key={prod.id_product} prod={prod} />
-								))}
+								{/* Xuất Product Card */}
+								{status == 'loading' && <p>Đang tải dữ liệu....</p>}
+								{status === 'succeeded' &&
+									productData.map((prod) => <Product_card key={prod.id_product} prod={prod} />)}
+								{status === 'failed' && <p>Error: {error}</p>}
 							</div>
 							<div className='row m-0 p-0'>
 								<div className='col-lg-12 col-sm-12 col-12 margin-top-20 fix-page'>
