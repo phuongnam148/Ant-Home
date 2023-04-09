@@ -16,7 +16,7 @@ const Product_card = ({ prod }) => {
 
 	return (
 		<div className='h-top-pro-card g-col'>
-			<Link to={`/product/${prod.id_product}`} className='card-img-top tab-content' id='nav-tabContent'>
+			<Link to={`/product?id=${prod.id_product}`} className='card-img-top tab-content' id='nav-tabContent'>
 				<div>
 					<img src={imgArray[clickedImage]} alt='' />
 				</div>
@@ -37,7 +37,7 @@ const Product_card = ({ prod }) => {
 					);
 				})}
 			</div>
-			<Link to={`/product/${prod.id_product}`} className='card-text'>
+			<Link to={`/product?id=${prod.id_product}`} className='card-text'>
 				{prod.name_prod}
 			</Link>
 			<div className='price-box'>

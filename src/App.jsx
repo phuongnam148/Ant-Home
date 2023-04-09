@@ -3,7 +3,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { CheckOut, GioiThieu, Home, Products } from './components';
 import DefaultLayout from './Layout/DefaultLayout';
 // import ProductDetail from './components/pages/ProductDetail';
-import ProductDetailTest from './components/pages/ProductDetailTest';
+import ProductDetail from './components/pages/ProductDetail';
 
 import Login from './components/pages/login/Login';
 import Pagenotfound from './components/pages/Pagenotfound';
@@ -28,7 +28,7 @@ const router = createBrowserRouter([
 		children: [
 			{ path: '', element: <Home /> },
 			{ path: '/home', element: <Home /> },
-			{ path: '/product', element: <ProductDetailTest /> },
+			{ path: '/product', element: <ProductDetail /> },
 			{ path: '/gioi-thieu', element: <GioiThieu /> },
 			{ path: '/products', element: <Products /> },
 			{ path: '/login', element: <Login /> },

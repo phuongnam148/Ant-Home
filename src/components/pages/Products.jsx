@@ -25,40 +25,40 @@ const Products = () => {
 	console.log(productData);
 
 	// Lọc sản phẩm
-	const [under100, setUnder100] = useState(false);
-	const [between100And200, setBetween100And200] = useState(false);
+	// const [under100, setUnder100] = useState(false);
+	// const [between100And200, setBetween100And200] = useState(false);
 
 	// Lấy data sản phẩm lọc theo giá
-	useEffect(() => {
-		let url = '';
-		if (under100) {
-			url += '/products-price?min=0&max=6000';
-		} else if (between100And200) {
-			url += '/products-price?min=7000&max=10000';
-		}
-		if (!under100 && !between100And200) {
-			url = '/products';
-		}
-		newRequest
-			.get(url)
-			.then((response) => {
-				setProducts(response.data);
-			})
-			.catch((error) => {
-				console.error(error);
-			});
-	}, [under100, between100And200]);
+	// useEffect(() => {
+	// 	let url = '';
+	// 	if (under100) {
+	// 		url += '/products-price?min=0&max=6000';
+	// 	} else if (between100And200) {
+	// 		url += '/products-price?min=7000&max=10000';
+	// 	}
+	// 	if (!under100 && !between100And200) {
+	// 		url = '/products';
+	// 	}
+	// 	newRequest
+	// 		.get(url)
+	// 		.then((response) => {
+	// 			setProducts(response.data);
+	// 		})
+	// 		.catch((error) => {
+	// 			console.error(error);
+	// 		});
+	// }, [under100, between100And200]);
 	// Kiểm tra checkbox lọc
-	const handleCheckboxChange = (event) => {
-		const { name, checked } = event.target;
-		if (name === 'under100') {
-			setUnder100(checked);
-			setBetween100And200(false);
-		} else {
-			setBetween100And200(checked);
-			setUnder100(false);
-		}
-	};
+	// const handleCheckboxChange = (event) => {
+	// 	const { name, checked } = event.target;
+	// 	if (name === 'under100') {
+	// 		setUnder100(checked);
+	// 		setBetween100And200(false);
+	// 	} else {
+	// 		setBetween100And200(checked);
+	// 		setUnder100(false);
+	// 	}
+	// };
 	// Lấy lữ liệu Category
 	const {
 		isLoading,

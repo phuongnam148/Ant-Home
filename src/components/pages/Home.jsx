@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+/* eslint-disable no-undef */
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 // Import Swiper
 // eslint-disable-next-line no-unused-vars
@@ -8,20 +9,22 @@ import 'swiper/css';
 import banner from '../../images/slider_1.jpg';
 import './scss/home.scss';
 import Product_card from '../product-card/Product_card';
-//Import react-query
-import newRequest from '../../utils/newRequest.js';
+
+// Khai báo dùng redux
+import { useSelector, useDispatch } from 'react-redux';
+import { getProductData } from '../../redux/productSlide.js';
 const Home = () => {
-	const [products, setProducts] = useState([]);
+	// Lấy dữ liệu từ Store
+	const dispatch = useDispatch();
+	const productData = useSelector((state) => state.product.data);
+	const status = useSelector((state) => state.product.status);
+
+	// Lấy data products
 	useEffect(() => {
-		newRequest
-			.get('/products')
-			.then((res) => {
-				setProducts(res.data);
-			})
-			.catch((error) => {
-				console.error(error);
-			});
-	}, []);
+		dispatch(getProductData());
+	}, [dispatch]);
+	// Check data Products
+	// console.log(productData);
 	return (
 		<div className='home'>
 			<img className='img-fluid' src={banner} alt='' />
@@ -181,9 +184,11 @@ const Home = () => {
 						</a>
 
 						<div className='h-topp row row-cols-4 justify-content-between '>
-							{products.map((prod) => (
-								<Product_card key={prod.id_product} prod={prod} />
-							))}
+							{/* Xuất Product Card */}
+							{status == 'loading' && <p>Đang tải dữ liệu....</p>}
+							{status === 'succeeded' &&
+								productData.map((prod) => <Product_card key={prod.id_product} prod={prod} />)}
+							{status === 'failed' && <p>Error: {error}</p>}
 						</div>
 						<Link className='btn btn-danger' to='/products'>
 							Xem tất cả
@@ -237,9 +242,11 @@ const Home = () => {
 							SẢN PHẨM NHÀ XANH
 						</a>
 						<div className='h-topp row row-cols-4 justify-content-between'>
-							{products.map((prod) => (
-								<Product_card key={prod.id_product} prod={prod} />
-							))}
+							{/* Xuất Product Card */}
+							{status == 'loading' && <p>Đang tải dữ liệu....</p>}
+							{status === 'succeeded' &&
+								productData.map((prod) => <Product_card key={prod.id_product} prod={prod} />)}
+							{status === 'failed' && <p>Error: {error}</p>}
 						</div>
 						<Link className='viewmore' to='/products'>
 							Xem tất cả
