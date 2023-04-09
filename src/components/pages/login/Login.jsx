@@ -62,7 +62,7 @@ const Login = () => {
 		if (validateForm()) {
 			try {
 				dispatch(login({ email, password }));
-				window.location.href = '/';
+				// window.location.href = '/';
 				// eslint-disable-next-line no-unused-vars
 			} catch (error) {
 				alert(error.response.data.message);

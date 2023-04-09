@@ -1,7 +1,7 @@
 import React from 'react';
 import './Account.scss';
 import newRequest from '../../../utils/newRequest';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 const Account = () => {
 	const navigate = useNavigate();
@@ -39,9 +39,9 @@ const Account = () => {
 								</a>
 							</li>
 							<li>
-								<a href='' className='title-info' onClick={handleLogout}>
+								<Link to='' className='title-info' onClick={handleLogout}>
 									Đăng xuất
-								</a>
+								</Link>
 							</li>
 						</ul>
 					</div>

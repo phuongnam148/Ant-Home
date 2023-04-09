@@ -6,10 +6,7 @@ import { getProductData } from '../../redux/productSlide.js';
 import './scss/products.scss';
 import Product_card from '../product-card/Product_card';
 
-import Category from '../Category/Category';
-
-import { useQuery } from '@tanstack/react-query';
-import newRequest from '../../utils/newRequest.js';
+// import Category from '../Category/Category';
 
 const Products = () => {
 	// Lấy dữ liệu từ Store
@@ -59,21 +56,6 @@ const Products = () => {
 	// 		setUnder100(false);
 	// 	}
 	// };
-	// Lấy lữ liệu Category
-	const {
-		isLoading,
-		error,
-		data: dataCate,
-	} = useQuery({
-		queryKey: ['Categorys'],
-		queryFn: () =>
-			newRequest.get('/categorys').then((res) => {
-				return res.data;
-			}),
-	});
-	if (isLoading) return 'Đang tải dữ liệu...';
-	if (error) return 'An error has occurred: ' + error.message;
-
 	return (
 		<div className='container'>
 			<div className='row m-0 p-0'>

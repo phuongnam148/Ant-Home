@@ -1,10 +1,8 @@
 import React from 'react';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { CheckOut, GioiThieu, Home, Products } from './components';
 import DefaultLayout from './Layout/DefaultLayout';
-// import ProductDetail from './components/pages/ProductDetail';
 import ProductDetail from './components/pages/ProductDetail';
-
 import Login from './components/pages/login/Login';
 import Pagenotfound from './components/pages/Pagenotfound';
 import Register from './components/pages/login/Register';
@@ -14,47 +12,51 @@ import Changepassword from './components/pages/account/Changepassword';
 import Addresses from './components/pages/account/Addresses';
 import Contact from './components/pages/Contact';
 import Faq from './components/pages/faq';
+import Unauthorized from './components/pages/Unauthorized';
+// import RequireAuth from './components/RequireAuth';
 // Admin
 import AdminLayout from './Layout/AdminLayout';
 import Admin from './page/admin/Admin';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-const queryClient = new QueryClient();
 
-const router = createBrowserRouter([
-	{
-		path: '/',
-		element: <DefaultLayout />,
-		errorElement: <Pagenotfound />,
-		children: [
-			{ path: '', element: <Home /> },
-			{ path: '/home', element: <Home /> },
-			{ path: '/product', element: <ProductDetail /> },
-			{ path: '/gioi-thieu', element: <GioiThieu /> },
-			{ path: '/products', element: <Products /> },
-			{ path: '/login', element: <Login /> },
-			{ path: '/register', element: <Register /> },
-			{ path: '/account', element: <Account /> },
-			{ path: '/account/orders', element: <Orders /> },
-			{ path: '/account/changepassword', element: <Changepassword /> },
-			{ path: '/account/addresses', element: <Addresses /> },
-			{ path: '/check-out', element: <CheckOut /> },
-			{ path: '/contact', element: <Contact /> },
-			{ path: '/faq', element: <Faq /> },
-		],
-	},
-	{
-		path: '/admin',
-		element: <AdminLayout />,
-		errorElement: <Pagenotfound />,
-		children: [{ path: '', element: <Admin /> }],
-	},
-]);
+// const ROLES = {
+// 	User: 2001,
+// 	Editor: 1984,
+// 	Admin: 5150,
+// };
 
 const App = () => {
 	return (
-		<QueryClientProvider client={queryClient}>
-			<RouterProvider router={router} />
-		</QueryClientProvider>
+		<Routes>
+			{/* Default Layout */}
+			<Route path='/' element={<DefaultLayout />}>
+				<Route path='' element={<Home />} />
+				<Route path='/home' element={<Home />} />
+				<Route path='/product' element={<ProductDetail />} />
+				<Route path='/gioi-thieu' element={<GioiThieu />} />
+				<Route path='/products' element={<Products />} />
+				<Route path='/login' element={<Login />} />
+				<Route path='/register' element={<Register />} />
+				<Route path='/unauthorized' element={<Unauthorized />} />
+
+				{/* <Router element={<RequireAuth allowedRoles={[ROLES.User]} />}>
+					<Route path='account' element={<Account />} />
+				</Router> */}
+				<Route path='/account' element={<Account />} />
+
+				<Route path='/account/orders' element={<Orders />} />
+				<Route path='/account/changepassword' element={<Changepassword />} />
+				<Route path='/account/addresses' element={<Addresses />} />
+				<Route path='/check-out' element={<CheckOut />} />
+				<Route path='/contact' element={<Contact />} />
+				<Route path='/faq' element={<Faq />} />
+			</Route>
+			{/* Admin Layout */}
+			<Route path='/admin' element={<AdminLayout />}>
+				<Route path='' element={<Admin />} />
+			</Route>
+			{/* Page not found */}
+			<Route path='*' element={<Pagenotfound />} />
+		</Routes>
 	);
 };
 
