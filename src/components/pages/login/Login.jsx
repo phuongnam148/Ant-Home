@@ -1,19 +1,30 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import './Login.scss';
 
-import newRequest from '../../../utils/newRequest';
+//
+import { useDispatch, useSelector } from 'react-redux';
+import { login } from '../../../redux/authSlice.js';
 
 const Login = () => {
+	//
+	const dispatch = useDispatch();
+	const isLoading = useSelector((state) => state.auth.isLoading);
+	const error = useSelector((state) => state.auth.error);
+
+	//
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [errors, setErrors] = useState({});
 
+	// Lấy địa chỉ Email
 	const handleEmailChange = (event) => {
 		setEmail(event.target.value);
 	};
 
+	// Lấy Password
 	const handlePasswordChange = (event) => {
 		setPassword(event.target.value);
 	};
@@ -48,18 +59,10 @@ const Login = () => {
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
-
 		if (validateForm()) {
-			const userData = { email, password };
-			// const json = JSON.stringify(userData);
 			try {
-				const res = await newRequest.post('/auth', userData);
-				// eslint-disable-next-line no-unused-vars
-
-				console.log(res);
-				localStorage.setItem('user', JSON.stringify(res.data));
+				dispatch(login({ email, password }));
 				window.location.href = '/';
-
 				// eslint-disable-next-line no-unused-vars
 			} catch (error) {
 				alert(error.response.data.message);

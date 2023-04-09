@@ -22,7 +22,7 @@ const Products = () => {
 		dispatch(getProductData());
 	}, [dispatch]);
 	// Check data Products
-	console.log(productData);
+	// console.log(productData);
 
 	// Lọc sản phẩm
 	// const [under100, setUnder100] = useState(false);
