@@ -59,7 +59,7 @@ const Products = () => {
 	return (
 		<div className='container'>
 			<div className='row m-0 p-0'>
-				<section className='main_container collection col-md-12 col-lg-12 margin-bottom-5 order-lg-first order-md-first order-sm-last order-last'>
+				<section className='main_container collection col-md-12 col-lg-12 order-lg-first order-md-first order-sm-last order-last'>
 					<div className='product-gray product_recent product-page-favorites'>
 						<nav aria-label='breadcrumb'>
 							<ol className='breadcrumb'>

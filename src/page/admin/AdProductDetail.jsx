@@ -1,9 +1,31 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unescaped-entities */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import upload from '../../layout/assets/img/icons/upload.svg';
 
+// Import thêm redux
+import { useSelector, useDispatch } from 'react-redux';
+import { getProductByID } from '../../redux/productSlide.js';
+import { useLocation } from 'react-router-dom';
+
 const AdProductDetail = () => {
+	// Lấy ID Sản phẩm trên URL
+	const { search } = useLocation();
+	const queryParams = new URLSearchParams(search);
+	const id = queryParams.get('id');
+
+	// Lấy dữ liệu từ Store
+	const dispatch = useDispatch();
+	const productDataId = useSelector((state) => state.product.selectedProduct);
+	console.log(productDataId);
+	// eslint-disable-next-line no-unused-vars
+	const status = useSelector((state) => state.product.status);
+	// Lấy data products
+	useEffect(() => {
+		dispatch(getProductByID(id));
+	}, [dispatch, id]);
+	//
 	return (
 		<div className='content'>
 			<div className='page-header'>
@@ -19,7 +41,7 @@ const AdProductDetail = () => {
 						<div className='col-lg-3 col-sm-6 col-12'>
 							<div className='form-group'>
 								<label>Tên sản phẩm</label>
-								<input type='text' value='Macbook pro' />
+								<input type='text' value={productDataId.name_prod} />
 							</div>
 						</div>
 						<div className='col-lg-3 col-sm-6 col-12'>
@@ -111,7 +133,7 @@ const AdProductDetail = () => {
 						<div className='col-lg-3 col-sm-6 col-12'>
 							<div className='form-group'>
 								<label>Giá</label>
-								<input type='text' value='1500.00' />
+								<input type='text' value={productDataId.price_prod} />
 							</div>
 						</div>
 						<div className='col-lg-3 col-sm-6 col-12'>
@@ -141,7 +163,7 @@ const AdProductDetail = () => {
 									<li>
 										<div className='productviews'>
 											<div className='productviewsimg'>
-												<img src='assets/img/icons/macbook.svg' alt='img' />
+												<img src={productDataId.ImgProduct.img_1} alt='img' />
 											</div>
 											<div className='productviewscontent'>
 												<div className='productviewsname'>

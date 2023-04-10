@@ -102,7 +102,7 @@ const Register = () => {
 	};
 	return (
 		<div className='login'>
-			<div className='login-container row'>
+			<div className='login-container container m-auto row'>
 				<div className='left col'>
 					<div className='account-policy-title'>QUYỀN LỢI THÀNH VIÊN</div>
 					<div className='account-policy-content'>
