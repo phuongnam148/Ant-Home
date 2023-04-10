@@ -4,18 +4,7 @@ import { Link, Navigate } from 'react-router-dom';
 import { useState } from 'react';
 import './Login.scss';
 
-//
-import { useDispatch, useSelector } from 'react-redux';
-import { login } from '../../../redux/authSlice.js';
-
 const Login = () => {
-	//
-	const dispatch = useDispatch();
-	const isLoading = useSelector((state) => state.auth.isLoading);
-	const error = useSelector((state) => state.auth.error);
-
-	//
-
 	//
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
@@ -63,7 +52,7 @@ const Login = () => {
 		event.preventDefault();
 		if (validateForm()) {
 			try {
-				dispatch(login({ email, password }));
+				// dispatch(login({ email, password }));
 				<Navigate to='/account' />;
 				// window.location.href = '/';
 				// eslint-disable-next-line no-unused-vars

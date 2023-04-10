@@ -14,15 +14,7 @@ import eye from '../../layout/assets/img/icons/eye.svg';
 import edit from '../../layout/assets/img/icons/edit.svg';
 import delete_icon from '../../layout/assets/img/icons/delete.svg';
 
-//
-import { useSelector, useDispatch } from 'react-redux';
-import { getProductData } from '../../redux/productSlide.js';
-
 const ListProduct = () => {
-	const dispatch = useDispatch();
-	const productData = useSelector((state) => state.product.data);
-	const status = useSelector((state) => state.product.status);
-
 	// Lấy data products
 	useEffect(() => {
 		dispatch(getProductData());
@@ -164,43 +156,41 @@ const ListProduct = () => {
 							</thead>
 							<tbody>
 								{/* Xuất Product Card */}
-								{status == 'loading' && <p>Đang tải dữ liệu....</p>}
-								{status === 'succeeded' &&
-									productData.map((prod) => (
-										<tr>
-											<td>
-												<label className='checkboxs'>
-													<input type='checkbox' />
-													<span className='checkmarks'></span>
-												</label>
-											</td>
-											<td className='productimgname'>
-												<a href='' className='product-img'>
-													<img src={prod.ImgProduct.img_1} alt='product' />
-												</a>
-												<a href=''>{prod.name_prod}</a>
-											</td>
-											<td>PT001</td>
-											<td>{prod.CategoryChild.Category.name_category}</td>
-											<td>{prod.Brand.name_brand}</td>
-											<td>{prod.price_prod}</td>
-											<td>pc</td>
-											<td></td>
-											<td>{prod.createdAt}</td>
-											<td>
-												<Link className='me-3' to={`/admin/product-detail?id=${prod.id_product}`}>
-													<img src={eye} alt='img' />
-												</Link>
-												<Link className='me-3' href='editproduct.html'>
-													<img src={edit} alt='img' />
-												</Link>
-												<Link className='confirm-text' href='javascript:void(0);'>
-													<img src={delete_icon} alt='img' />
-												</Link>
-											</td>
-										</tr>
-									))}
-								{status === 'failed' && <p>Error: {error}</p>}
+
+								{productData.map((prod) => (
+									<tr>
+										<td>
+											<label className='checkboxs'>
+												<input type='checkbox' />
+												<span className='checkmarks'></span>
+											</label>
+										</td>
+										<td className='productimgname'>
+											<a href='' className='product-img'>
+												<img src={prod.ImgProduct.img_1} alt='product' />
+											</a>
+											<a href=''>{prod.name_prod}</a>
+										</td>
+										<td>PT001</td>
+										<td>{prod.CategoryChild.Category.name_category}</td>
+										<td>{prod.Brand.name_brand}</td>
+										<td>{prod.price_prod}</td>
+										<td>pc</td>
+										<td></td>
+										<td>{prod.createdAt}</td>
+										<td>
+											<Link className='me-3' to={`/admin/product-detail?id=${prod.id_product}`}>
+												<img src={eye} alt='img' />
+											</Link>
+											<Link className='me-3' href='editproduct.html'>
+												<img src={edit} alt='img' />
+											</Link>
+											<Link className='confirm-text' href='javascript:void(0);'>
+												<img src={delete_icon} alt='img' />
+											</Link>
+										</td>
+									</tr>
+								))}
 							</tbody>
 						</table>
 					</div>

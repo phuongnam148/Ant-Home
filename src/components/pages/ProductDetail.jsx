@@ -4,21 +4,12 @@ import './scss/product-detail.scss';
 import Slide from '../Slide/Slide';
 import { useLocation } from 'react-router-dom';
 
-// Import thêm redux
-import { useSelector, useDispatch } from 'react-redux';
-import { getProductByID } from '../../redux/productSlide.js';
-
 const ProductDetail = () => {
 	const [showMore, setShowMore] = useState(false);
 	// Lấy ID Sản phẩm trên URL
 	const { search } = useLocation();
 	const queryParams = new URLSearchParams(search);
 	const id = queryParams.get('id');
-	// Lấy dữ liệu từ Store
-	const dispatch = useDispatch();
-	const productDataId = useSelector((state) => state.product.selectedProduct);
-	// eslint-disable-next-line no-unused-vars
-	const status = useSelector((state) => state.product.status);
 	// Lấy data products
 	useEffect(() => {
 		dispatch(getProductByID(id));

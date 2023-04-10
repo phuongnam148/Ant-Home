@@ -1,8 +1,6 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { getProductData } from '../../redux/productSlide.js';
 import './scss/products.scss';
 import Product_card from '../product-card/Product_card';
 

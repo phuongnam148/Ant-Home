@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 // Import Swiper
 // eslint-disable-next-line no-unused-vars
@@ -10,25 +10,10 @@ import banner from '../../images/slider_1.jpg';
 import './scss/home.scss';
 import Product_card from '../product-card/Product_card';
 
-// Khai báo dùng redux
-import { useSelector, useDispatch } from 'react-redux';
-import { getProductData } from '../../redux/productSlide.js';
 const Home = () => {
-	// Lấy dữ liệu từ Store
-	const dispatch = useDispatch();
-	const productData = useSelector((state) => state.product.data);
-	const status = useSelector((state) => state.product.status);
-
-	// Lấy data products
-	useEffect(() => {
-		dispatch(getProductData());
-	}, [dispatch]);
-	// Check data Products
-	// console.log(productData);
 	return (
 		<div className='home'>
 			<img className='img-fluid' src={banner} alt='' />
-
 			<div className='container-md'>
 				{/* Loại sản phẩm */}
 				<div className='home-section-1'>

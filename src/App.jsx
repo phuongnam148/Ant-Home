@@ -6,7 +6,7 @@ import ProductDetail from './components/pages/ProductDetail';
 import Login from './components/pages/login/Login';
 import Pagenotfound from './components/pages/Pagenotfound';
 import Register from './components/pages/login/Register';
-import Account from './components/pages/account/Account';
+// import Account from './components/pages/account/Account';
 import Orders from './components/pages/account/Orders';
 import Changepassword from './components/pages/account/Changepassword';
 import Addresses from './components/pages/account/Addresses';
@@ -17,7 +17,7 @@ import Unauthorized from './components/pages/Unauthorized';
 import AdminLayout from './Layout/AdminLayout';
 import Admin from './page/admin/Admin';
 import ListProduct from './page/admin/ListProduct';
-import PrivateRoute from './utils/PrivateRoute';
+// import PrivateRoute from './utils/PrivateRoute';
 import AdProductDetail from './page/admin/AdProductDetail';
 
 const App = () => {
@@ -34,9 +34,9 @@ const App = () => {
 				<Route path='/register' element={<Register />} />
 				<Route path='/unauthorized' element={<Unauthorized />} />
 				{/* <Route path='/account' element={<Account />} /> */}
-				<Route element={<PrivateRoute role={['user', 'admin', 'ctv']} />}>
+				{/* <Route element={<PrivateRoute role={['user', 'admin', 'ctv']} />}>
 					<Route path='/account' element={<Account />} />
-				</Route>
+				</Route> */}
 				{/* <PrivateRoute path='/account' element={<Account />} role={'user'} /> */}
 				<Route path='/account/orders' element={<Orders />} />
 				<Route path='/account/changepassword' element={<Changepassword />} />
