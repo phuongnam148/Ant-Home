@@ -9,8 +9,19 @@ import 'swiper/css';
 import banner from '../../images/slider_1.jpg';
 import './scss/home.scss';
 import Product_card from '../product-card/Product_card';
+import { useQuery } from '@tanstack/react-query';
+import newRequest from '../../utils/newRequest.js';
 
 const Home = () => {
+	const { isLoading, error, data } = useQuery({
+		queryKey: ['products'],
+		queryFn: () =>
+			newRequest.get('/products').then((res) => {
+				return res.data;
+			}),
+	});
+	if (isLoading) return 'Loading...';
+	if (error) return 'An error has occurred: ' + error.message;
 	return (
 		<div className='home'>
 			<img className='img-fluid' src={banner} alt='' />
@@ -169,11 +180,9 @@ const Home = () => {
 						</a>
 
 						<div className='h-topp row row-cols-4 justify-content-between '>
-							{/* Xuất Product Card */}
-							{status == 'loading' && <p>Đang tải dữ liệu....</p>}
-							{status === 'succeeded' &&
-								productData.map((prod) => <Product_card key={prod.id_product} prod={prod} />)}
-							{status === 'failed' && <p>Error: {error}</p>}
+							{data.map((prod) => (
+								<Product_card key={prod.id_product} prod={prod} />
+							))}
 						</div>
 						<Link className='btn btn-danger' to='/products'>
 							Xem tất cả
