@@ -1,4 +1,6 @@
-import React from 'react';
+/* eslint-disable react/jsx-key */
+/* eslint-disable no-undef */
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import plus from '../../layout/assets/img/icons/plus.svg';
@@ -12,16 +14,25 @@ import eye from '../../layout/assets/img/icons/eye.svg';
 import edit from '../../layout/assets/img/icons/edit.svg';
 import delete_icon from '../../layout/assets/img/icons/delete.svg';
 
-// Sản phẩm
-import product1 from '../../layout/assets/img/product/product1.jpg';
+//
+import { useSelector, useDispatch } from 'react-redux';
+import { getProductData } from '../../redux/productSlide.js';
 
 const ListProduct = () => {
+	const dispatch = useDispatch();
+	const productData = useSelector((state) => state.product.data);
+	const status = useSelector((state) => state.product.status);
+
+	// Lấy data products
+	useEffect(() => {
+		dispatch(getProductData());
+	}, [dispatch]);
 	return (
 		<div className='content'>
 			<div className='page-header'>
 				<div className='page-title'>
-					<h4>Product List</h4>
-					<h6>Manage your products</h6>
+					<h4>Danh sách sản phẩm</h4>
+					<h6>Quản lý sản phẩm</h6>
 				</div>
 				<div className='page-btn'>
 					<Link to='/admin/addproduct' className='btn btn-added'>
@@ -140,50 +151,56 @@ const ListProduct = () => {
 											<span className='checkmarks'></span>
 										</label>
 									</th>
-									<th>Product Name</th>
+									<th>Tên sản phẩm</th>
 									<th>SKU</th>
-									<th>Category</th>
-									<th>Brand</th>
-									<th>price</th>
+									<th>Loại</th>
+									<th>Thương hiệu</th>
+									<th>Giá</th>
 									<th>Unit</th>
 									<th>Qty</th>
-									<th>Created By</th>
+									<th>Ngày tạo</th>
 									<th>Action</th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>
-										<label className='checkboxs'>
-											<input type='checkbox' />
-											<span className='checkmarks'></span>
-										</label>
-									</td>
-									<td className='productimgname'>
-										<a href='javascript:void(0);' className='product-img'>
-											<img src={product1} alt='product' />
-										</a>
-										<a href='javascript:void(0);'>Macbook pro</a>
-									</td>
-									<td>PT001</td>
-									<td>Computers</td>
-									<td>N/D</td>
-									<td>1500.00</td>
-									<td>pc</td>
-									<td>100.00</td>
-									<td>Admin</td>
-									<td>
-										<a className='me-3' href='product-details.html'>
-											<img src={eye} alt='img' />
-										</a>
-										<a className='me-3' href='editproduct.html'>
-											<img src={edit} alt='img' />
-										</a>
-										<a className='confirm-text' href='javascript:void(0);'>
-											<img src={delete_icon} alt='img' />
-										</a>
-									</td>
-								</tr>
+								{/* Xuất Product Card */}
+								{status == 'loading' && <p>Đang tải dữ liệu....</p>}
+								{status === 'succeeded' &&
+									productData.map((prod) => (
+										<tr>
+											<td>
+												<label className='checkboxs'>
+													<input type='checkbox' />
+													<span className='checkmarks'></span>
+												</label>
+											</td>
+											<td className='productimgname'>
+												<a href='' className='product-img'>
+													<img src={prod.ImgProduct.img_1} alt='product' />
+												</a>
+												<a href=''>{prod.name_prod}</a>
+											</td>
+											<td>PT001</td>
+											<td>{prod.CategoryChild.Category.name_category}</td>
+											<td>{prod.Brand.name_brand}</td>
+											<td>{prod.price_prod}</td>
+											<td>pc</td>
+											<td></td>
+											<td>{prod.createdAt}</td>
+											<td>
+												<Link className='me-3' to={`/admin/product-detail?id=${prod.id_product}`}>
+													<img src={eye} alt='img' />
+												</Link>
+												<Link className='me-3' href='editproduct.html'>
+													<img src={edit} alt='img' />
+												</Link>
+												<Link className='confirm-text' href='javascript:void(0);'>
+													<img src={delete_icon} alt='img' />
+												</Link>
+											</td>
+										</tr>
+									))}
+								{status === 'failed' && <p>Error: {error}</p>}
 							</tbody>
 						</table>
 					</div>

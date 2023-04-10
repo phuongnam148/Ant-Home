@@ -13,8 +13,6 @@ import './assets/css/style.css';
 import './assets/js/jquery-3.6.0.min.js';
 import './assets/js/feather.min.js';
 import './assets/js/jquery.slimscroll.min.js';
-import './assets/js/jquery.dataTables.min.js';
-import './assets/js/dataTables.bootstrap4.min.js';
 import './assets/plugins/select2/js/select2.min.js';
 import './assets/plugins/sweetalert/sweetalert2.all.min.js';
 import './assets/plugins/sweetalert/sweetalerts.min.js';

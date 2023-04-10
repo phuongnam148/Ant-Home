@@ -16,6 +16,9 @@ import Unauthorized from './components/pages/Unauthorized';
 // Admin
 import AdminLayout from './Layout/AdminLayout';
 import Admin from './page/admin/Admin';
+import ListProduct from './page/admin/ListProduct';
+import PrivateRoute from './utils/PrivateRoute';
+import AdProductDetail from './page/admin/AdProductDetail';
 
 const App = () => {
 	return (
@@ -30,7 +33,11 @@ const App = () => {
 				<Route path='/login' element={<Login />} />
 				<Route path='/register' element={<Register />} />
 				<Route path='/unauthorized' element={<Unauthorized />} />
-				<Route path='/account' element={<Account />} />
+				{/* <Route path='/account' element={<Account />} /> */}
+				<Route element={<PrivateRoute role={['user', 'admin', 'ctv']} />}>
+					<Route path='/account' element={<Account />} />
+				</Route>
+				{/* <PrivateRoute path='/account' element={<Account />} role={'user'} /> */}
 				<Route path='/account/orders' element={<Orders />} />
 				<Route path='/account/changepassword' element={<Changepassword />} />
 				<Route path='/account/addresses' element={<Addresses />} />
@@ -41,6 +48,8 @@ const App = () => {
 			{/* Admin Layout */}
 			<Route path='/admin' element={<AdminLayout />}>
 				<Route path='' element={<Admin />} />
+				<Route path='listproduct' element={<ListProduct />} />
+				<Route path='product-detail' element={<AdProductDetail />} />
 			</Route>
 			{/* Page not found */}
 			<Route path='*' element={<Pagenotfound />} />

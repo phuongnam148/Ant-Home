@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-duplicate-props */
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -17,7 +18,7 @@ import settings from '../assets/img/icons/settings.svg';
 const SiderBar = () => {
 	return (
 		<div className='sidebar' id='sidebar'>
-			<div className='sidebar-inner slimscroll'>
+			<div className='sidebar-inner slimscroll w-100'>
 				<div id='sidebar-menu' className='sidebar-menu'>
 					<ul className='p-0'>
 						<li className='active'>
@@ -27,37 +28,45 @@ const SiderBar = () => {
 							</Link>
 						</li>
 						<li className='submenu'>
-							<a href='javascript:void(0);'>
+							<a
+								data-bs-toggle='collapse'
+								href='#collapseProduct'
+								role='button'
+								aria-expanded='false'
+								aria-controls='collapseExample'
+							>
 								<img src={product} alt='img' />
 								<span>Sản phẩm</span>
 								<span className='menu-arrow'></span>
 							</a>
-							<ul>
-								<li>
-									<Link to='/admin/listproduct'>Danh sách sản phẩm</Link>
-								</li>
-								<li>
-									<a href='addproduct.html'>Thêm sản phẩm</a>
-								</li>
-								<li>
-									<a href='categorylist.html'>Danh sách danh mục</a>
-								</li>
-								<li>
-									<a href='addcategory.html'>Thêm danh mục</a>
-								</li>
-								<li>
-									<a href='subcategorylist.html'>Danh mục con</a>
-								</li>
-								<li>
-									<a href='subaddcategory.html'>Thêm danh mục con</a>
-								</li>
-								<li>
-									<a href='brandlist.html'>Danh sách hãng</a>
-								</li>
-								<li>
-									<a href='addbrand.html'>Thêm hãng</a>
-								</li>
-							</ul>
+							<div className='collapse mt-2' id='collapseProduct'>
+								<div className='card card-body'>
+									<li>
+										<Link to='/admin/listproduct'>Danh sách sản phẩm</Link>
+									</li>
+									<li>
+										<a href='addproduct.html'>Thêm sản phẩm</a>
+									</li>
+									<li>
+										<a href='categorylist.html'>Danh sách danh mục</a>
+									</li>
+									<li>
+										<a href='addcategory.html'>Thêm danh mục</a>
+									</li>
+									<li>
+										<a href='subcategorylist.html'>Danh mục con</a>
+									</li>
+									<li>
+										<a href='subaddcategory.html'>Thêm danh mục con</a>
+									</li>
+									<li>
+										<a href='brandlist.html'>Danh sách hãng</a>
+									</li>
+									<li>
+										<a href='addbrand.html'>Thêm hãng</a>
+									</li>
+								</div>
+							</div>
 						</li>
 						<li className='submenu'>
 							<a href='javascript:void(0);'>
