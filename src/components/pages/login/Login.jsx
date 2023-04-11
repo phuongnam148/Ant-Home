@@ -3,6 +3,7 @@ import React from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import { useState } from 'react';
 import './Login.scss';
+import newRequest from '../../../utils/newRequest';
 
 const Login = () => {
 	//
@@ -52,9 +53,12 @@ const Login = () => {
 		event.preventDefault();
 		if (validateForm()) {
 			try {
-				// dispatch(login({ email, password }));
-				<Navigate to='/account' />;
-				// window.location.href = '/';
+				const user = { email, password };
+				await newRequest
+					.post('/auth', user)
+					.then((res) => console.log(res.data.message))
+					.catch((error) => console.log(error));
+				// <Navigate to='/account' />;
 				// eslint-disable-next-line no-unused-vars
 			} catch (error) {
 				alert(error.response.data.message);

@@ -1,21 +1,16 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './scss/product-detail.scss';
 import Slide from '../Slide/Slide';
 import { useLocation } from 'react-router-dom';
+import newRequest from '../../utils/newRequest.js';
+import { useQuery } from '@tanstack/react-query';
 
 const ProductDetail = () => {
 	const [showMore, setShowMore] = useState(false);
 	// Lấy ID Sản phẩm trên URL
 	const { search } = useLocation();
-	const queryParams = new URLSearchParams(search);
-	const id = queryParams.get('id');
-	// Lấy data products
-	useEffect(() => {
-		dispatch(getProductByID(id));
-	}, [dispatch, id]);
-	// Check data Products
-	// console.log(productDataId);
 	// Format tiền VND
 	const VND = new Intl.NumberFormat('vi-VN', {
 		style: 'currency',
@@ -27,13 +22,11 @@ const ProductDetail = () => {
 	const handleIncrement = () => {
 		setValue(value + 1);
 	};
-
 	const handleDecrement = () => {
 		if (value > 1) {
 			setValue(value - 1);
 		}
 	};
-
 	// eslint-disable-next-line no-unused-vars
 	const handleSubmit = (event) => {
 		event.preventDefault(); // Ngăn chặn gửi dữ liệu và tải lại trang mặc định
@@ -44,17 +37,37 @@ const ProductDetail = () => {
 		setShowMore(!showMore);
 	};
 
-	// Check điều kiện status trả về
-	if (status === 'loading') {
-		return <div>Loading...</div>;
+	// Get Data
+	const {
+		isLoading,
+		isError,
+		data: productDetail,
+		error,
+		refetch,
+	} = useQuery({
+		queryKey: ['productdetail'],
+		queryFn: async () => {
+			try {
+				const res = await newRequest.get(`/product${search}`);
+				return res.data;
+			} catch (error) {
+				console.log(error);
+			}
+		},
+	});
+	// Kiểm tra thay đổi
+	useEffect(() => {
+		refetch();
+	}, [search]);
+	// Loading
+	if (isLoading) {
+		return <span>Loading...</span>;
 	}
-	if (status === 'failed') {
-		return <div>Error: {error}</div>;
+	// Error
+	if (isError) {
+		return <span>Error: {error.message}</span>;
 	}
-	if (!productDataId) {
-		return null;
-	}
-
+	// End Get Data
 	return (
 		// Thanh breadcrumb
 		<div className='productDetail'>
@@ -165,11 +178,11 @@ const ProductDetail = () => {
 					</div>
 					<div className='col-12 col-xl-6'>
 						<div className='fw-semibold'>
-							<h3>{productDataId.name_prod}</h3>
+							<h3>{productDetail.name_prod}</h3>
 						</div>
 						<div className='d-flex justify-content-between'>
 							<div className='trademark-product'>
-								<p>Thương hiệu: {productDataId.Brand.name_brand}</p>
+								<p>Thương hiệu: {productDetail.Brand.name_brand}</p>
 							</div>
 							<div className='code-product'>
 								<p>Mã sản phẩm: 290050037302</p>
@@ -177,7 +190,7 @@ const ProductDetail = () => {
 						</div>
 						<hr />
 						<div className='fw-semibold'>
-							<p className='gia'>{VND.format(productDataId.price_prod)}</p>
+							<p className='gia'>{VND.format(productDetail.price_prod)}</p>
 						</div>
 						<hr />
 						<form action='' className='' onSubmit={handleSubmit}>
@@ -221,7 +234,7 @@ const ProductDetail = () => {
 						</div>
 						{/* Thông tin chi tiết */}
 						<div className='showmore'>
-							<p className={!showMore ? 'show-more' : ''}>{productDataId.DetailProduct.detail_prod}</p>
+							<p className={!showMore ? 'show-more' : ''}>{productDetail.DetailProduct.detail_prod}</p>
 
 							<button className='xemthem' onClick={handleShowMore}>
 								<p className='more-text m-1'>{showMore ? 'Thu gọn' : 'Xem thêm'}</p>
@@ -285,7 +298,7 @@ const ProductDetail = () => {
 						role='tabpanel'
 						aria-labelledby='nav-home-tab'
 					>
-						<p className='fw-bold'>{productDataId.prod}</p>
+						<p className='fw-bold'>{productDetail.prod}</p>
 						<p>
 							{' '}
 							Bạn đang cần tìm bàn trà sofa, bàn trà cafe mà chưa tìm được sản phẩm ưng ý

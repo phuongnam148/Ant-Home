@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-key */
 /* eslint-disable no-undef */
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 import plus from '../../layout/assets/img/icons/plus.svg';
@@ -13,12 +13,38 @@ import printer from '../../layout/assets/img/icons/printer.svg';
 import eye from '../../layout/assets/img/icons/eye.svg';
 import edit from '../../layout/assets/img/icons/edit.svg';
 import delete_icon from '../../layout/assets/img/icons/delete.svg';
+//
+import newRequest from '../../utils/newRequest.js';
+import { useQuery } from '@tanstack/react-query';
 
 const ListProduct = () => {
-	// Lấy data products
-	useEffect(() => {
-		dispatch(getProductData());
-	}, [dispatch]);
+	// Lấy data sản phẩm
+	// Get Data
+	const {
+		isLoading,
+		isError,
+		data: productData,
+		error,
+	} = useQuery({
+		queryKey: ['productdata'],
+		queryFn: async () => {
+			try {
+				const res = await newRequest.get(`/products`);
+				return res.data;
+			} catch (error) {
+				console.log(error);
+			}
+		},
+	});
+	// Loading
+	if (isLoading) {
+		return <span>Loading...</span>;
+	}
+	// Error
+	if (isError) {
+		return <span>Error: {error.message}</span>;
+	}
+	//
 	return (
 		<div className='content'>
 			<div className='page-header'>
@@ -27,7 +53,7 @@ const ListProduct = () => {
 					<h6>Quản lý sản phẩm</h6>
 				</div>
 				<div className='page-btn'>
-					<Link to='/admin/addproduct' className='btn btn-added'>
+					<Link to='/admin/add-product' className='btn btn-added'>
 						<img src={plus} alt='img' className='me-1' />
 						Thêm sản phẩm
 					</Link>
@@ -156,7 +182,6 @@ const ListProduct = () => {
 							</thead>
 							<tbody>
 								{/* Xuất Product Card */}
-
 								{productData.map((prod) => (
 									<tr>
 										<td>
@@ -169,7 +194,7 @@ const ListProduct = () => {
 											<a href='' className='product-img'>
 												<img src={prod.ImgProduct.img_1} alt='product' />
 											</a>
-											<a href=''>{prod.name_prod}</a>
+											<Link to={`/admin/product-detail?id=${prod.id_product}`}>{prod.name_prod}</Link>
 										</td>
 										<td>PT001</td>
 										<td>{prod.CategoryChild.Category.name_category}</td>

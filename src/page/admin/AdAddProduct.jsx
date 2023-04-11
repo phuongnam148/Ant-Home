@@ -1,26 +1,19 @@
-/* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
-/* eslint-disable react/no-unescaped-entities */
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 import upload from '../../layout/assets/img/icons/upload.svg';
-
-// Import thêm redux
-import { useLocation } from 'react-router-dom';
 import newRequest from '../../utils/newRequest.js';
 import { useQuery } from '@tanstack/react-query';
 
-const AdProductDetail = () => {
-	// Lấy giá trị của sản phẩm chi tiết
-	const [productDataId, setProductDataId] = useState(null);
+const AdAddProduct = () => {
 	// Lấy giá trị của Category
 	const [selectedCategory, setSelectedCategory] = useState(null);
-	// Lấy giá trị của category
-	const [category, setCategory] = useState(null);
 	// Lấy giá trị của Sub Category
 	const [subCateData, setSubCate] = useState([]);
 	// Lấy giá trị của Brand
 	const [brands, setBrands] = useState(null);
+	//
 	// Lấy data post
 	const [nameProduct, setNameProduct] = useState('');
 	const [subCate, setPSubCate] = useState('');
@@ -32,46 +25,23 @@ const AdProductDetail = () => {
 	const [images2, setImages2] = useState('');
 	const [images3, setImages3] = useState('');
 	const [images4, setImages4] = useState('');
-	// Lấy ID Sản phẩm trên URL
-	const { search } = useLocation();
-	const id = new URLSearchParams(search).get('id');
-	// Lấy data products;
-	// Get Data
-	useEffect(() => {
-		newRequest
-			.get(`/product?id=${id}`)
-			.then((data) => setProductDataId(data.data))
-			.catch((error) => console.error(error));
-	}, [id]);
-	// const {
-	// 	isLoading,
-	// 	isError,
-	// 	data: productDataId,
-	// 	error,
-	// 	refetch,
-	// } = useQuery({
-	// 	queryKey: ['productdetail'],
-	// 	queryFn: async () => {
-	// 		try {
-	// 			const res = await newRequest.get(`/product?id=${id}`);
-	// 			return res.data;
-	// 		} catch (error) {
-	// 			console.log(error);
-	// 		}
-	// 	},
-	// });
-	// Kiểm tra thay đổi
-	// useEffect(() => {
-	// 	refetch();
-	// }, [id]);
-
-	// Lấy category
-	useEffect(() => {
-		newRequest
-			.get(`/categorys`)
-			.then((data) => setCategory(data.data))
-			.catch((error) => console.error(error));
-	}, []);
+	//
+	const {
+		isLoading,
+		isError,
+		data: category,
+		error,
+	} = useQuery({
+		queryKey: ['category'],
+		queryFn: async () => {
+			try {
+				const res = await newRequest.get(`/categorys`);
+				return res.data;
+			} catch (error) {
+				console.log(error);
+			}
+		},
+	});
 
 	// Lấy sub category
 	useEffect(() => {
@@ -85,6 +55,9 @@ const AdProductDetail = () => {
 		}
 	}, [selectedCategory]);
 
+	// Check Ok
+	// console.log(selectedCategory);
+	// console.log(subCateData);
 	// Lấy data Brand
 	useEffect(() => {
 		newRequest
@@ -97,20 +70,46 @@ const AdProductDetail = () => {
 	const handleCategoryChange = (event) => {
 		setSelectedCategory(event.target.value);
 	};
+	// Test log
+	// console.log(nameProduct);
+	// console.log(subCate);
+	// console.log(pbrand);
+	// console.log(pProductDetail);
+	// console.log(pprice);
 
-	// console.log(productDataId.Brand.id_brand);
+	const dataCreate = {
+		name_prod: nameProduct,
+		cate_child_prod: subCate,
+		brand_prod: pbrand,
+		detail_prod: pProductDetail,
+		price_prod: pprice,
+		img_prod_1: images1,
+		img_prod_2: images2,
+		img_prod_3: images3,
+		img_prod_4: images4,
+	};
+
+	const createProduct = () => {
+		newRequest
+			.post('/product/create', dataCreate)
+			.then((res) => console.log(res.data.message))
+			.catch((error) => console.log(error));
+	};
+
 	// Loading
-	if (!productDataId) {
+	if (isLoading) {
 		return <span>Loading...</span>;
 	}
-	if (!category) return <div>Loading......</div>;
-	//
+	// Error
+	if (isError) {
+		return <span>Error: {error.message}</span>;
+	}
 	return (
 		<div className='content'>
 			<div className='page-header'>
 				<div className='page-title'>
-					<h4>Xem, Sửa Sản phẩm</h4>
-					<h6>Cập nhật sản phẩm</h6>
+					<h4>Thêm sản phẩm</h4>
+					<h6>Tạo sản phẩm mới</h6>
 				</div>
 			</div>
 
@@ -120,18 +119,18 @@ const AdProductDetail = () => {
 						<div className='col-lg-3 col-sm-6 col-12'>
 							<div className='form-group'>
 								<label>Tên sản phẩm</label>
-								<input type='text' value={productDataId.name_prod} />
+								<input
+									type='text'
+									onChange={(e) => {
+										setNameProduct(e.target.value);
+									}}
+								/>
 							</div>
 						</div>
 						<div className='col-lg-3 col-sm-6 col-12'>
 							<div className='form-group'>
 								<label>Danh mục</label>
-								<select
-									className='select'
-									defaultValue={productDataId.CategoryChild.Category.id_category}
-									// value={selectedCategory}
-									onChange={handleCategoryChange}
-								>
+								<select className='select' value={selectedCategory} onChange={handleCategoryChange}>
 									<option>Chọn danh mục</option>
 									{category.map((item) => (
 										<option key={item.id_category} value={item.id_category}>
@@ -146,7 +145,6 @@ const AdProductDetail = () => {
 								<label>Danh mục con</label>
 								<select
 									className='select'
-									defaultValue={productDataId.CategoryChild.id_category_child}
 									onChange={(e) => {
 										setPSubCate(e.target.value);
 									}}
@@ -165,7 +163,6 @@ const AdProductDetail = () => {
 								<label>Thương hiệu</label>
 								<select
 									className='select'
-									defaultValue={productDataId.Brand.id_brand}
 									onChange={(e) => {
 										setPbrand(e.target.value);
 									}}
@@ -183,35 +180,34 @@ const AdProductDetail = () => {
 							<div className='form-group'>
 								<label>Unit</label>
 								<select className='select'>
-									<option>Piece</option>
-									<option>Kg</option>
+									<option>Choose Unit</option>
+									<option>Unit</option>
 								</select>
 							</div>
 						</div>
 						<div className='col-lg-3 col-sm-6 col-12'>
 							<div className='form-group'>
 								<label>SKU</label>
-								<input type='text' value='PT0002' />
+								<input type='text' />
 							</div>
 						</div>
 						<div className='col-lg-3 col-sm-6 col-12'>
 							<div className='form-group'>
 								<label>Minimum Qty</label>
-								<input type='text' value='5' />
+								<input type='text' />
 							</div>
 						</div>
 						<div className='col-lg-3 col-sm-6 col-12'>
 							<div className='form-group'>
 								<label>Quantity</label>
-								<input type='text' value='50' />
+								<input type='text' />
 							</div>
 						</div>
 						<div className='col-lg-12'>
 							<div className='form-group'>
-								<label>Mô tả</label>
+								<label>Thông tin - mô tả</label>
 								<textarea
 									className='form-control'
-									value={productDataId.DetailProduct.detail_prod}
 									onChange={(e) => {
 										setPProductDetail(e.target.value);
 									}}
@@ -240,60 +236,85 @@ const AdProductDetail = () => {
 						<div className='col-lg-3 col-sm-6 col-12'>
 							<div className='form-group'>
 								<label>Giá</label>
-								<input type='text' value={productDataId.price_prod} />
+								<input
+									type='number'
+									onChange={(e) => {
+										setPPrice(e.target.value);
+									}}
+								/>
 							</div>
 						</div>
 						<div className='col-lg-3 col-sm-6 col-12'>
 							<div className='form-group'>
-								<label>Tình trạng</label>
+								<label> Status</label>
 								<select className='select'>
-									<option>Active</option>
+									<option>Closed</option>
 									<option>Open</option>
 								</select>
 							</div>
 						</div>
-						{/* NOTE KHÔNG ĐƯỢC XOÁ */}
-						{/* <div className='col-lg-12'>
-							<div className='form-group'>
+						<div className='col-lg-12'>
+							{/* <div className='form-group'>
 								<label> Product Image</label>
 								<div className='image-upload'>
 									<input type='file' />
 									<div className='image-uploads'>
 										<img src={upload} alt='img' />
-										<h4>Kéo và thả file</h4>
+										<h4>Drag and drop a file to upload</h4>
 									</div>
 								</div>
-							</div>
-						</div> */}
-						<div className='col-12'>
-							<div className='product-list'>
-								<ul className='row'>
-									<li>
-										<div className='productviews'>
-											<div className='productviewsimg'>
-												<img src={productDataId.ImgProduct.img_1} alt='img' />
-											</div>
-											{/* <div className='productviewscontent'>
-												<div className='productviewsname'>
-													<h2>macbookpro.jpg</h2>
-													<h3>581kb</h3>
-												</div>
-												<a href='javascript:void(0);' className='hideset'>
-													x
-												</a>
-											</div> */}
-										</div>
-									</li>
-								</ul>
+							</div> */}
+							{/* Lấy 4 link hình ảnh */}
+							<div className='col-6'>
+								<div className='mb-3'>
+									<label className='form-label'>Ảnh 1</label>
+									<input
+										type='text'
+										className='form-control'
+										onChange={(e) => {
+											setImages1(e.target.value);
+										}}
+									/>
+								</div>
+								<div className='mb-3'>
+									<label className='form-label'>Ảnh 2</label>
+									<input
+										type='text'
+										className='form-control'
+										onChange={(e) => {
+											setImages2(e.target.value);
+										}}
+									/>
+								</div>
+								<div className='mb-3'>
+									<label className='form-label'>Ảnh 3</label>
+									<input
+										type='text'
+										className='form-control'
+										onChange={(e) => {
+											setImages3(e.target.value);
+										}}
+									/>
+								</div>
+								<div className='mb-3'>
+									<label className='form-label'>Ảnh 4</label>
+									<input
+										type='text'
+										className='form-control'
+										onChange={(e) => {
+											setImages4(e.target.value);
+										}}
+									/>
+								</div>
 							</div>
 						</div>
 						<div className='col-lg-12'>
-							<a href='javascript:void(0);' className='btn btn-submit me-2'>
-								Update
-							</a>
-							<a href='productlist.html' className='btn btn-cancel'>
-								Cancel
-							</a>
+							<button onClick={createProduct} className='btn btn-submit me-2'>
+								Tạo sản phẩm
+							</button>
+							<Link className='btn btn-cancel' to='/admin/listproduct'>
+								Huỷ
+							</Link>
 						</div>
 					</div>
 				</div>
@@ -302,4 +323,4 @@ const AdProductDetail = () => {
 	);
 };
 
-export default AdProductDetail;
+export default AdAddProduct;

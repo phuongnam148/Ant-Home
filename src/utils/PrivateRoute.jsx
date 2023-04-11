@@ -1,17 +1,31 @@
-/* eslint-disable no-unreachable */
 /* eslint-disable react/prop-types */
-/* eslint-disable no-unused-vars */
 /* eslint-disable react/react-in-jsx-scope */
-// import { Outlet, Navigate, Route } from 'react-router-dom';
+/* eslint-disable no-unused-vars */
+import { Outlet, Navigate } from 'react-router-dom';
+import newRequest from './newRequest';
+import React, { useEffect, useState } from 'react';
 
-// // Nhận vào Element, Role
-// const PrivateRoute = ({ role }) => {
-// 	if (!isAuthenticated) return <Navigate to='/login' />;
-// 	if (isAuthenticated == true && role.includes(isRole)) {
-// 		return <Outlet />;
-// 	} else {
-// 		return <Navigate to='/unauthorized' />;
-// 	}
-// };
+// Nhận vào Element, Role
+const PrivateRoute = ({ role }) => {
+	const [isAuthenticated, setIsAuthenticated] = useState(null);
+	const [isLoading, setIsLoading] = useState(true);
 
-// export default PrivateRoute;
+	useEffect(() => {
+		newRequest
+			.post('/checkuser')
+			.then((res) => {
+				setIsAuthenticated(res.data);
+				setIsLoading(false);
+			})
+			.catch((error) => setIsLoading(false));
+	}, []);
+
+	if (isLoading) return <div>Loading....</div>;
+	if (isAuthenticated === null) return <Navigate to='/login' />;
+	if (role.includes(isAuthenticated)) {
+		return <Outlet />;
+	} else {
+		return <Navigate to='/unauthorized' />;
+	}
+};
+export default PrivateRoute;
