@@ -6,6 +6,7 @@ import Product_card from '../product-card/Product_card';
 import { useQuery } from '@tanstack/react-query';
 import newRequest from '../../utils/newRequest.js';
 import Category from '../Category/Category';
+import Slide from '../Slide/Slide';
 
 const Products = () => {
 	// Check data Products
@@ -99,7 +100,7 @@ const Products = () => {
 										Top sản phẩm bán chạy
 									</div>
 									<div className='product-page-favorites-wrap slick-initialized slick-slider '>
-										{/* <Slide /> */}
+										<Slide />
 									</div>
 								</div>
 							</div>

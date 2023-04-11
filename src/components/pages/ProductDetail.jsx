@@ -94,11 +94,7 @@ const ProductDetail = () => {
 									role='tab'
 									aria-controls='list-home'
 								>
-									<img
-										className='w-100'
-										src='https://bizweb.dktcdn.net/thumb/large/100/396/362/products/z1404288110190-af6a21b6662a892b18ddb3ea9f7795fc-1595478380.jpg?v=1595556722557'
-										alt=''
-									/>
+									<img className='w-100' src={productDetail.ImgProduct.img_1} alt='' />
 								</a>
 								<a
 									className='list-group-item list-group-item-action'
@@ -108,11 +104,7 @@ const ProductDetail = () => {
 									role='tab'
 									aria-controls='list-profile'
 								>
-									<img
-										className='w-100'
-										src='https://bizweb.dktcdn.net/thumb/large/100/396/362/products/z1404288110190-af6a21b6662a892b18ddb3ea9f7795fc-1595478380.jpg?v=1595556722557'
-										alt=''
-									/>
+									<img className='w-100' src={productDetail.ImgProduct.img_2} alt='' />
 								</a>
 								<a
 									className='list-group-item list-group-item-action'
@@ -122,11 +114,17 @@ const ProductDetail = () => {
 									role='tab'
 									aria-controls='list-messages'
 								>
-									<img
-										className='w-100'
-										src='https://bizweb.dktcdn.net/thumb/large/100/396/362/products/da0045c9e48defd093797dfc83fa2c67-1590389087.jpg?v=1595556715920'
-										alt=''
-									/>
+									<img className='w-100' src={productDetail.ImgProduct.img_3} alt='' />
+								</a>
+								<a
+									className='list-group-item list-group-item-action'
+									id='list-messages-list'
+									data-bs-toggle='list'
+									href='#list-setting'
+									role='tab'
+									aria-controls='list-messages'
+								>
+									<img className='w-100' src={productDetail.ImgProduct.img_4} alt='' />
 								</a>
 							</div>
 						</div>
@@ -138,10 +136,7 @@ const ProductDetail = () => {
 									role='tabpanel'
 									aria-labelledby='list-home-list'
 								>
-									<img
-										src='https://bizweb.dktcdn.net/thumb/large/100/396/362/products/da0045c9e48defd093797dfc83fa2c67-1590389087.jpg?v=1595556715920'
-										alt=''
-									/>
+									<img src={productDetail.ImgProduct.img_1} alt='' />
 								</div>
 								<div
 									className='tab-pane fade'
@@ -149,10 +144,7 @@ const ProductDetail = () => {
 									role='tabpanel'
 									aria-labelledby='list-profile-list'
 								>
-									<img
-										src='https://bizweb.dktcdn.net/thumb/large/100/396/362/products/da0045c9e48defd093797dfc83fa2c67-1590389087.jpg?v=1595556715920'
-										alt=''
-									/>
+									<img src={productDetail.ImgProduct.img_2} alt='' />
 								</div>
 								<div
 									className='tab-pane fade'
@@ -160,10 +152,7 @@ const ProductDetail = () => {
 									role='tabpanel'
 									aria-labelledby='list-messages-list'
 								>
-									<img
-										src='https://bizweb.dktcdn.net/thumb/large/100/396/362/products/z1404288110190-af6a21b6662a892b18ddb3ea9f7795fc-1595478380.jpg?v=1595556722557'
-										alt=''
-									/>
+									<img src={productDetail.ImgProduct.img_3} alt='' />
 								</div>
 								<div
 									className='tab-pane fade'
@@ -171,7 +160,7 @@ const ProductDetail = () => {
 									role='tabpanel'
 									aria-labelledby='list-settings-list'
 								>
-									...
+									<img src={productDetail.ImgProduct.img_4} alt='' />
 								</div>
 							</div>
 						</div>

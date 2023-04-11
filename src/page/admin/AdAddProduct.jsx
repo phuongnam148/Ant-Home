@@ -7,6 +7,7 @@ import newRequest from '../../utils/newRequest.js';
 import { useQuery } from '@tanstack/react-query';
 
 const AdAddProduct = () => {
+	const [isLoadings, setIsLoading] = useState(true);
 	// Lấy giá trị của Category
 	const [selectedCategory, setSelectedCategory] = useState(null);
 	// Lấy giá trị của Sub Category
@@ -62,7 +63,10 @@ const AdAddProduct = () => {
 	useEffect(() => {
 		newRequest
 			.get('/brands')
-			.then((data) => setBrands(data.data))
+			.then((data) => {
+				setBrands(data.data);
+				setIsLoading(false);
+			})
 			.catch((error) => console.log(error));
 	}, []);
 	// console.log(brands);
@@ -104,6 +108,7 @@ const AdAddProduct = () => {
 	if (isError) {
 		return <span>Error: {error.message}</span>;
 	}
+	if (isLoadings) return <div>Loading...</div>;
 	return (
 		<div className='content'>
 			<div className='page-header'>

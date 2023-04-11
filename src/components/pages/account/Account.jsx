@@ -1,22 +1,37 @@
-import React from 'react';
+/* eslint-disable no-unused-vars */
+import React, { useState, useEffect } from 'react';
 import './Account.scss';
 import newRequest from '../../../utils/newRequest';
 import { useNavigate, Link } from 'react-router-dom';
 
 const Account = () => {
+	// Khai báo
+	const [isLoading, setIsLoading] = useState(true);
+	const [userData, setUserData] = useState({});
 	const navigate = useNavigate();
+
+	useEffect(() => {
+		newRequest
+			.get('/user')
+			.then((res) => setUserData(res.data))
+			.catch((error) => error);
+		setIsLoading(false);
+	});
+
+	// Đăng xuất
 	const handleLogout = () => {
 		newRequest.post('/logout');
-		localStorage.setItem('user', null);
-		navigate('/');
+		// localStorage.setItem('user', null);
+		navigate('/home');
 	};
+	if (!setIsLoading) return <div>Loading....</div>;
 	return (
 		<div className='account container'>
 			<div className='row'>
 				<div className='account-nav col-3'>
 					<div className='nav-side'>
 						<h4>TRANG TÀI KHOẢN</h4>
-						<p>Xin chào,...</p> {/* Truyền dữ liệu từ db*/}
+						<p>Xin chào, {userData.last_name}</p>
 						<ul className='list-unstyled'>
 							<li>
 								<a href='#' className='title-info active'>
@@ -39,17 +54,17 @@ const Account = () => {
 								</a>
 							</li>
 							<li>
-								<Link to='' className='title-info' onClick={handleLogout}>
+								<div className='btn btn-danger title-info mt-1' onClick={handleLogout}>
 									Đăng xuất
-								</Link>
+								</div>
 							</li>
 						</ul>
 					</div>
 				</div>
 				<div className='account-content col-9'>
 					<h4>THÔNG TIN TÀI KHOẢN</h4>
-					<p>Họ tên: ...</p> {/* Truyền dữ liệu từ db*/}
-					<p>Email: ...</p> {/* Truyền dữ liệu từ db*/}
+					<p>Họ tên: {`${userData.first_name} ${userData.last_name}`}</p>
+					<p>Email: {userData.email}</p>
 				</div>
 			</div>
 		</div>

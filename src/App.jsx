@@ -47,11 +47,13 @@ const App = () => {
 				<Route path='faq' element={<Faq />} />
 			</Route>
 			{/* Admin Layout */}
-			<Route path='/admin' element={<AdminLayout />}>
-				<Route path='' element={<Admin />} />
-				<Route path='listproduct' element={<ListProduct />} />
-				<Route path='product-detail' element={<AdProductDetail />} />
-				<Route path='add-product' element={<AdAddProduct />} />
+			<Route element={<PrivateRoute role={['qtv', 'ctv']} />}>
+				<Route path='/admin' element={<AdminLayout />}>
+					<Route path='' element={<Admin />} />
+					<Route path='listproduct' element={<ListProduct />} />
+					<Route path='product-detail' element={<AdProductDetail />} />
+					<Route path='add-product' element={<AdAddProduct />} />
+				</Route>
 			</Route>
 			{/* Page not found */}
 			<Route path='*' element={<Pagenotfound />} />

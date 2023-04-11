@@ -1,11 +1,12 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
-import { Link, Navigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import './Login.scss';
 import newRequest from '../../../utils/newRequest';
 
 const Login = () => {
+	const navigate = useNavigate();
 	//
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
@@ -56,7 +57,14 @@ const Login = () => {
 				const user = { email, password };
 				await newRequest
 					.post('/auth', user)
-					.then((res) => console.log(res.data.message))
+					.then((res) => {
+						if (res.data.role == 'qtv' || res.data.role == 'ctv') {
+							navigate('/admin');
+						} else {
+							navigate('/account');
+						}
+						console.log(res.data.message);
+					})
 					.catch((error) => console.log(error));
 				// <Navigate to='/account' />;
 				// eslint-disable-next-line no-unused-vars
