@@ -53,7 +53,7 @@ const Header = () => {
 						<div className='box-account d-flex align-items-center gap-2 ms-lg-3 ms-xl-0'>
 							{/* Yêu thích */}
 							<div className='d-none d-lg-block justify-content-center col-3 p-0 p-lg-2 w-auto'>
-								<Link className='text-black' to='/'>
+								<Link className='text-black' to='/favorite'>
 									<div className='box-a d-flex justify-content-center position-relative'>
 										<i className='fa-regular fa-heart w-auto'></i>
 										<span className='text-center'>Yêu thích</span>
@@ -104,7 +104,7 @@ const Header = () => {
 							</Link>
 						</li>
 						<li>
-							<Link className='text-center' to='/'>
+							<Link className='text-center' to='/gioithieu'>
 								Giới thiệu
 							</Link>
 						</li>
@@ -241,12 +241,12 @@ const Header = () => {
 							</Link>
 						</li>
 						<li>
-							<Link className='text-center' to='/'>
+							<Link className='text-center' to='/contact'>
 								Liên hệ
 							</Link>
 						</li>
 						<li>
-							<Link className='text-center' to='/'>
+							<Link className='text-center' to='/faq'>
 								FAQ
 							</Link>
 						</li>

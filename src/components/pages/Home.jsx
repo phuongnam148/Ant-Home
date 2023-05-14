@@ -184,6 +184,7 @@ const Home = () => {
 								<Product_card key={prod.id_product} prod={prod} />
 							))}
 						</div>
+						<br />
 						<Link className='btn btn-danger' to='/products'>
 							Xem tất cả
 						</Link>

@@ -8,6 +8,15 @@ import newRequest from '../../utils/newRequest.js';
 import { useQuery } from '@tanstack/react-query';
 
 const ProductDetail = () => {
+	const location = useLocation();
+
+	const [favorite, setFavorite] = useState();
+	const handleFavorite = () => {
+		const searchParams = new URLSearchParams(location.search);
+		const productID = searchParams.get('id');
+		console.log(productID);
+	};
+
 	const [showMore, setShowMore] = useState(false);
 	// Lấy ID Sản phẩm trên URL
 	const { search } = useLocation();
@@ -219,7 +228,11 @@ const ProductDetail = () => {
 						{/* Sp yêu thích */}
 						<div className='tym'>
 							<i className='fa-regular fa-heart me-2 my-3'></i>
-							<span>Thêm vào yêu thích</span>
+							<span>
+								<a href='#' onClick={handleFavorite}>
+									Thêm vào yêu thích
+								</a>
+							</span>
 						</div>
 						{/* Thông tin chi tiết */}
 						<div className='showmore'>

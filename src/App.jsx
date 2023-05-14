@@ -13,6 +13,7 @@ import Addresses from './components/pages/account/Addresses';
 import Contact from './components/pages/Contact';
 import Faq from './components/pages/faq';
 import Unauthorized from './components/pages/Unauthorized';
+
 // Admin
 import AdminLayout from './Layout/AdminLayout';
 import Admin from './page/admin/Admin';
@@ -20,6 +21,7 @@ import ListProduct from './page/admin/ListProduct';
 import PrivateRoute from './utils/PrivateRoute';
 import AdProductDetail from './page/admin/AdProductDetail';
 import AdAddProduct from './page/admin/AdAddProduct';
+import Favorite from './components/pages/Favorite';
 
 const App = () => {
 	return (
@@ -29,11 +31,13 @@ const App = () => {
 				<Route path='' element={<Home />} />
 				<Route path='home' element={<Home />} />
 				<Route path='product' element={<ProductDetail />} />
-				<Route path='gioi-thieu' element={<GioiThieu />} />
+				<Route path='gioithieu' element={<GioiThieu />} />
 				<Route path='products' element={<Products />} />
 				<Route path='login' element={<Login />} />
 				<Route path='register' element={<Register />} />
 				<Route path='unauthorized' element={<Unauthorized />} />
+				<Route path='favorite' element={<Favorite />} />
+
 				{/* <Route path='/account' element={<Account />} /> */}
 				<Route element={<PrivateRoute role={['user', 'qtv', 'ctv']} />}>
 					<Route path='/account' element={<Account />} />
@@ -42,7 +46,7 @@ const App = () => {
 				<Route path='account/orders' element={<Orders />} />
 				<Route path='account/changepassword' element={<Changepassword />} />
 				<Route path='account/addresses' element={<Addresses />} />
-				<Route path='check-out' element={<CheckOut />} />
+				<Route path='checkout' element={<CheckOut />} />
 				<Route path='contact' element={<Contact />} />
 				<Route path='faq' element={<Faq />} />
 			</Route>

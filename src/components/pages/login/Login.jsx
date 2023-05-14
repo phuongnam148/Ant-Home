@@ -66,6 +66,7 @@ const Login = () => {
 						console.log(res.data.message);
 					})
 					.catch((error) => console.log(error));
+
 				// <Navigate to='/account' />;
 				// eslint-disable-next-line no-unused-vars
 			} catch (error) {
