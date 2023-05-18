@@ -2,9 +2,11 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-import upload from '../../layout/assets/img/icons/upload.svg';
+import upload from '../../utils/uploadImg';
+
 import newRequest from '../../utils/newRequest.js';
 import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
 
 const AdAddProduct = () => {
 	const [isLoadings, setIsLoading] = useState(true);
@@ -14,7 +16,6 @@ const AdAddProduct = () => {
 	const [subCateData, setSubCate] = useState([]);
 	// Lấy giá trị của Brand
 	const [brands, setBrands] = useState(null);
-	//
 	// Lấy data post
 	const [nameProduct, setNameProduct] = useState('');
 	const [subCate, setPSubCate] = useState('');
@@ -22,10 +23,11 @@ const AdAddProduct = () => {
 	const [pProductDetail, setPProductDetail] = useState('');
 	const [pprice, setPPrice] = useState('');
 	// const [pmaterial, setPMaterial] = useState('');
-	const [images1, setImages1] = useState('');
-	const [images2, setImages2] = useState('');
-	const [images3, setImages3] = useState('');
-	const [images4, setImages4] = useState('');
+
+	// Lấy giá trị file
+	const [file, setFile] = useState(null);
+	const [files, setFiles] = useState([]);
+
 	//
 	const {
 		isLoading,
@@ -87,17 +89,29 @@ const AdAddProduct = () => {
 		brand_prod: pbrand,
 		detail_prod: pProductDetail,
 		price_prod: pprice,
-		img_prod_1: images1,
-		img_prod_2: images2,
-		img_prod_3: images3,
-		img_prod_4: images4,
+		img_thumbnail: file,
+		list_img: files,
 	};
 
-	const createProduct = () => {
-		newRequest
-			.post('/product/create', dataCreate)
-			.then((res) => console.log(res.data.message))
-			.catch((error) => console.log(error));
+	// const createProduct = () => {
+	// 	newRequest
+	// 		.post('/product/create', dataCreate)
+	// 		.then((res) => console.log(res.data.message))
+	// 		.catch((error) => console.log(error));
+	// };
+
+	const createProduct = async (e) => {
+		e.preventDefault();
+
+		const url = await upload(file);
+
+		// try {
+		// 	await newRequest.post('/produ');
+		// } catch (err) {
+		// 	console.log(err);
+		// }
+		console.log(file);
+		console.log(dataCreate);
 	};
 
 	// Loading
@@ -272,42 +286,22 @@ const AdAddProduct = () => {
 							{/* Lấy 4 link hình ảnh */}
 							<div className='col-6'>
 								<div className='mb-3'>
-									<label className='form-label'>Ảnh 1</label>
+									<label className='form-label'>Ảnh chính</label>
 									<input
 										type='text'
 										className='form-control'
 										onChange={(e) => {
-											setImages1(e.target.value);
+											setFile(e.target.value);
 										}}
 									/>
 								</div>
 								<div className='mb-3'>
-									<label className='form-label'>Ảnh 2</label>
+									<label className='form-label'>Ảnh phụ</label>
 									<input
 										type='text'
 										className='form-control'
 										onChange={(e) => {
-											setImages2(e.target.value);
-										}}
-									/>
-								</div>
-								<div className='mb-3'>
-									<label className='form-label'>Ảnh 3</label>
-									<input
-										type='text'
-										className='form-control'
-										onChange={(e) => {
-											setImages3(e.target.value);
-										}}
-									/>
-								</div>
-								<div className='mb-3'>
-									<label className='form-label'>Ảnh 4</label>
-									<input
-										type='text'
-										className='form-control'
-										onChange={(e) => {
-											setImages4(e.target.value);
+											setFiles(e.target.value);
 										}}
 									/>
 								</div>

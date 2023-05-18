@@ -271,7 +271,7 @@ const AdProductDetail = () => {
 									<li>
 										<div className='productviews'>
 											<div className='productviewsimg'>
-												<img src={productDataId.ImgProduct.img_1} alt='img' />
+												{/* <img src={productDataId.ImgProduct.img_1} alt='img' /> */}
 											</div>
 											{/* <div className='productviewscontent'>
 												<div className='productviewsname'>
