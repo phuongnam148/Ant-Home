@@ -192,7 +192,7 @@ const ListProduct = () => {
 										</td>
 										<td className='productimgname'>
 											<a href='' className='product-img'>
-												<img src={prod.ImgProduct.img_1} alt='product' />
+												{/* <img src={prod.ImgProduct.img_1} alt='product' /> */}
 											</a>
 											<Link to={`/admin/product-detail?id=${prod.id_product}`}>{prod.name_prod}</Link>
 										</td>

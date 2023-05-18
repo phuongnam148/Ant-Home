@@ -56,7 +56,7 @@ const Login = () => {
 			try {
 				const user = { email, password };
 				await newRequest
-					.post('/auth', user)
+					.post('/login', user)
 					.then((res) => {
 						if (res.data.role == 'qtv' || res.data.role == 'ctv') {
 							navigate('/admin');

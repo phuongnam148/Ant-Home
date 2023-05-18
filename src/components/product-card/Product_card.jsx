@@ -1,14 +1,14 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from 'react';
+import React from 'react';
 import './Product_card.scss';
 import { Link } from 'react-router-dom';
 
 // eslint-disable-next-line react/prop-types
 const Product_card = ({ prod }) => {
 	// Lấy ảnh và cho nó thành 1 mảng
-	const imgArray = Object.values(prod.ImgProduct);
+	// const imgArray = Object.values(prod.ImgProduct);
 	//
-	let [clickedImage, changeImage] = useState(0);
+	// let [clickedImage, changeImage] = useState(0);
 	const VND = new Intl.NumberFormat('vi-VN', {
 		style: 'currency',
 		currency: 'VND',
@@ -18,10 +18,12 @@ const Product_card = ({ prod }) => {
 		<div className='h-top-pro-card g-col'>
 			<Link to={`/product?id=${prod.id_product}`} className='card-img-top tab-content' id='nav-tabContent'>
 				<div>
-					<img src={imgArray[clickedImage]} alt='' />
+					{prod.ImgProducts.map((img) => (
+						<img src={img.url} alt='' key={img.id_images} />
+					))}
 				</div>
 			</Link>
-			<div className='thumb-list list-group id=list-tab' role='tablist'>
+			{/* <div className='thumb-list list-group id=list-tab' role='tablist'>
 				{imgArray.map((item, index) => {
 					return (
 						<div
@@ -36,7 +38,7 @@ const Product_card = ({ prod }) => {
 						</div>
 					);
 				})}
-			</div>
+			</div> */}
 			<Link to={`/product?id=${prod.id_product}`} className='card-text'>
 				{prod.name_prod}
 			</Link>

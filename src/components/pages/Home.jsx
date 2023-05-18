@@ -9,6 +9,7 @@ import 'swiper/css';
 import banner from '../../images/slider_1.jpg';
 import './scss/home.scss';
 import Product_card from '../product-card/Product_card';
+// import cards from '../../data.js';
 import { useQuery } from '@tanstack/react-query';
 import newRequest from '../../utils/newRequest.js';
 
@@ -183,6 +184,9 @@ const Home = () => {
 							{data.map((prod) => (
 								<Product_card key={prod.id_product} prod={prod} />
 							))}
+							{/* {data.map((prod) => (
+								<Product_card key={cards.id} prod={prod} />
+							))} */}
 						</div>
 						<br />
 						<Link className='btn btn-danger' to='/products'>
