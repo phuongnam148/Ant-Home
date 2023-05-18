@@ -5,23 +5,49 @@ const Contact = () => {
 	return (
 		<div className='contact'>
 			<div className='contact-image'>
-				<img src='//bizweb.dktcdn.net/100/396/362/themes/777022/assets/contact_bg.jpg?1678155521674' alt='' />
-				<h1 className='text-center'>Liên hệ</h1>
+				<img
+					style={{ width: '100%' }}
+					src='https://cdn.donmai.us/original/10/cf/10cf1d1fcd1110580c1b50452edbd3d8.jpg'
+					alt=''
+				/>
+				<h1 className='text-center text-uppercase'>Thông tin liên hệ</h1>
+				<p>
+					<strong>
+						Luôn đáp ứng nguồn hàng chất lượng, minh bạch, rõ ràng, cung cấp cho khách hàng thông tin cụ thể
+						nhất tạo sự tin tưởng
+					</strong>
+				</p>
 			</div>
 			<div className='container contact-page'>
 				<div className='row contact-padding'>
 					<div className='col-lg-6 col-md-6 col-sm-12 support mt-3'>
-						<p className='p-top support1'>Ant-home</p>
-						<h3>Bạn có câu hỏi nào?</h3>
-						<p className='p-bottom'>
-							Ant Home cam kết cung cấp giải pháp thương mại điện tử với trải nghiệm mua sắm tốt nhất cho
-							người tiêu dùng trong định hình phong cách sống hiện đại và mua sắm nội thất tại Việt Nam. Mọi
-							thông tin liên hệ xin gửi vào form dưới đây hoặc liên hệ chúng tôi theo địa chỉ.
-						</p>
-						<div className='contact-box'>
+						<p className='p-top support1'>GACHASHOP</p>
+						<div>
+							<h3>Bạn cần được hỗ trợ?</h3>
+							<p className='p-bottom'>
+								Đối với bất kỳ những nhận xét, câu hỏi hoặc đề xuất liên quan đến tài khoản của bạn, vui lòng
+								liên hệ với nhóm hỗ trợ của GACHASHOP.
+							</p>
+							<p>GACHASHOP@gmail.com</p>
+						</div>
+						<div className='mt-3'>
+							<h3>Bạn có ý tưởng?</h3>
+							<p className='p-bottom'>
+								Đối với các câu hỏi chung, yêu cầu đối tác, cũng như thông tin liên quan đến phương tiện
+								truyền thông, hãy liên hệ với GACHASHOP.
+							</p>
+						</div>
+						<div className='mt-3'>
+							<h3>Bộ phận bán hàng</h3>
+							<p className='p-bottom'>
+								Đối với các yêu cầu bán hàng liên hệ với nhóm bán hàng của chúng tôi.
+							</p>
+						</div>
+						<div className='contact-box mt-3'>
 							<p>
 								<strong>Địa chỉ: </strong>
-								70 Lu Gia, Ward 15, District 11, Ho Chi Minh City
+								{/* 70 Lu Gia, Ward 15, District 11, Ho Chi Minh City */}
+								221/7/37, Đất Thánh,P.6 , Quận Tân Bình, TP.HCM
 							</p>
 							<p>
 								<strong>Điện thoại: </strong>
@@ -29,7 +55,7 @@ const Contact = () => {
 							</p>
 							<p>
 								<strong>Email: </strong>
-								support@sapo.vn
+								GACHASHOP@gmail.com
 							</p>
 						</div>
 					</div>
@@ -109,12 +135,13 @@ const Contact = () => {
 						<div className='col-lg-3 col-md-3 col-sm-6 col-8 item-contact-store'>
 							<div className='item-contact-store-img'>
 								<img
-									src='https://bizweb.dktcdn.net/100/396/362/themes/777022/assets/contact_store_1.jpg?1678155521674'
+									style={{ height: '200px', width: '300px' }}
+									src='https://top10tphcm.com/wp-content/uploads/2021/06/otaku-shop.jpg'
 									alt=''
 								/>
 							</div>
 							<div className='item-contact-store-infor mt-3'>
-								<h5>ANT HOME TÂN PHÚ</h5>
+								<h5>GACHASHOP TÂN PHÚ</h5>
 								<p>175 Lý Thường Kiệt, Phường 6, Quận Tân Phú, TP Hồ Chí Minh</p>
 								<p>
 									{' '}
@@ -122,19 +149,20 @@ const Contact = () => {
 								</p>
 								<p>
 									{' '}
-									<a href='mailto:baotrung304@gmail.com'>baotrung304@gmail.com</a>
+									<a href='mailto:GACHASHOP@gmail.com'>GACHASHOP@gmail.com</a>
 								</p>
 							</div>
 						</div>
 						<div className='col-lg-3 col-md-3 col-sm-6 col-8 item-contact-store'>
 							<div className='item-contact-store-img'>
 								<img
-									src='https://bizweb.dktcdn.net/100/396/362/themes/777022/assets/contact_store_2.jpg?1678155521674'
+									style={{ height: '200px', width: '300px' }}
+									src='https://www.iheartradio.ca/image/policy:1.15572597:1625686559/https-www-instagram-com-londonderrymall.jpg?f=default&$p$f=b95f4c2'
 									alt=''
 								/>
 							</div>
 							<div className='item-contact-store-infor mt-3'>
-								<h5>ANT HOME ĐÀ NẴNG</h5>
+								<h5>GACHASHOP ĐÀ NẴNG</h5>
 								<p>175 Lý Thường Kiệt, Phường 6, Quận Tân Phú, TP Hồ Chí Minh</p>
 								<p>
 									{' '}
@@ -142,19 +170,20 @@ const Contact = () => {
 								</p>
 								<p>
 									{' '}
-									<a href='mailto:baotrung304@gmail.com'>baotrung304@gmail.com</a>
+									<a href='mailto:GACHASHOP@gmail.com'>GACHASHOP@gmail.com</a>
 								</p>
 							</div>
 						</div>
 						<div className='col-lg-3 col-md-3 col-sm-6 col-8 item-contact-store'>
 							<div className='item-contact-store-img'>
 								<img
-									src='https://bizweb.dktcdn.net/100/396/362/themes/777022/assets/contact_store_3.jpg?1678155521674'
+									style={{ height: '200px', width: '300px' }}
+									src='https://www.hobbychan.com/modules/wtslideshow/views/img/sliderimages/bb92f72d129ab1a0340f55121f6d3bfe69a480f5_slide1.png'
 									alt=''
 								/>
 							</div>
 							<div className='item-contact-store-infor mt-3'>
-								<h5>ANT HOME NHA TRANG</h5>
+								<h5>GACHASHOP NHA TRANG</h5>
 								<p>175 Lý Thường Kiệt, Phường 6, Quận Tân Phú, TP Hồ Chí Minh</p>
 								<p>
 									{' '}
@@ -162,19 +191,20 @@ const Contact = () => {
 								</p>
 								<p>
 									{' '}
-									<a href='mailto:baotrung304@gmail.com'>baotrung304@gmail.com</a>
+									<a href='mailto:GACHASHOP@gmail.com'>GACHASHOP@gmail.com</a>
 								</p>
 							</div>
 						</div>
 						<div className='col-lg-3 col-md-3 col-sm-6 col-8 item-contact-store'>
 							<div className='item-contact-store-img'>
 								<img
-									src='https://bizweb.dktcdn.net/100/396/362/themes/777022/assets/contact_store_4.jpg?1678155521674'
+									style={{ height: '200px', width: '300px' }}
+									src='https://www.kingzanime.com/uploads/b/05e39de0-01cb-11ea-91bc-095c31e94a1e/IMG_7486_MTUzNT.jpeg'
 									alt=''
 								/>
 							</div>
 							<div className='item-contact-store-infor mt-3'>
-								<h5>ANT HOME ĐÀ LẠT</h5>
+								<h5>GACHASHOP ĐÀ LẠT</h5>
 								<p>175 Lý Thường Kiệt, Phường 6, Quận Tân Phú, TP Hồ Chí Minh</p>
 								<p>
 									{' '}
@@ -182,7 +212,7 @@ const Contact = () => {
 								</p>
 								<p>
 									{' '}
-									<a href='mailto:baotrung304@gmail.com'>baotrung304@gmail.com</a>
+									<a href='mailto:GACHASHOP@gmail.com'>GACHASHOP@gmail.com</a>
 								</p>
 							</div>
 						</div>

@@ -4,8 +4,8 @@ import './scss/faq.scss';
 const Faq = () => {
 	return (
 		<div className='faq'>
-			<div className='contact-image'>
-				<img src='//bizweb.dktcdn.net/100/396/362/themes/777022/assets/contact_bg.jpg?1678155521674' alt='' />
+			<div className='faq-image'>
+				<img src='https://cdn.donmai.us/original/b2/76/b276d518524e2110806824b368c21b64.jpg' alt='' />
 				<h1 className='text-center'>FAQ</h1>
 			</div>
 			<div className='container'>
@@ -83,7 +83,7 @@ const Faq = () => {
 										<div className='accordion-body'>
 											<p>
 												Với đơn hàng của Quý khách, sau 24h kể từ khi đặt hàng (không tính ngày thứ 7, chủ
-												nhật và các ngày lễ), Ant Home sẽ liên hệ để xác nhận và gửi sản phẩm đến Quý khách
+												nhật và các ngày lễ), GACHASHOP sẽ liên hệ để xác nhận và gửi sản phẩm đến Quý khách
 											</p>
 										</div>
 									</div>
@@ -109,7 +109,7 @@ const Faq = () => {
 									>
 										<div className='accordion-body'>
 											<p>
-												Hiện tại mức giá của tất cả sản phẩm của Ant Home đều đã bao gồm thuế giá trị gia
+												Hiện tại mức giá của tất cả sản phẩm của GACHASHOP đều đã bao gồm thuế giá trị gia
 												tăng.
 												<br />
 												Với những đơn hàng có giá trị trên 700,000VND, Quý khách sẽ được miễn phí vận chuyển
@@ -140,7 +140,7 @@ const Faq = () => {
 										data-bs-parent='#accordionExample'
 									>
 										<div className='accordion-body'>
-											Quý khách vui lòng cung cấp đầy đủ các thông tin dưới đây cho Ant Home khi nhận được
+											Quý khách vui lòng cung cấp đầy đủ các thông tin dưới đây cho GACHASHOP khi nhận được
 											điện thoại xác nhận đơn hàng của bộ phận Telesale:
 											<br />
 											1. Tên KH/Tên Đơn vị
@@ -151,7 +151,7 @@ const Faq = () => {
 											<br />
 											3. Mã Số Thuế
 											<br />
-											Hóa đơn điện tử sẽ được Ant Home gửi tới email đăng ký của Quý khách ngay sau khi sản
+											Hóa đơn điện tử sẽ được GACHASHOP gửi tới email đăng ký của Quý khách ngay sau khi sản
 											phẩm được thanh toán
 										</div>
 									</div>
@@ -179,8 +179,8 @@ const Faq = () => {
 									>
 										<div className='accordion-body'>
 											<p>
-												Quý khách vui lòng liên hệ Hotline 0123 456 789 hoặc inbox fanpage Ant Home để được hỗ
-												trợ nhanh nhất các thông tin về đơn hàng
+												Quý khách vui lòng liên hệ Hotline 0123 456 789 hoặc inbox fanpage GACHASHOP để được
+												hỗ trợ nhanh nhất các thông tin về đơn hàng
 											</p>
 										</div>
 									</div>
@@ -205,8 +205,8 @@ const Faq = () => {
 									>
 										<div className='accordion-body'>
 											<p>
-												Quý khách vui lòng liên hệ Hotline 0123 456 789 hoặc inbox fanpage Ant Home để được hỗ
-												trợ nhanh nhất các thông tin về đơn hàng
+												Quý khách vui lòng liên hệ Hotline 0123 456 789 hoặc inbox fanpage GACHASHOP để được
+												hỗ trợ nhanh nhất các thông tin về đơn hàng
 											</p>
 										</div>
 									</div>
@@ -221,7 +221,7 @@ const Faq = () => {
 											aria-expanded='false'
 											aria-controls='panelsStayOpen-collapseThree'
 										>
-											Ant Home có thể khắc bất kì thứ gì tôi muốn lên sản phẩm được không?
+											GACHASHOP có thể khắc bất kì thứ gì tôi muốn lên sản phẩm được không?
 										</button>
 									</h2>
 									<div
@@ -231,8 +231,8 @@ const Faq = () => {
 									>
 										<div className='accordion-body'>
 											<p>
-												Quý khách vui lòng liên hệ Hotline 0123 456 789 hoặc inbox fanpage Ant Home để được hỗ
-												trợ nhanh nhất các thông tin về đơn hàng
+												Quý khách vui lòng liên hệ Hotline 0123 456 789 hoặc inbox fanpage GACHASHOP để được
+												hỗ trợ nhanh nhất các thông tin về đơn hàng
 											</p>
 										</div>
 									</div>

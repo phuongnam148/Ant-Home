@@ -8,7 +8,18 @@
 	transform: translate(-50%, -50%);
 	color: #fff;
 	font-weight: 600;
-	font-size: 40px;
+	font-size: 50px;
+	text-shadow: 5px 5px 16px rgba(0,0,0,0.6);
+}
+.contact-image p {
+	position: absolute;
+	top: 58% ;
+	left: 50%;
+    text-align: center;
+    color: white;
+	transform: translate(-50%, -50%);
+    text-shadow: 5px 5px 16px rgba(0,0,0,0.6);
+    
 }
 .p-top {
 	color: #8b8b8b;
@@ -16,11 +27,11 @@
 	font-style: italic;
 }
 .p-bottom {
-	color: #8b8b8b;
+	// color: #8b8b8b;
 	margin-bottom: 10px;
 }
 div fieldset button.btn {
-	background-color: #ec4f21;
+	background-color: #ef9273;
 	color: #fff;
 	margin: 10px 0px 0px;
 	padding: 8px 28px;
@@ -30,5 +41,5 @@ div fieldset button.btn {
 	color: black;
 }
 .item-contact-store-infor p a:hover {
-	color: #ec4f21;
+	color: #ef9273;
 }
