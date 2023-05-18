@@ -6,7 +6,7 @@ const Contact = () => {
 		<div className='contact'>
 			<div className='contact-image'>
 				<img
-					style={{ width: '100%' }}
+					style={{ width: '100%', height: '700px' }}
 					src='https://cdn.donmai.us/original/10/cf/10cf1d1fcd1110580c1b50452edbd3d8.jpg'
 					alt=''
 				/>

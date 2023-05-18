@@ -31,9 +31,9 @@ const Products = () => {
 	useEffect(() => {
 		let url = '';
 		if (under100) {
-			url += '/products-price?min=0&max=6000';
+			url += '/products-price?min=0&max=10000';
 		} else if (between100And200) {
-			url += '/products-price?min=7000&max=10000';
+			url += '/products-price?min=11000&max=1000000';
 		}
 		if (!under100 && !between100And200) {
 			url = '/products';
@@ -372,8 +372,8 @@ const Products = () => {
 												</div>
 											</div>
 										</aside>
-										<hr />
-										<aside className='aside-item nav-item4 my-3'>
+										{/* <hr /> */}
+										{/* <aside className='aside-item nav-item4 my-3'>
 											<div className='row'>
 												<a
 													className='nav-link col-10 fw-bold'
@@ -434,7 +434,7 @@ const Products = () => {
 													</div>
 												</div>
 											</div>
-										</aside>
+										</aside> */}
 									</div>
 								</div>
 							</div>
@@ -571,14 +571,14 @@ const Products = () => {
 						</section>
 					</div>
 				</section>
-				<div className='text-center evo-main-des col-12 col-lg-12 col-md-12 order-sm-first order-first order-lg-last order-md-last margin-bottom-10 margin-top-10'>
+				{/* <div className='text-center evo-main-des col-12 col-lg-12 col-md-12 order-sm-first order-first order-lg-last order-md-last margin-bottom-10 margin-top-10'>
 					Ant Home là sàn thương mại điện tử chuyên cung cấp các sản phẩm nội thất và trang trí nội thất cho
 					thị trường Việt Nam. Chúng tôi tin rằng hạnh phúc của mỗi gia đình đều được vun đắp từ nhà, không
 					gian sống tạo dựng giá trị cuộc sống. Chính vì vậy mục tiêu, sứ mệnh mà Ant Home hướng tới là đem
 					đến những giải pháp tối ưu về nội thất cho nhà ở, văn phòng… Với con đường mà Ant Home đã chọn,
 					chúng tôi mong muốn được cùng xây tổ ấm với triệu gia đình Việt đồng thời cùng chung tay kiến tạo
 					không gian làm việc chuyên nghiệp với các doanh nghiệp tại Việt Nam.
-				</div>
+				</div> */}
 			</div>
 			<hr />
 		</div>

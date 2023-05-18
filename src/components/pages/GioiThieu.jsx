@@ -21,9 +21,10 @@ const GioiThieu = () => {
 			</section>
 			<div className='gt-image'>
 				<img
-					className='w-100'
+					className='w-100 '
 					src='https://staticg.sportskeeda.com/editor/2022/05/16498-16524944730411-1920.jpg'
 					alt=''
+					style={{ height: '700px' }}
 				/>
 				<h1 className='text-center ' style={{ fontSize: '50px' }}>
 					<strong>GIỚI THIỆU VỀ GACHASHOP</strong>

@@ -5,7 +5,11 @@ const Faq = () => {
 	return (
 		<div className='faq'>
 			<div className='faq-image'>
-				<img src='https://cdn.donmai.us/original/b2/76/b276d518524e2110806824b368c21b64.jpg' alt='' />
+				<img
+					src='https://cdn.donmai.us/original/b2/76/b276d518524e2110806824b368c21b64.jpg'
+					alt=''
+					style={{ width: '100%', height: '700px' }}
+				/>
 				<h1 className='text-center'>FAQ</h1>
 			</div>
 			<div className='container'>
