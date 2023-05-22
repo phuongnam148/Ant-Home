@@ -1,8 +1,21 @@
 import React, { useState } from 'react';
 import '../pages/scss/products.scss';
+// import newRequest from '../../utils/newRequest.js';
+
 const Category = (Cate) => {
 	// console.log(Cate.Cate.CategoryChildren);
 	const [show, setShow] = useState(false);
+	// const [CateData, setCate] = useState([]);
+	// useEffect(() => {
+	// 	newRequest
+	// 		.get(`/categories/chill?parentid=${Cate.Cate.id_categories}`)
+	// 		.then((res) => {
+	// 			setCate(res.data);
+	// 		})
+	// 		.catch((error) => {
+	// 			console.error(error);
+	// 		});
+	// }, []);
 	return (
 		<>
 			<li className='nav-item list-unstyled my-2 '>
@@ -15,7 +28,7 @@ const Category = (Cate) => {
 						// aria-expanded='false'
 						// aria-controls='contentId'
 					>
-						{Cate.Cate.name_category}
+						{Cate.Cate.name_categories}
 					</a>
 
 					<i

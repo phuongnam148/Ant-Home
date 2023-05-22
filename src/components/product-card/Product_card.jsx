@@ -18,7 +18,7 @@ const Product_card = ({ prod }) => {
 		<div className='h-top-pro-card g-col'>
 			<Link to={`/product?id=${prod.id_product}`} className='card-img-top tab-content' id='nav-tabContent'>
 				<div>
-					<img src={prod.img_thumnail} alt='' />
+					<img src={prod.img_thumbnail} alt='' />
 				</div>
 			</Link>
 			{/* <div className='thumb-list list-group id=list-tab' role='tablist'>

@@ -66,10 +66,11 @@ const Products = () => {
 	} = useQuery({
 		queryKey: ['Categorys'],
 		queryFn: () =>
-			newRequest.get('/categorys').then((res) => {
+			newRequest.get('/categories/parent').then((res) => {
 				return res.data;
 			}),
 	});
+	console.log(dataCate);
 	if (isLoading) return 'Loading...';
 	if (error) return 'An error has occurred: ' + error.message;
 	return (
@@ -115,7 +116,7 @@ const Products = () => {
 								<div className='aside-content'>
 									<ul className='navbar-pills my-2 '>
 										{dataCate.map((Cate) => (
-											<Category key={Cate.id_category} Cate={Cate} />
+											<Category key={Cate.id_categories} Cate={Cate} />
 										))}
 									</ul>
 								</div>
