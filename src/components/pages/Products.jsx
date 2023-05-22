@@ -66,7 +66,7 @@ const Products = () => {
 	} = useQuery({
 		queryKey: ['Categorys'],
 		queryFn: () =>
-			newRequest.get('/categories/parent').then((res) => {
+			newRequest.get('/categories/all').then((res) => {
 				return res.data;
 			}),
 	});

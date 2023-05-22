@@ -40,7 +40,7 @@ const Product_card = ({ prod }) => {
 			<Link to={`/product?id=${prod.id_product}`} className='card-text'>
 				{prod.name_prod}
 			</Link>
-			<div className='price-box'>
+			<div className='price-box text-center'>
 				<span className='price'>{VND.format(prod.price_prod)}</span>
 			</div>
 		</div>

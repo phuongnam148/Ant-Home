@@ -43,11 +43,11 @@ const Category = (Cate) => {
 				{show && (
 					<div className=''>
 						<ul>
-							{Cate.Cate.CategoryChildren.map((childCat) => {
+							{Cate.Cate.children.map((childCat) => {
 								return (
-									<li className='nav-item2 list-unstyled my-2' key={childCat.id_category_child}>
+									<li className='nav-item2 list-unstyled my-2' key={childCat.id_categories}>
 										<a href='#' className='nav-link'>
-											{childCat.name_category_child}
+											{childCat.name_categories}
 										</a>
 									</li>
 								);

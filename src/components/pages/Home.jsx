@@ -32,12 +32,8 @@ const Home = () => {
 					<div className='home-cate-head'>
 						<h4>DANH MỤC SẢN PHẨM</h4>
 						<p>
-							Ant Home là giải pháp thương mại điện tử hiện đại và chuyên biệt trong lĩnh vực bán lẻ nội thất,
-							đồ trang trí và điện gia dụng trong gia đình, định vị trở thành một giải pháp tiên phong trong
-							định hình phong cách sống hiện đại cho các gia chủ tại Việt Nam và khu vực Đông Nam Á qua sự kết
-							hợp của những thương hiệu nội thất hàng đầu với đa dạng phong cách và trải nghiệm mua sắm xuyên
-							suốt, trực quan thông qua việc tích hợp các ứng dụng 3D visualization, Home Styler, AR và các
-							giải pháp tài chính.
+							Gacha shop với tiêu chí là thiên đường dành cho fan Manga Anime nên shop quy tụ hầu hết các sản
+							phẩm đặc trưng của truyện tranh và hoạt hình Nhật Bản.
 						</p>
 					</div>
 					<div className='home-cate-main'>
@@ -45,125 +41,126 @@ const Home = () => {
 							<div className='home-cate-card col'>
 								<a href=''>
 									<img
-										src='https://bizweb.dktcdn.net/thumb/large/100/396/362/collections/2-ghe-1587981944-1.jpg?v=1596443275397'
+										src='https://cdn-amz.woka.io/images/I/51WbadQAaaS.jpg'
 										alt=''
 										className='card-img-top'
 									/>
-									<p className='card-text'>Nội thất</p>
+									<p className='card-text text-uppercase'>figure - mô hình</p>
 								</a>
 							</div>
 							<div className='home-cate-card col'>
 								<a href=''>
 									<img
-										src='https://bizweb.dktcdn.net/thumb/large/100/396/362/collections/6-giuong-1587982051-1.jpg?v=1596443309027'
+										src='https://product.hstatic.net/1000273792/product/0_dfdb51b4b5a945a98d2630a0c49555c2_grande.jpg'
 										alt=''
 										className='card-img-top'
 									/>
-									<p className='card-text'>Chăn ra gối nệm</p>
+									<p className='card-text text-uppercase'>Áo - trang phục</p>
 								</a>
 							</div>
 							<div className='home-cate-card col'>
 								<a href=''>
 									<img
-										src='https://bizweb.dktcdn.net/thumb/large/100/396/362/collections/9-lo-trang-tri-1587982150-1.jpg?v=1596443201900'
+										src='https://product.hstatic.net/1000273792/product/1_grande.jpg'
 										alt=''
 										className='card-img-top'
 									/>
-									<p className='card-text'>Lọ & bình trang trí</p>
+									<p className='card-text text-uppercase'>Ba lô - dụng cụ học tập</p>
 								</a>
 							</div>
 							<div className='home-cate-card col'>
 								<a href=''>
 									<img
-										src='https://bizweb.dktcdn.net/thumb/large/100/396/362/collections/3-ke-1587981966-1.jpg?v=1596443380943'
+										src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXEkeB2kHqMBhTc8n0OYQTOcr1G3vR83KY3w&usqp=CAU'
 										alt=''
 										className='card-img-top'
 									/>
-									<p className='card-text'>Đồ trang trí</p>
+									<p className='card-text text-uppercase'>MÓC KHÓA - STANDEE - HUY HIỆU</p>
 								</a>
 							</div>
 							<div className='home-cate-card col'>
 								<a href=''>
 									<img
-										src='https://bizweb.dktcdn.net/thumb/large/100/396/362/collections/8-den-1587982122-1.jpg?v=1596443333337'
+										src='https://product.hstatic.net/1000273792/product/5a_1e62de7dac104984a750c5f06445b426_grande.jpg'
 										alt=''
 										className='card-img-top'
 									/>
-									<p className='card-text'>Đèn</p>
+									<p className='card-text text-uppercase'>ĐỒNG HỒ</p>
 								</a>
 							</div>
-							<div className='home-cate-card col'>
+							{/* <div className='home-cate-card col'>
 								<a href=''>
 									<img
-										src='https://bizweb.dktcdn.net/thumb/large/100/396/362/collections/5-sofa-1587982024-1.jpg?v=1596443528717'
+										src='https://lzd-img-global.slatic.net/g/p/5c95e7d4235111d1350cc867332644c5.jpg_360x360q75.jpg_.webp'
 										alt=''
 										className='card-img-top'
 									/>
-									<p className='card-text'>Phòng khách</p>
+									<p className='card-text text-uppercase'>trang sức phụ kiện</p>
 								</a>
-							</div>
+							</div> */}
 						</div>
 						<div className='row row-cols-6'>
-							<div className='home-cate-card col'>
+							<div className='home-cate-card col '>
 								<a href=''>
 									<img
-										src='https://bizweb.dktcdn.net/thumb/large/100/396/362/collections/4-tu-1587981995-1.jpg?v=1596443569283'
+										src='https://product.hstatic.net/1000273792/product/10b_9636c5f55382428b8702acba1caee543_grande.jpg'
 										alt=''
 										className='card-img-top'
 									/>
-									<p className='card-text'>Đồ dùng chứa & lưu trữ</p>
+									<p className='card-text text-uppercase'>PHỤ KIỆN ĐẦU</p>
 								</a>
 							</div>
 							<div className='home-cate-card col'>
 								<a href=''>
 									<img
-										src='https://bizweb.dktcdn.net/thumb/large/100/396/362/collections/7-kitchen-1587716252-1.jpg?v=1596443708840'
+										src='https://product.hstatic.net/1000273792/product/0_7d0353bd938b46cd818ee0c233751e83_grande.jpg'
 										alt=''
 										className='card-img-top'
 									/>
-									<p className='card-text'>Đồ gia dụng</p>
+									<p className='card-text text-uppercase'>GỐI - THÚ NHỒI BÔNG</p>
 								</a>
 							</div>
 							<div className='home-cate-card col'>
 								<a href=''>
 									<img
-										src='https://bizweb.dktcdn.net/thumb/large/100/396/362/collections/10-guong-1587982173-1.jpg?v=1596443745467'
+										src='https://lzd-img-global.slatic.net/g/p/5c95e7d4235111d1350cc867332644c5.jpg_360x360q75.jpg_.webp'
 										alt=''
 										className='card-img-top'
 									/>
-									<p className='card-text'>Đồ dùng nhà tắm</p>
+									<p className='card-text text-uppercase'>TRANG SỨC</p>
 								</a>
 							</div>
 							<div className='home-cate-card col'>
 								<a href=''>
 									<img
-										src='https://bizweb.dktcdn.net/thumb/large/100/396/362/collections/1-ban-1587981900-1.jpg?v=1596443806553'
+										src='https://down-vn.img.susercontent.com/file/70d5865e1038e7d0d79e51a4d6d289c5'
 										alt=''
 										className='card-img-top'
 									/>
-									<p className='card-text'>Bàn trang trí</p>
+									<p className='card-text text-uppercase'>SẢN PHẨM IN THEO YÊU CẦU </p>
 								</a>
 							</div>
+
 							<div className='home-cate-card col'>
 								<a href=''>
 									<img
-										src='https://bizweb.dktcdn.net/thumb/large/100/396/362/collections/11-thungrac-1587982194-1.jpg?v=1596443858227'
+										src='https://product.hstatic.net/1000273792/product/87_a045ecaf47964dde9b6b27422e362d7f_grande.jpg'
 										alt=''
 										className='card-img-top'
 									/>
-									<p className='card-text'>Thùng rác</p>
+									<p className='card-text text-uppercase'>PHỤ KIỆN KHÁC</p>
 								</a>
 							</div>
-							<div className='home-cate-card col'>
+							{/* <div className='home-cate-card col'>
 								<a href=''>
 									<img
 										src='https://bizweb.dktcdn.net/thumb/large/100/396/362/collections/2-ghe-1587981944-1.jpg?v=1596443275397'
 										alt=''
 										className='card-img-top'
 									/>
-									<p className='card-text'>Bộ sản phẩm</p>
+									<p className='card-text text-uppercase'>Bộ sản phẩm</p>
 								</a>
-							</div>
+							</div> */}
 						</div>
 					</div>
 				</div>
@@ -199,39 +196,27 @@ const Home = () => {
 				</div>
 				<div className='home-section-4'>
 					<div className='slick-track row row-cols-6'>
-						<a href='' className='slick-item col'>
+						<a href='' className='slick-item col ' style={{ width: '220px' }}>
+							<img src='https://otakustore.vn/image/cache//manufacturer/alter-150x150w.png' alt='' />
+						</a>
+						<a href='' className='slick-item col' style={{ width: '220px' }}>
+							<img src='https://otakustore.vn/image/cache//manufacturer/Taito-logo-150x150w.png' alt='' />
+						</a>
+						<a href='' className='slick-item col' style={{ width: '220px' }}>
 							<img
-								src='https://bizweb.dktcdn.net/100/396/362/themes/777022/assets/partner_1.jpg?1678155521674'
+								src='https://otakustore.vn/image/cache/catalog/manufacturer/mpalace_logo-150x150w.jpg'
 								alt=''
 							/>
 						</a>
-						<a href='' className='slick-item col'>
-							<img
-								src='https://bizweb.dktcdn.net/100/396/362/themes/777022/assets/partner_2.jpg?1678155521674'
-								alt=''
-							/>
+						<a href='' className='slick-item col' style={{ width: '220px' }}>
+							<img src='https://otakustore.vn/image/cache//manufacturer/bandai-150x150.png' alt='' />
 						</a>
-						<a href='' className='slick-item col'>
-							<img
-								src='https://bizweb.dktcdn.net/100/396/362/themes/777022/assets/partner_3.jpg?1678155521674'
-								alt=''
-							/>
+						<a href='' className='slick-item col' style={{ width: '220px' }}>
+							<img src='https://otakustore.vn/image/cache//manufacturer/banpesto-150x150w.jpg' alt='' />
 						</a>
-						<a href='' className='slick-item col'>
+						<a href='' className='slick-item col' style={{ width: '220px' }}>
 							<img
-								src='https://bizweb.dktcdn.net/100/396/362/themes/777022/assets/partner_4.jpg?1678155521674'
-								alt=''
-							/>
-						</a>
-						<a href='' className='slick-item col'>
-							<img
-								src='https://bizweb.dktcdn.net/100/396/362/themes/777022/assets/partner_5.jpg?1678155521674'
-								alt=''
-							/>
-						</a>
-						<a href='' className='slick-item col'>
-							<img
-								src='https://bizweb.dktcdn.net/100/396/362/themes/777022/assets/partner_6.jpg?1678155521674'
+								src='https://otakustore.vn/image/cache/catalog/manufacturer/bbt-studio-150x150w.jpg'
 								alt=''
 							/>
 						</a>

@@ -22,7 +22,7 @@ const GioiThieu = () => {
 			<div className='gt-image'>
 				<img
 					className='w-100 '
-					src='https://staticg.sportskeeda.com/editor/2022/05/16498-16524944730411-1920.jpg'
+					src='https://toigingiuvedep.vn/wp-content/uploads/2022/05/anh-bau-troi-dem-anime-dep-lung-linh.jpg'
 					alt=''
 					style={{ height: '700px' }}
 				/>
@@ -31,7 +31,7 @@ const GioiThieu = () => {
 				</h1>
 				<p>
 					<strong>
-						Nơi bán phụ kiện Amine - Manga - Game uy tín, chất lượng và giá cả phải chăng nhất trên thị
+						Nơi bán phụ kiện Anime - Manga - Game uy tín, chất lượng và giá cả phải chăng nhất trên thị
 						trường, hãy cùng đọc thông tin về shop ở dưới đây nhé
 					</strong>
 				</p>
