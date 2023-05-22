@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useReducer } from 'react';
 import { Link } from 'react-router-dom';
 
 import upload from '../../utils/uploadImg';
@@ -7,8 +7,14 @@ import upload from '../../utils/uploadImg';
 import newRequest from '../../utils/newRequest.js';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
+import { INITIAL_STATE, productReducer } from './reducers/productReducers';
 
 const AdAddProduct = () => {
+	//use product reducer
+	// const [state, dispatch] = useReducer(productReducer, INITIAL_STATE);
+	//update input
+	const [upoading, setUploading] = useState(false);
+
 	const [isLoadings, setIsLoading] = useState(true);
 	// Lấy giá trị của Category
 	const [selectedCategory, setSelectedCategory] = useState(null);
@@ -18,7 +24,7 @@ const AdAddProduct = () => {
 	const [brands, setBrands] = useState(null);
 	// Lấy data post
 	const [nameProduct, setNameProduct] = useState('');
-	const [subCate, setPSubCate] = useState('');
+	const [pcat, setPcat] = useState('');
 	const [pbrand, setPbrand] = useState('');
 	const [pProductDetail, setPProductDetail] = useState('');
 	const [pprice, setPPrice] = useState('');
@@ -38,7 +44,7 @@ const AdAddProduct = () => {
 		queryKey: ['category'],
 		queryFn: async () => {
 			try {
-				const res = await newRequest.get(`/categorys`);
+				const res = await newRequest.get(`/categories/all`);
 				return res.data;
 			} catch (error) {
 				console.log(error);
@@ -47,16 +53,16 @@ const AdAddProduct = () => {
 	});
 
 	// Lấy sub category
-	useEffect(() => {
-		if (selectedCategory) {
-			newRequest
-				.get(`/category?idcate=${selectedCategory}`)
-				.then((data) => setSubCate(data.data.CategoryChildren))
-				.catch((error) => console.error(error));
-		} else {
-			setSubCate([]);
-		}
-	}, [selectedCategory]);
+	// useEffect(() => {
+	// 	if (selectedCategory) {
+	// 		newRequest
+	// 			.get(`/category?idcate=${selectedCategory}`)
+	// 			.then((data) => setSubCate(data.data.CategoryChildren))
+	// 			.catch((error) => console.error(error));
+	// 	} else {
+	// 		setSubCate([]);
+	// 	}
+	// }, [selectedCategory]);
 
 	// Check Ok
 	// console.log(selectedCategory);
@@ -73,9 +79,6 @@ const AdAddProduct = () => {
 	}, []);
 	// console.log(brands);
 
-	const handleCategoryChange = (event) => {
-		setSelectedCategory(event.target.value);
-	};
 	// Test log
 	// console.log(nameProduct);
 	// console.log(subCate);
@@ -85,12 +88,12 @@ const AdAddProduct = () => {
 
 	const dataCreate = {
 		name_prod: nameProduct,
-		cate_child_prod: subCate,
+		id_categories: pcat,
 		brand_prod: pbrand,
 		detail_prod: pProductDetail,
 		price_prod: pprice,
-		img_thumbnail: file,
-		list_img: files,
+		img_thumnail: file,
+		list_img: [files],
 	};
 
 	// const createProduct = () => {
@@ -106,12 +109,30 @@ const AdAddProduct = () => {
 		const url = await upload(file);
 
 		// try {
-		// 	await newRequest.post('/produ');
+		// 	await newRequest.post('/product/create', dataCreate).then((res) => console.log(res.data.message));
 		// } catch (err) {
 		// 	console.log(err);
 		// }
-		console.log(file);
+
 		console.log(dataCreate);
+	};
+
+	//handle upload
+	const handleUpload = async () => {
+		setUploading(true);
+		try {
+			const thumbnail = await upload(file);
+
+			const list_img = await Promise.all(
+				[...files].map(async (file) => {
+					const url = await upload(files);
+				})
+			);
+			// setUploading(false);
+			// dispatch({ type: 'ADD_IMAGES', payload: { thumbnail, list_img } });
+		} catch (err) {
+			console.log(err);
+		}
 	};
 
 	// Loading
@@ -149,17 +170,23 @@ const AdAddProduct = () => {
 						<div className='col-lg-3 col-sm-6 col-12'>
 							<div className='form-group'>
 								<label>Danh mục</label>
-								<select className='select' value={selectedCategory} onChange={handleCategoryChange}>
+								<select
+									className='select'
+									value={selectedCategory}
+									onChange={(e) => {
+										setPcat(e.target.value);
+									}}
+								>
 									<option>Chọn danh mục</option>
 									{category.map((item) => (
-										<option key={item.id_category} value={item.id_category}>
-											{item.name_category}
+										<option key={item.id_categories} value={item.id_categories}>
+											{item.name_categories}
 										</option>
 									))}
 								</select>
 							</div>
 						</div>
-						<div className='col-lg-3 col-sm-6 col-12'>
+						{/* <div className='col-lg-3 col-sm-6 col-12'>
 							<div className='form-group'>
 								<label>Danh mục con</label>
 								<select
@@ -176,7 +203,7 @@ const AdAddProduct = () => {
 									))}
 								</select>
 							</div>
-						</div>
+						</div> */}
 						<div className='col-lg-3 col-sm-6 col-12'>
 							<div className='form-group'>
 								<label>Thương hiệu</label>
@@ -287,23 +314,17 @@ const AdAddProduct = () => {
 							<div className='col-6'>
 								<div className='mb-3'>
 									<label className='form-label'>Ảnh chính</label>
-									<input
-										type='text'
-										className='form-control'
-										onChange={(e) => {
-											setFile(e.target.value);
-										}}
-									/>
+									<input type='text' className='form-control' onChange={(e) => setFile(e.target.value)} />
 								</div>
 								<div className='mb-3'>
 									<label className='form-label'>Ảnh phụ</label>
 									<input
 										type='text'
+										multiple
 										className='form-control'
-										onChange={(e) => {
-											setFiles(e.target.value);
-										}}
+										onChange={(e) => setFiles(e.target.value)}
 									/>
+									<button>ADD</button>
 								</div>
 							</div>
 						</div>

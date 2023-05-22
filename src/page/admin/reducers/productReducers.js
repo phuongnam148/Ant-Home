@@ -9,17 +9,17 @@ export const INITIAL_STATE = {
 	price_prod: 0,
 	material_prod: 0,
 	style_prod: 0,
-	img_thumnail: '',
+	img_thumbnail: '',
 	list_img: [],
 };
-export const gigReducer = (state, action) => {
+export const productReducer = (state, action) => {
 	switch (action.type) {
 		case 'CHANGE_INPUT':
 			return {
 				...state,
 				[action.payload.name]: action.payload.value,
 			};
-		case 'ADD_COVER':
+		case 'ADD_THUMBNAIL':
 			return {
 				...state,
 				cover: action.payload,
@@ -34,7 +34,7 @@ export const gigReducer = (state, action) => {
 				...state,
 				images: state.images.filter((feature) => feature !== action.payload), // giữ lại tất cả feature trừ  action.payload
 			};
-		case 'REMOVE_COVER':
+		case 'REMOVE_THUMBNAIL':
 			return {
 				...state,
 				cover: '',
