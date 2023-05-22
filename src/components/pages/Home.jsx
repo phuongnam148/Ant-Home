@@ -180,9 +180,11 @@ const Home = () => {
 							TOP SẢN PHẨM BÁN CHẠY
 						</a>
 
-						<div className='h-topp row row-cols-4 justify-content-between '>
+						<div className='h-topp row row-cols-md-3 row-cols-lg-4 m-0 p-0'>
 							{data.map((prod) => (
-								<Product_card key={prod.id_product} prod={prod} />
+								<div key={prod.id_product} className='p-2'>
+									<Product_card prod={prod} />
+								</div>
 							))}
 							{/* {data.map((prod) => (
 								<Product_card key={cards.id} prod={prod} />
