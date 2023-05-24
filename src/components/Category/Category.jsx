@@ -1,8 +1,21 @@
 import React, { useState } from 'react';
 import '../pages/scss/products.scss';
+// import newRequest from '../../utils/newRequest.js';
+
 const Category = (Cate) => {
 	// console.log(Cate.Cate.CategoryChildren);
 	const [show, setShow] = useState(false);
+	// const [CateData, setCate] = useState([]);
+	// useEffect(() => {
+	// 	newRequest
+	// 		.get(`/categories/chill?parentid=${Cate.Cate.id_categories}`)
+	// 		.then((res) => {
+	// 			setCate(res.data);
+	// 		})
+	// 		.catch((error) => {
+	// 			console.error(error);
+	// 		});
+	// }, []);
 	return (
 		<>
 			<li className='nav-item list-unstyled my-2 '>
@@ -15,7 +28,7 @@ const Category = (Cate) => {
 						// aria-expanded='false'
 						// aria-controls='contentId'
 					>
-						{Cate.Cate.name_category}
+						{Cate.Cate.name_categories}
 					</a>
 
 					<i
@@ -30,11 +43,11 @@ const Category = (Cate) => {
 				{show && (
 					<div className=''>
 						<ul>
-							{Cate.Cate.CategoryChildren.map((childCat) => {
+							{Cate.Cate.children.map((childCat) => {
 								return (
-									<li className='nav-item2 list-unstyled my-2' key={childCat.id_category_child}>
+									<li className='nav-item2 list-unstyled my-2' key={childCat.id_categories}>
 										<a href='#' className='nav-link'>
-											{childCat.name_category_child}
+											{childCat.name_categories}
 										</a>
 									</li>
 								);

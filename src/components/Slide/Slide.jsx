@@ -9,6 +9,7 @@ import 'swiper/css/autoplay';
 import 'swiper/css/pagination';
 import Product_card from '../product-card/Product_card';
 import newRequest from '../../utils/newRequest.js';
+import './Slide.scss';
 const Slide = () => {
 	const [products, setProducts] = useState([]);
 	useEffect(() => {

@@ -15,10 +15,10 @@ const Product_card = ({ prod }) => {
 	});
 
 	return (
-		<div className='h-top-pro-card g-col'>
+		<div className='h-top-pro-card g-col m-0 p-0'>
 			<Link to={`/product?id=${prod.id_product}`} className='card-img-top tab-content' id='nav-tabContent'>
 				<div>
-					<img src={prod.img_thumnail} alt='' />
+					<img src={prod.img_thumbnail} alt='' />
 				</div>
 			</Link>
 			{/* <div className='thumb-list list-group id=list-tab' role='tablist'>
@@ -40,7 +40,7 @@ const Product_card = ({ prod }) => {
 			<Link to={`/product?id=${prod.id_product}`} className='card-text'>
 				{prod.name_prod}
 			</Link>
-			<div className='price-box'>
+			<div className='price-box text-center'>
 				<span className='price'>{VND.format(prod.price_prod)}</span>
 			</div>
 		</div>
