@@ -1,6 +1,6 @@
 export const INITIAL_STATE = {
 	name_prod: '',
-	cate_child_prod: 0,
+	categories: 0,
 	brand_prod: '',
 	detail_prod: '',
 	description_prod: '',
@@ -22,22 +22,22 @@ export const productReducer = (state, action) => {
 		case 'ADD_THUMBNAIL':
 			return {
 				...state,
-				cover: action.payload,
+				img_thumbnail: action.payload,
 			};
 		case 'ADD_IMAGES':
 			return {
 				...state,
-				images: [...state.images, action.payload],
+				list_img: [...state.images, action.payload],
 			};
 		case 'REMOVE_IMAGE':
 			return {
 				...state,
-				images: state.images.filter((feature) => feature !== action.payload), // giữ lại tất cả feature trừ  action.payload
+				list_img: state.images.filter((feature) => feature !== action.payload), // giữ lại tất cả feature trừ  action.payload
 			};
 		case 'REMOVE_THUMBNAIL':
 			return {
 				...state,
-				cover: '',
+				img_thumbnail: '',
 			};
 		default:
 			return state;

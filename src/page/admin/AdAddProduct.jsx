@@ -11,7 +11,7 @@ import { INITIAL_STATE, productReducer } from './reducers/productReducers';
 
 const AdAddProduct = () => {
 	//use product reducer
-	// const [state, dispatch] = useReducer(productReducer, INITIAL_STATE);
+	const [state, dispatch] = useReducer(productReducer, INITIAL_STATE);
 	//update input
 	const [upoading, setUploading] = useState(false);
 
@@ -96,26 +96,27 @@ const AdAddProduct = () => {
 		list_img: [files],
 	};
 
-	// const createProduct = () => {
-	// 	newRequest
-	// 		.post('/product/create', dataCreate)
-	// 		.then((res) => console.log(res.data.message))
-	// 		.catch((error) => console.log(error));
-	// };
-
 	const createProduct = async (e) => {
 		e.preventDefault();
 
 		const url = await upload(file);
 
-		// try {
-		// 	await newRequest.post('/product/create', dataCreate).then((res) => console.log(res.data.message));
-		// } catch (err) {
-		// 	console.log(err);
-		// }
+		try {
+			await newRequest.post('/product/create', dataCreate).then((res) => console.log(res.data.message));
+		} catch (err) {
+			console.log(err);
+		}
 
 		console.log(dataCreate);
 	};
+	// //handle change
+	// const handleChange = (e) => {
+	// 	dispatch({
+	// 		type: 'CHANGE_INPUT',
+	// 		payload: { name_prod: e.target.name_product, value: e.target.value },
+	// 	});
+	// 	console.log(dispatch);
+	// };
 
 	//handle upload
 	const handleUpload = async () => {
@@ -128,8 +129,9 @@ const AdAddProduct = () => {
 					const url = await upload(files);
 				})
 			);
-			// setUploading(false);
-			// dispatch({ type: 'ADD_IMAGES', payload: { thumbnail, list_img } });
+			setUploading(false);
+			dispatch({ type: 'ADD_IMAGES', payload: { thumbnail, list_img } });
+			// console.log(dispatch);
 		} catch (err) {
 			console.log(err);
 		}
@@ -161,9 +163,11 @@ const AdAddProduct = () => {
 								<label>Tên sản phẩm</label>
 								<input
 									type='text'
-									onChange={(e) => {
-										setNameProduct(e.target.value);
-									}}
+									name='name_product'
+									// onChange={(e) => {
+									// 	setNameProduct(e.target.value);
+									// }}
+									// onChange={handleChange}
 								/>
 							</div>
 						</div>
@@ -324,7 +328,7 @@ const AdAddProduct = () => {
 										className='form-control'
 										onChange={(e) => setFiles(e.target.value)}
 									/>
-									<button>ADD</button>
+									<button onClick={handleUpload}>ADD</button>
 								</div>
 							</div>
 						</div>
