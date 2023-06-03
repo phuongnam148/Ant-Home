@@ -87,13 +87,13 @@ const ProductDetail = () => {
 							<a href='#'>Trang chủ</a>
 						</li>
 						<li className='breadcrumb-item active' aria-current='page'>
-							Bàn
+							Sản phẩm chi tiết
 						</li>
 					</ol>
 				</nav>
 				<div className='mt-2 row'>
 					<div className='row col-12 col-xl-6'>
-						<div className='col-2'>
+						{/* <div className='col-2'>
 							<div className='list-group img-product' id='list-tab' role='tablist'>
 								<a
 									className='list-group-item list-group-item-action active'
@@ -136,8 +136,8 @@ const ProductDetail = () => {
 									<img className='w-100' src={productDetail.ImgProduct.img_4} alt='' />
 								</a>
 							</div>
-						</div>
-						<div className='col-10'>
+						</div> */}
+						{/* <div className='col-10'>
 							<div className='tab-content' id='nav-tabContent'>
 								<div
 									className='tab-pane fade show active'
@@ -172,7 +172,7 @@ const ProductDetail = () => {
 									<img src={productDetail.ImgProduct.img_4} alt='' />
 								</div>
 							</div>
-						</div>
+						</div> */}
 					</div>
 					<div className='col-12 col-xl-6'>
 						<div className='fw-semibold'>

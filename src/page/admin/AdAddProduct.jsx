@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useReducer } from 'react';
 import { Link } from 'react-router-dom';
 
-import upload from '../../utils/uploadImg';
+// import upload from '../../utils/uploadImg';
 
 import newRequest from '../../utils/newRequest.js';
 import { useQuery } from '@tanstack/react-query';
