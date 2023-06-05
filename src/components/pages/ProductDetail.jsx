@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import './scss/product-detail.scss';
 import Slide from '../Slide/Slide';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import newRequest from '../../utils/newRequest.js';
 import { useQuery } from '@tanstack/react-query';
 
@@ -36,12 +36,11 @@ const ProductDetail = () => {
 			setValue(value - 1);
 		}
 	};
-	// eslint-disable-next-line no-unused-vars
+
 	const handleSubmit = (event) => {
 		event.preventDefault(); // Ngăn chặn gửi dữ liệu và tải lại trang mặc định
 	};
 	//xem thêm
-	// eslint-disable-next-line no-unused-vars
 	const handleShowMore = () => {
 		setShowMore(!showMore);
 	};
@@ -54,7 +53,7 @@ const ProductDetail = () => {
 		error,
 		refetch,
 	} = useQuery({
-		queryKey: ['productdetail'],
+		queryKey: [`productdetail${search}`],
 		queryFn: async () => {
 			try {
 				const res = await newRequest.get(`/product${search}`);
@@ -64,6 +63,8 @@ const ProductDetail = () => {
 			}
 		},
 	});
+
+	console.log(productDetail);
 	// Kiểm tra thay đổi
 	useEffect(() => {
 		refetch();
@@ -84,10 +85,14 @@ const ProductDetail = () => {
 				<nav aria-label='breadcrumb'>
 					<ol className='breadcrumb'>
 						<li className='breadcrumb-item'>
-							<a href='#'>Trang chủ</a>
+							<Link to='/'>Trang chủ</Link>
 						</li>
 						<li className='breadcrumb-item active' aria-current='page'>
+<<<<<<< Updated upstream
 							Sản phẩm chi tiết
+=======
+							{productDetail.categories.name_categories}
+>>>>>>> Stashed changes
 						</li>
 					</ol>
 				</nav>
@@ -95,82 +100,34 @@ const ProductDetail = () => {
 					<div className='row col-12 col-xl-6'>
 						{/* <div className='col-2'>
 							<div className='list-group img-product' id='list-tab' role='tablist'>
-								<a
-									className='list-group-item list-group-item-action active'
-									id='list-home-list'
-									data-bs-toggle='list'
-									href='#list-home'
-									role='tab'
-									aria-controls='list-home'
-								>
-									<img className='w-100' src={productDetail.ImgProduct.img_1} alt='' />
-								</a>
-								<a
-									className='list-group-item list-group-item-action'
-									id='list-profile-list'
-									data-bs-toggle='list'
-									href='#list-profile'
-									role='tab'
-									aria-controls='list-profile'
-								>
-									<img className='w-100' src={productDetail.ImgProduct.img_2} alt='' />
-								</a>
-								<a
-									className='list-group-item list-group-item-action'
-									id='list-messages-list'
-									data-bs-toggle='list'
-									href='#list-messages'
-									role='tab'
-									aria-controls='list-messages'
-								>
-									<img className='w-100' src={productDetail.ImgProduct.img_3} alt='' />
-								</a>
-								<a
-									className='list-group-item list-group-item-action'
-									id='list-messages-list'
-									data-bs-toggle='list'
-									href='#list-setting'
-									role='tab'
-									aria-controls='list-messages'
-								>
-									<img className='w-100' src={productDetail.ImgProduct.img_4} alt='' />
-								</a>
+								{productDetail.img_prod.map((img) => (
+									<a
+										key={img}
+										className='list-group-item list-group-item-action active'
+										id='list-home-list'
+										data-bs-toggle='list'
+										href='#list-home'
+										role='tab'
+										aria-controls='list-home'
+									>
+										<img className='w-100' src={img} alt='' />
+									</a>
+								))}
 							</div>
 						</div> */}
 						{/* <div className='col-10'>
 							<div className='tab-content' id='nav-tabContent'>
-								<div
-									className='tab-pane fade show active'
-									id='list-home'
-									role='tabpanel'
-									aria-labelledby='list-home-list'
-								>
-									<img src={productDetail.ImgProduct.img_1} alt='' />
-								</div>
-								<div
-									className='tab-pane fade'
-									id='list-profile'
-									role='tabpanel'
-									aria-labelledby='list-profile-list'
-								>
-									<img src={productDetail.ImgProduct.img_2} alt='' />
-								</div>
-								<div
-									className='tab-pane fade'
-									id='list-messages'
-									role='tabpanel'
-									aria-labelledby='list-messages-list'
-								>
-									<img src={productDetail.ImgProduct.img_3} alt='' />
-								</div>
-								<div
-									className='tab-pane fade'
-									id='list-settings'
-									role='tabpanel'
-									aria-labelledby='list-settings-list'
-								>
-									<img src={productDetail.ImgProduct.img_4} alt='' />
-								</div>
+								{productDetail.img_prod.map((img) => (
+									<div
+										key={img}
+										className='tab-pane fade show active'
+										id='list-home'
+										role='tabpanel'
+										aria-labelledby='list-home-list'
+									>
+										<img src={img} alt='' />
+									</div>
+								))}
 							</div>
 						</div> */}
 					</div>
@@ -180,7 +137,7 @@ const ProductDetail = () => {
 						</div>
 						<div className='d-flex justify-content-between'>
 							<div className='trademark-product'>
-								<p>Thương hiệu: {productDetail.Brand.name_brand}</p>
+								<p>Thương hiệu: ?</p>
 							</div>
 							<div className='code-product'>
 								<p>Mã sản phẩm: 290050037302</p>
@@ -236,7 +193,7 @@ const ProductDetail = () => {
 						</div>
 						{/* Thông tin chi tiết */}
 						<div className='showmore'>
-							<p className={!showMore ? 'show-more' : ''}>{productDetail.DetailProduct.detail_prod}</p>
+							<p className={!showMore ? 'show-more' : ''}>{productDetail.detail_prod.detail_prod}</p>
 
 							<button className='xemthem' onClick={handleShowMore}>
 								<p className='more-text m-1'>{showMore ? 'Thu gọn' : 'Xem thêm'}</p>

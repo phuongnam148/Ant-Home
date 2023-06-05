@@ -22,6 +22,7 @@ import PrivateRoute from './utils/PrivateRoute';
 import AdProductDetail from './page/admin/AdProductDetail';
 import AdAddProduct from './page/admin/AdAddProduct';
 import Favorite from './components/pages/Favorite';
+import CategoryList from './page/admin/CategoryList';
 
 const App = () => {
 	return (
@@ -57,6 +58,7 @@ const App = () => {
 				<Route path='listproduct' element={<ListProduct />} />
 				<Route path='product-detail' element={<AdProductDetail />} />
 				<Route path='add-product' element={<AdAddProduct />} />
+				<Route path='category-list' element={<CategoryList />} />
 			</Route>
 			{/* Page not found */}
 			<Route path='*' element={<Pagenotfound />} />

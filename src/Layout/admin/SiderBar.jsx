@@ -48,7 +48,7 @@ const SiderBar = () => {
 										<Link to='/admin/add-product'>Thêm sản phẩm</Link>
 									</li>
 									<li>
-										<a href='categorylist.html'>Danh sách danh mục</a>
+										<a href='/admin/category-list'>Danh sách danh mục</a>
 									</li>
 									<li>
 										<a href='addcategory.html'>Thêm danh mục</a>
