@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const newRequest = axios.create({
-	baseURL: 'http://localhost:3000/api/',
+	baseURL: 'https://walrus-app-h879i.ondigitalocean.app/api/',
 	withCredentials: true,
 });
 

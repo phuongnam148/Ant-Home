@@ -24,6 +24,7 @@ const CategoryList = () => {
 								<a className='btn btn-filter' id='filter_search'>
 									<img src='../../Layout/assets/img/icons/filter.svg' alt='img' />
 									<span>
+										{/* <img src="" alt="" srcset="" /> */}
 										<img src='../../Layout/assets/img/icons/closes.svg' alt='img' />
 									</span>
 								</a>

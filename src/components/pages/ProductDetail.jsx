@@ -88,11 +88,7 @@ const ProductDetail = () => {
 							<Link to='/'>Trang chủ</Link>
 						</li>
 						<li className='breadcrumb-item active' aria-current='page'>
-<<<<<<< Updated upstream
 							Sản phẩm chi tiết
-=======
-							{productDetail.categories.name_categories}
->>>>>>> Stashed changes
 						</li>
 					</ol>
 				</nav>
