@@ -29,7 +29,7 @@ const ListProduct = () => {
 		queryKey: ['productdata'],
 		queryFn: async () => {
 			try {
-				const res = await newRequest.get(`/products`);
+				const res = await newRequest.get(`/api/products`);
 				return res.data;
 			} catch (error) {
 				console.log(error);

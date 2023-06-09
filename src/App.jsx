@@ -22,6 +22,7 @@ import PrivateRoute from './utils/PrivateRoute';
 import AdProductDetail from './page/admin/AdProductDetail';
 import AdAddProduct from './page/admin/AdAddProduct';
 import Favorite from './components/pages/Favorite';
+import AdLogin from './page/admin/AdLogin';
 
 const App = () => {
 	return (
@@ -52,6 +53,8 @@ const App = () => {
 			</Route>
 			{/* Admin Layout */}
 			{/* <Route element={<PrivateRoute role={['qtv', 'ctv']} />}></Route> */}
+
+			<Route path='adlogin' element={<AdLogin />} />
 			<Route path='/admin' element={<AdminLayout />}>
 				<Route path='' element={<Admin />} />
 				<Route path='listproduct' element={<ListProduct />} />
