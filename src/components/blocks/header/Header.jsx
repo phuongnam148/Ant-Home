@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Header.scss';
-import logo from '../../../images/logo.webp';
+import logo from '../../../images/logo3.png';
 import store from '../../../images/store.png';
 import img1 from '../../../images/mega-1-image.webp';
 

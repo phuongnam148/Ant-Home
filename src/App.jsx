@@ -22,7 +22,8 @@ import PrivateRoute from './utils/PrivateRoute';
 import AdProductDetail from './page/admin/AdProductDetail';
 import AdAddProduct from './page/admin/AdAddProduct';
 import Favorite from './components/pages/Favorite';
-import AdLogin from './page/admin/AdLogin';
+
+import CategoryList from './page/admin/CategoryList';
 
 const App = () => {
 	return (
@@ -54,12 +55,13 @@ const App = () => {
 			{/* Admin Layout */}
 			{/* <Route element={<PrivateRoute role={['qtv', 'ctv']} />}></Route> */}
 
-			<Route path='adlogin' element={<AdLogin />} />
+			{/* <Route path='adlogin' element={<AdLogin />} /> */}
 			<Route path='/admin' element={<AdminLayout />}>
 				<Route path='' element={<Admin />} />
 				<Route path='listproduct' element={<ListProduct />} />
 				<Route path='product-detail' element={<AdProductDetail />} />
 				<Route path='add-product' element={<AdAddProduct />} />
+				<Route path='category-list' element={<CategoryList />} />
 			</Route>
 			{/* Page not found */}
 			<Route path='*' element={<Pagenotfound />} />

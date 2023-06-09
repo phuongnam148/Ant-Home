@@ -6,12 +6,13 @@ import { Link } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 // Import Swiper styles
 import 'swiper/css';
-import banner from '../../images/slider_1.jpg';
+// import banner from '../../images/slider_1.jpg';
 import './scss/home.scss';
 import Product_card from '../product-card/Product_card';
 // import cards from '../../data.js';
 import { useQuery } from '@tanstack/react-query';
 import newRequest from '../../utils/newRequest.js';
+import SildeHome from '../../components/Slide/SlideHome';
 
 const Home = () => {
 	const { isLoading, error, data } = useQuery({
@@ -25,7 +26,8 @@ const Home = () => {
 	if (error) return 'An error has occurred: ' + error.message;
 	return (
 		<div className='home'>
-			<img className='img-fluid' src={banner} alt='' />
+			<SildeHome />
+			{/* <img className='img-fluid' src={banner} alt='' /> */}
 			<div className='container-md'>
 				{/* Loại sản phẩm */}
 				<div className='home-section-1'>
@@ -178,7 +180,7 @@ const Home = () => {
 						</a>
 
 						<div className='h-topp row row-cols-md-3 row-cols-lg-4 m-0 p-0'>
-							{data.map((prod) => (
+							{data.slice(0, 8).map((prod) => (
 								<div key={prod.id_product} className='p-2'>
 									<Product_card prod={prod} />
 								</div>
@@ -224,23 +226,23 @@ const Home = () => {
 				</div>
 				<div className='home-section-5'>
 					<div className='home-top-product'>
-						<a href='' className='h-title-toppro' title='TOP SẢN PHẨM BÁN CHẠY'>
+						{/* <a href='' className='h-title-toppro' title='TOP SẢN PHẨM BÁN CHẠY'>
 							SẢN PHẨM NHÀ XANH
-						</a>
-						<div className='h-topp row row-cols-4 justify-content-between'>
-							{/* Xuất Product Card */}
-							{status == 'loading' && <p>Đang tải dữ liệu....</p>}
+						</a>  */}
+						{/* <div className='h-topp row row-cols-4 justify-content-between'> */}
+						{/* Xuất Product Card */}
+						{/* {status == 'loading' && <p>Đang tải dữ liệu....</p>}
 							{status === 'succeeded' &&
 								productData.map((prod) => <Product_card key={prod.id_product} prod={prod} />)}
-							{status === 'failed' && <p>Error: {error}</p>}
-						</div>
-						<Link className='viewmore' to='/products'>
+							{status === 'failed' && <p>Error: {error}</p>} */}
+						{/* </div> */}
+						{/* <Link className='viewmore' to='/products'>
 							Xem tất cả
-						</Link>
+						</Link> */}
 						{/* <button >Xem tất cả</button> */}
 					</div>
 				</div>
-				<div className='home-section-6'>
+				{/* <div className='home-section-6'>
 					<div className='section-banner'>
 						<div className='row'>
 							<div className='col-lg-4 col-md-4 col-sm-4 col-12'>
@@ -270,8 +272,8 @@ const Home = () => {
 							</div>
 						</div>
 					</div>
-				</div>
-				<div className='home-section-7'>
+				</div> */}
+				{/* <div className='home-section-7'>
 					<div className='section-blog'>
 						<a href='' className='blog-title'>
 							CẨM NANG NỘI THẤT
@@ -327,12 +329,12 @@ const Home = () => {
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> */}
 			</div>
 			<div className='home-section-8'>
 				<div className='section-mail'>
 					<div className='container'>
-						<h3>ĐĂNG KÝ ĐỂ NHẬN TIN TỪ ANT HOME</h3>
+						<h3>ĐĂNG KÝ ĐỂ NHẬN TIN TỪ GACHASHOP</h3>
 						<p>
 							Đăng kí nhận bản tin khuyến mãi. Đừng bỏ lỡ hàng ngàn sản phẩm và chương trình siêu hấp dẫn!
 						</p>
