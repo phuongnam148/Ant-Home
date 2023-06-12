@@ -11,11 +11,11 @@ const ProductDetail = () => {
 	const location = useLocation();
 
 	const [favorite, setFavorite] = useState();
-	const handleFavorite = () => {
-		const searchParams = new URLSearchParams(location.search);
-		const productID = searchParams.get('id');
-		console.log(productID);
-	};
+	// const handleFavorite = () => {
+	// 	const searchParams = new URLSearchParams(location.search);
+	// 	const productID = searchParams.get('id');
+	// 	console.log(productID);
+	// };
 
 	const [showMore, setShowMore] = useState(false);
 	// Lấy ID Sản phẩm trên URL
@@ -64,11 +64,49 @@ const ProductDetail = () => {
 		},
 	});
 
-	console.log(productDetail);
 	// Kiểm tra thay đổi
 	useEffect(() => {
 		refetch();
 	}, [search]);
+
+	// cart
+	// console.log(productDetail);
+	const addToCart = () => {
+		let cartItems = JSON.parse(localStorage.getItem('productsInCart'));
+		const quantity = document.querySelector('#quantity');
+		let Product = {
+			id_product: productDetail.id_product,
+			name_prod: productDetail.name_prod,
+			img_thumbnail: productDetail.img_thumbnail,
+			price_prod: productDetail.price_prod,
+			quantity: Number(quantity.value),
+		};
+		const existingProduct = cartItems.find((item) => item.id_product === Product.id_product);
+		if (existingProduct) {
+			existingProduct.quantity += Product.quantity;
+		} else {
+			if (cartItems === null) {
+				cartItems = [];
+				cartItems.push(Product);
+				localStorage.setItem('productsInCart', JSON.stringify(cartItems));
+			} else {
+				let item = cartItems.find((item) => {
+					return item.id_product === Product.id_product;
+				});
+
+				if (item) {
+					item.quantity = item.quantity + Number(quantity.value);
+					localStorage.setItem('productsInCart', JSON.stringify(cartItems));
+				} else {
+					cartItems.push(Product);
+					localStorage.setItem('productsInCart', JSON.stringify(cartItems));
+				}
+			}
+		}
+
+		alert('Thêm thành công!');
+	};
+
 	// Loading
 	if (isLoading) {
 		return <span>Loading...</span>;
@@ -168,13 +206,14 @@ const ProductDetail = () => {
 								className='soluong'
 								type='number'
 								min='1'
+								id='quantity'
 								value={value}
 								onChange={(event) => setValue(event.target.value)}
 							/>
 							<button className='giam me-3' type='button' onClick={handleIncrement}>
 								+
 							</button>
-							<button className='addsp' type='submit'>
+							<button className='addsp' type='submit' onClick={addToCart}>
 								Thêm vào giỏ
 							</button>
 						</form>
@@ -182,9 +221,9 @@ const ProductDetail = () => {
 						<div className='tym'>
 							<i className='fa-regular fa-heart me-2 my-3'></i>
 							<span>
-								<a href='#' onClick={handleFavorite}>
+								{/* <a href='#' onClick={handleFavorite}>
 									Thêm vào yêu thích
-								</a>
+								</a> */}
 							</span>
 						</div>
 						{/* Thông tin chi tiết */}
