@@ -1,15 +1,19 @@
-/* eslint-disable no-unused-vars */
-import React, { useState, useEffect, useReducer } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 import newRequest from '../../utils/newRequest.js';
 import { useQuery } from '@tanstack/react-query';
 
-const AdAddProduct = () => {
+const EditProduct = () => {
+	const location = useLocation();
+	const searchParams = new URLSearchParams(location.search);
+	const id = searchParams.get('id');
+	console.log(id);
+
 	// Lấy giá trị của Category
-	const [selectedCategory, setSelectedCategory] = useState(null);
+	const [selectedCategory] = useState(null);
 	// Lấy giá trị của Brand
-	const [brands, setBrands] = useState(null);
+	// const [brands, setBrands] = useState(null);
 
 	// GỌI API CATEGORIES
 	const {
@@ -24,6 +28,16 @@ const AdAddProduct = () => {
 			}),
 	});
 	// console.log(dataCate);
+
+	//GỌI API Prod-detail
+	const { data: proddetail } = useQuery({
+		queryKey: ['prodduct detail'],
+		queryFn: () =>
+			newRequest.get(`/product?id=${id}`).then((res) => {
+				return res.data;
+			}),
+	});
+	console.log(proddetail);
 
 	// //GỌI API BRAND
 	// useEffect(() => {
@@ -57,7 +71,7 @@ const AdAddProduct = () => {
 		}
 
 		try {
-			const response = await newRequest.post('/product', formData);
+			const response = await newRequest.patch(`/product?id=${id}`, formData);
 			// Xử lý phản hồi từ server
 			console.log(response);
 		} catch (error) {
@@ -73,8 +87,7 @@ const AdAddProduct = () => {
 		<div className='content'>
 			<div className='page-header'>
 				<div className='page-title'>
-					<h4>Thêm sản phẩm</h4>
-					<h6>Tạo sản phẩm mới</h6>
+					<h4>Sửa sản phẩm</h4>
 				</div>
 			</div>
 
@@ -85,14 +98,17 @@ const AdAddProduct = () => {
 							<div className='col-lg-3 col-sm-6 col-12'>
 								<div className='form-group'>
 									<label>Tên sản phẩm</label>
-									<input type='text' name='name_prod' />
+									<input type='text' name='name_prod' defaultValue={proddetail.name_prod} />
 								</div>
 							</div>
-							{/* <div className='col-lg-3 col-sm-6 col-12'>
+							<div className='col-lg-3 col-sm-6 col-12'>
 								<div className='form-group'>
 									<label>Danh mục</label>
 									<select className='select' name='id_categories' value={selectedCategory}>
-										<option>Chọn danh mục</option>
+										<option value={proddetail.categories.id_categories}>
+											{proddetail.categories.name_categories}
+										</option>
+
 										{dataCate.map((item) => (
 											<option key={item.id_categories} value={item.id_categories}>
 												{item.name_categories}
@@ -100,7 +116,7 @@ const AdAddProduct = () => {
 										))}
 									</select>
 								</div>
-							</div> */}
+							</div>
 
 							{/* <div className='col-lg-3 col-sm-6 col-12'>
 							<div className='form-group'>
@@ -135,7 +151,7 @@ const AdAddProduct = () => {
 							<div className='col-lg-3 col-sm-6 col-12'>
 								<div className='form-group'>
 									<label>Giá</label>
-									<input type='number' name='price_prod' />
+									<input type='number' name='price_prod' defaultValue={proddetail.price_prod} />
 								</div>
 							</div>
 							<div className='col-lg-3 col-sm-6 col-12'>
@@ -161,13 +177,21 @@ const AdAddProduct = () => {
 							<div className='col-lg-12'>
 								<div className='form-group'>
 									<label>Chi tiết sản phẩm</label>
-									<textarea className='form-control' name='detail_prod'></textarea>
+									<textarea
+										className='form-control'
+										name='detail_prod'
+										defaultValue={proddetail.detail_prod.detail_prod}
+									></textarea>
 								</div>
 							</div>
 							<div className='col-lg-12'>
 								<div className='form-group'>
 									<label>Mô tả sản phẩm</label>
-									<textarea className='form-control' name='description_prod'></textarea>
+									<textarea
+										className='form-control'
+										name='description_prod'
+										defaultValue={proddetail.description_prod}
+									></textarea>
 								</div>
 							</div>
 
@@ -175,7 +199,14 @@ const AdAddProduct = () => {
 								<div className='form-group'>
 									<label> Ảnh thumbnail</label>
 
-									<input type='file' className='form-control' name='img_thumbnail' />
+									<input
+										type='file'
+										className='form-control'
+										name='img_thumbnail'
+										// defaultValue={proddetail.img_thumbnail}
+									/>
+
+									<div>{/* <img src={proddetail.img_thumbnail} alt='' /> */}</div>
 								</div>
 								{/* Lấy 4 link hình ảnh */}
 								<div className='form-group'>
@@ -188,7 +219,7 @@ const AdAddProduct = () => {
 							</div>
 							<div className='col-lg-12'>
 								<button type='summit' className='btn btn-submit me-2'>
-									Tạo sản phẩm
+									Sửa sản phẩm
 								</button>
 								<Link className='btn btn-cancel' to='/admin/listproduct'>
 									Huỷ
@@ -202,4 +233,4 @@ const AdAddProduct = () => {
 	);
 };
 
-export default AdAddProduct;
+export default EditProduct;

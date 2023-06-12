@@ -60,7 +60,7 @@ const SiderBar = () => {
 										<a href='subaddcategory.html'>Thêm danh mục con</a>
 									</li>
 									<li>
-										<a href='brandlist.html'>Danh sách hãng</a>
+										<a href='/admin/brand-list'>Danh sách hãng</a>
 									</li>
 									<li>
 										<a href='addbrand.html'>Thêm hãng</a>
@@ -68,6 +68,40 @@ const SiderBar = () => {
 								</div>
 							</div>
 						</li>
+						<li className='submenu'>
+							<a href='javascript:void(0);'>
+								<img src={users1} alt='img' />
+								<span>Tài khoản</span>
+								<span className='menu-arrow'></span>
+							</a>
+							<ul>
+								<li>
+									<a href='customerlist.html'>Tài khoản khách hàng</a>
+								</li>
+								<li>
+									<a href='addcustomer.html'>Add Customer </a>
+								</li>
+								<li>
+									<a href='supplierlist.html'>Supplier List</a>
+								</li>
+								<li>
+									<a href='addsupplier.html'>Add Supplier </a>
+								</li>
+								<li>
+									<a href='userlist.html'>User List</a>
+								</li>
+								<li>
+									<a href='adduser.html'>Add User</a>
+								</li>
+								<li>
+									<a href='storelist.html'>Store List</a>
+								</li>
+								<li>
+									<a href='addstore.html'>Add Store</a>
+								</li>
+							</ul>
+						</li>
+
 						<li className='submenu'>
 							<a href='javascript:void(0);'>
 								<img src={sales} alt='img' />
@@ -182,39 +216,7 @@ const SiderBar = () => {
 								</li>
 							</ul>
 						</li>
-						<li className='submenu'>
-							<a href='javascript:void(0);'>
-								<img src={users1} alt='img' />
-								<span>People</span>
-								<span className='menu-arrow'></span>
-							</a>
-							<ul>
-								<li>
-									<a href='customerlist.html'>Customer List</a>
-								</li>
-								<li>
-									<a href='addcustomer.html'>Add Customer </a>
-								</li>
-								<li>
-									<a href='supplierlist.html'>Supplier List</a>
-								</li>
-								<li>
-									<a href='addsupplier.html'>Add Supplier </a>
-								</li>
-								<li>
-									<a href='userlist.html'>User List</a>
-								</li>
-								<li>
-									<a href='adduser.html'>Add User</a>
-								</li>
-								<li>
-									<a href='storelist.html'>Store List</a>
-								</li>
-								<li>
-									<a href='addstore.html'>Add Store</a>
-								</li>
-							</ul>
-						</li>
+
 						<li className='submenu'>
 							<a href='javascript:void(0);'>
 								<img src={places} alt='img' />
