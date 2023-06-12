@@ -1,8 +1,6 @@
-/* eslint-disable react/jsx-key */
-/* eslint-disable no-undef */
 import React from 'react';
-import { Link } from 'react-router-dom';
 
+import { Link } from 'react-router-dom';
 import plus from '../../layout/assets/img/icons/plus.svg';
 import filter from '../../layout/assets/img/icons/filter.svg';
 import closes from '../../layout/assets/img/icons/closes.svg';
@@ -13,49 +11,38 @@ import printer from '../../layout/assets/img/icons/printer.svg';
 import eye from '../../layout/assets/img/icons/eye.svg';
 import edit from '../../layout/assets/img/icons/edit.svg';
 import delete_icon from '../../layout/assets/img/icons/delete.svg';
+// import { useQuery } from '@tanstack/react-query';
+// import newRequest from '../../utils/newRequest';
 //
-import newRequest from '../../utils/newRequest.js';
-import { useQuery } from '@tanstack/react-query';
 
-const ListProduct = () => {
-	// Lấy data sản phẩm
-	// Get Data
-	const {
-		isLoading,
-		isError,
-		data: productData,
-		error,
-	} = useQuery({
-		queryKey: ['productdata'],
-		queryFn: async () => {
-			try {
-				const res = await newRequest.get(`/products`);
-				return res.data;
-			} catch (error) {
-				console.log(error);
-			}
-		},
-	});
+const AdBrand = () => {
+	// const {
+	// 	isLoading,
+	// 	error,
+	// 	data: brands,
+	// } = useQuery({
+	// 	queryKey: ['Categorys'],
+	// 	queryFn: () =>
+	// 		newRequest.get('/categories/all').then((res) => {
+	// 			return res.data;
+	// 		}),
+	// });
+	// // console.log(dataCate);
+
 	// Loading
-	if (isLoading) {
-		return <span>Loading...</span>;
-	}
-	// Error
-	if (isError) {
-		return <span>Error: {error.message}</span>;
-	}
-	//
+	// if (isLoading) return 'Loading...';
+	// if (error) return 'An error has occurred: ' + error.message;
 	return (
 		<div className='content'>
 			<div className='page-header'>
 				<div className='page-title'>
-					<h4>Danh sách sản phẩm</h4>
-					<h6>Quản lý sản phẩm</h6>
+					<h4>Danh sách thương hiệu</h4>
+					<h6>Quản lý thương hiệu sản phẩm</h6>
 				</div>
 				<div className='page-btn'>
 					<Link to='/admin/add-product' className='btn btn-added'>
 						<img src={plus} alt='img' className='me-1' />
-						Thêm sản phẩm
+						Thêm thương hiệu
 					</Link>
 				</div>
 			</div>
@@ -180,38 +167,24 @@ const ListProduct = () => {
 							</thead>
 							<tbody>
 								{/* Xuất Product Card */}
-								{productData.map((prod) => (
-									<tr>
-										<td>
-											<label className='checkboxs'>
-												<input type='checkbox' />
-												<span className='checkmarks'></span>
-											</label>
-										</td>
-										<td className='productimgname'>
-											<a href='' className='product-img'>
-												<img src={prod.img_thumbnail} alt='product' />
-											</a>
-											<Link to={`/admin/product-detail?id=${prod.id_product}`}>{prod.name_prod}</Link>
-										</td>
+								{/* {brands.map((br) => ( */}
+								<tr>
+									<td>ten brand</td>
+									{/* <td>{prod.Brand.name_brand}</td> */}
 
-										<td>{prod.categories.name_categories}</td>
-										{/* <td>{prod.Brand.name_brand}</td> */}
-										<td>{prod.price_prod}</td>
-										<td>{prod.createdAt}</td>
-										<td>
-											<Link className='me-3' to={`/admin/product-detail?id=${prod.id_product}`}>
-												<img src={eye} alt='img' />
-											</Link>
-											<Link className='me-3' to={`/admin/edit-product?id=${prod.id_product}`}>
-												<img src={edit} alt='img' />
-											</Link>
-											<Link className='confirm-text' href='javascript:void(0);'>
-												<img src={delete_icon} alt='img' />
-											</Link>
-										</td>
-									</tr>
-								))}
+									<td>
+										<Link className='me-3' to={`/admin/product-detail?id=`}>
+											<img src={eye} alt='img' />
+										</Link>
+										<Link className='me-3' to={`/admin/edit-product?id=`}>
+											<img src={edit} alt='img' />
+										</Link>
+										<Link className='confirm-text' href='javascript:void(0);'>
+											<img src={delete_icon} alt='img' />
+										</Link>
+									</td>
+								</tr>
+								{/* ))} */}
 							</tbody>
 						</table>
 					</div>
@@ -221,4 +194,4 @@ const ListProduct = () => {
 	);
 };
 
-export default ListProduct;
+export default AdBrand;

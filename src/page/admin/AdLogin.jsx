@@ -102,9 +102,6 @@ const AdLogin = () => {
 								id='InputEmail'
 								placeholder='Nhập Địa chỉ Email'
 								aria-describedby='emailHelp'
-								required
-								pattern='[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$'
-								data-validation-error-msg='Email sai định dạng'
 								value={email}
 								onChange={handleEmailChange}
 							/>
@@ -119,7 +116,6 @@ const AdLogin = () => {
 								className='form-control'
 								id='InputPassword'
 								placeholder='Nhập Mật khẩu'
-								required
 								value={password}
 								onChange={handlePasswordChange}
 							/>

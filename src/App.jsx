@@ -25,6 +25,11 @@ import Favorite from './components/pages/Favorite';
 
 import CategoryList from './page/admin/CategoryList';
 
+import AdLogin from './page/admin/AdLogin';
+import EditProduct from './page/admin/EditProduct';
+import AdBrand from './page/admin/AdBrand';
+import AdCustomerList from './page/admin/AdCustomerList';
+
 const App = () => {
 	return (
 		<Routes>
@@ -55,13 +60,18 @@ const App = () => {
 			{/* Admin Layout */}
 			{/* <Route element={<PrivateRoute role={['qtv', 'ctv']} />}></Route> */}
 
-			{/* <Route path='adlogin' element={<AdLogin />} /> */}
+			<Route path='adlogin' element={<AdLogin />} />
 			<Route path='/admin' element={<AdminLayout />}>
 				<Route path='' element={<Admin />} />
 				<Route path='listproduct' element={<ListProduct />} />
 				<Route path='product-detail' element={<AdProductDetail />} />
 				<Route path='add-product' element={<AdAddProduct />} />
+				<Route path='edit-product' element={<EditProduct />} />
+
+				{/* danh mục */}
 				<Route path='category-list' element={<CategoryList />} />
+				<Route path='brand-list' element={<AdBrand />} />
+				<Route path='customer-list' element={<AdCustomerList />} />
 			</Route>
 			{/* Page not found */}
 			<Route path='*' element={<Pagenotfound />} />

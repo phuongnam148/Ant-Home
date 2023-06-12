@@ -84,7 +84,7 @@ const Register = () => {
 			const json = JSON.stringify(userData);
 
 			newRequest
-				.post('/register', json, {
+				.post('/auth/register', json, {
 					headers: {
 						'Content-Type': 'application/json',
 					},
