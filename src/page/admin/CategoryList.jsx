@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import plus from '../../layout/assets/img/icons/plus.svg';
 import filter from '../../layout/assets/img/icons/filter.svg';
@@ -11,8 +11,42 @@ import eye from '../../layout/assets/img/icons/eye.svg';
 import edit from '../../layout/assets/img/icons/edit.svg';
 import delete_icon from '../../layout/assets/img/icons/delete.svg';
 import { Link } from 'react-router-dom';
+import newRequest from '../../utils/newRequest';
+import { useQuery } from '@tanstack/react-query';
 
 const CategoryList = () => {
+	const [cat, setCat] = useState('');
+
+	// GỌI API CATEGORIES
+	const {
+		isLoading,
+		error,
+		data: dataCate,
+	} = useQuery({
+		queryKey: ['Categorys'],
+		queryFn: () =>
+			newRequest.get('/categories').then((res) => {
+				return res.data;
+			}),
+	});
+	console.log(dataCate);
+
+	const AddCat = async () => {
+		// e.preventDefault();
+
+		try {
+			const response = await newRequest.post('/categories', { name_categories: cat, parent_id: null });
+			// Xử lý phản hồi từ server
+			console.log(response);
+		} catch (error) {
+			// Xử lý lỗi
+			console.log(error);
+		}
+	};
+
+	// Loading
+	if (isLoading) return 'Loading...';
+	if (error) return 'An error has occurred: ' + error.message;
 	return (
 		<div className='content'>
 			<div className='page-header'>
@@ -20,12 +54,19 @@ const CategoryList = () => {
 					<h4>Danh sách danh mục</h4>
 					<h6>Quản lý danh mục sản phẩm</h6>
 				</div>
-				<div className='page-btn'>
-					<Link to='/admin/add-product' className='btn btn-added'>
-						<img src={plus} alt='img' className='me-1' />
-						Thêm danh mục
-					</Link>
-				</div>
+			</div>
+			<div className='page-btn'>
+				<input
+					type='text'
+					name='name_categories'
+					onChange={(e) => {
+						setCat(e.target.value);
+					}}
+				/>
+				<button className='btn btn-added' onClick={AddCat}>
+					<img src={plus} alt='img' className='me-1' />
+					Thêm danh mục
+				</button>
 			</div>
 
 			<div className='card'>
@@ -148,24 +189,23 @@ const CategoryList = () => {
 							</thead>
 							<tbody>
 								{/* Xuất Product Card */}
-								{/* {brands.map((br) => ( */}
-								<tr>
-									<td>ten brand</td>
-									{/* <td>{prod.Brand.name_brand}</td> */}
+								{dataCate.map((cat) => (
+									<tr key={cat.index}>
+										<td>{cat.name_categories}</td>
 
-									<td>
-										<Link className='me-3' to={`/admin/product-detail?id=`}>
-											<img src={eye} alt='img' />
-										</Link>
-										<Link className='me-3' to={`/admin/edit-product?id=`}>
-											<img src={edit} alt='img' />
-										</Link>
-										<Link className='confirm-text' href='javascript:void(0);'>
-											<img src={delete_icon} alt='img' />
-										</Link>
-									</td>
-								</tr>
-								{/* ))} */}
+										<td>
+											<Link className='me-3' to={`/admin/product-detail?id=`}>
+												<img src={eye} alt='img' />
+											</Link>
+											<Link className='me-3' to={`/admin/edit-product?id=`}>
+												<img src={edit} alt='img' />
+											</Link>
+											<Link className='confirm-text' href='javascript:void(0);'>
+												<img src={delete_icon} alt='img' />
+											</Link>
+										</td>
+									</tr>
+								))}
 							</tbody>
 						</table>
 					</div>

@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import './Login.scss';
 import newRequest from '../../../utils/newRequest';
+import { Button, notification } from 'antd';
 
 const Login = () => {
 	const navigate = useNavigate();
@@ -17,8 +18,7 @@ const Login = () => {
 		setEmail(event.target.value);
 	};
 
-	// Lấy Password
-	const handlePasswordChange = (event) => {
+	const handlePassChange = (event) => {
 		setPassword(event.target.value);
 	};
 
@@ -29,7 +29,7 @@ const Login = () => {
 
 		//Validate username
 		if (!email) {
-			formErrors.username = 'Nhập email vào';
+			formErrors.username = 'Vui lòng nhập email vào';
 			isValid = false;
 		} else if (!/\S+@\S+\.\S+/.test(email)) {
 			formErrors.username = 'Email phải đúng định dạng ';
@@ -38,7 +38,7 @@ const Login = () => {
 
 		//Validate password
 		if (!password) {
-			formErrors.password = 'Nhập mật khẩu vào';
+			formErrors.password = 'Vui lòng nhập mật khẩu vào';
 			isValid = false;
 		} else if (password.length < 8) {
 			formErrors.password = 'Mật khẩu có ít nhất 8 ký tự';
@@ -55,25 +55,28 @@ const Login = () => {
 		if (validateForm()) {
 			try {
 				const user = { email, password };
-				await newRequest
-					.post('/auth/login', user)
-					.then((res) => {
-						if (res.data.role == 'qtv' || res.data.role == 'ctv') {
-							navigate('/admin');
-						} else {
-							navigate('/account');
-						}
-						console.log(res.data.message);
-					})
-					.catch((error) => console.log(error));
+				await newRequest.post('/auth/login', user).then((res) => {
+					if (res.data.role == 'qtv' || res.data.role == 'ctv') {
+						navigate('/admin');
+					} else {
+						navigate('/account');
+					}
+				});
 
 				// <Navigate to='/account' />;
 				// eslint-disable-next-line no-unused-vars
 			} catch (error) {
-				alert(error.response.data.message);
+				notification.error({
+					message: 'Đăng nhập thất bại',
+					description: error.response.data.message,
+				});
+				// alert(error.response.data.message);
 			}
 		} else {
-			alert('Nhập lại form đi');
+			notification.error({
+				message: 'Đăng nhập thất bại',
+				description: 'Đã xảy ra lỗi khi đăng nhập',
+			});
 		}
 	};
 	return (
@@ -96,19 +99,16 @@ const Login = () => {
 							<Link to='/register'>Đăng kí</Link>
 						</li>
 					</ul>
-					<form method='post' id='customer-login' onSubmit={handleSubmit}>
+					<form method='post' id='customer-login'>
 						<div className='mb-3'>
 							<label htmlFor='InputEmail' className='form-label'>
 								Email <span>*</span>
 							</label>
 							<input
-								type='email'
+								// type='email'
 								className='form-control'
 								id='InputEmail'
 								placeholder='Nhập Địa chỉ Email'
-								aria-describedby='emailHelp'
-								// pattern='[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$'
-								// data-validation-error-msg='Email sai định dạng'
 								value={email}
 								onChange={handleEmailChange}
 							/>
@@ -124,7 +124,7 @@ const Login = () => {
 								id='InputPassword'
 								placeholder='Nhập Mật khẩu'
 								value={password}
-								onChange={handlePasswordChange}
+								onChange={handlePassChange}
 							/>
 							{errors.password && <span>{errors.password}</span>}
 						</div>
@@ -133,9 +133,9 @@ const Login = () => {
 								Quên mật khẩu?
 							</a>
 						</p>
-						<button type='submit' className='btn'>
+						<Button type='primary' onClick={handleSubmit} className='btn'>
 							Đăng nhập
-						</button>
+						</Button>
 						<p className='login-note'>
 							Ant Home cam kết bảo mật và sẽ không bao giờ đăng <br /> hay chia sẻ thông tin mà chưa có được
 							sự đồng ý của bạn.
@@ -154,7 +154,10 @@ const Login = () => {
 								alt='fb-login-button'
 							/>
 						</a>
-						<a href='' className='gg-login col '>
+						<a
+							href='https://walrus-app-h879i.ondigitalocean.app/api/auth/google/login'
+							className='gg-login col '
+						>
 							<img
 								width='192px'
 								height='38px'

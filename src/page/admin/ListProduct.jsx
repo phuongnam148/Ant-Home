@@ -17,6 +17,8 @@ import delete_icon from '../../layout/assets/img/icons/delete.svg';
 import newRequest from '../../utils/newRequest.js';
 import { useQuery } from '@tanstack/react-query';
 
+import { notification } from 'antd';
+
 const ListProduct = () => {
 	// Lấy data sản phẩm
 	// Get Data
@@ -36,6 +38,30 @@ const ListProduct = () => {
 			}
 		},
 	});
+
+	//Xóa sản phẩm
+	const deleteProduct = async (productId) => {
+		const result = window.confirm('Bạn có chắc chắn muốn xóa?');
+		if (result) {
+			try {
+				// Gọi API xóa sản phẩm với method DELETE và endpoint tương ứng
+				await newRequest.delete(`/product/?id=${productId}`);
+
+				// Xóa thành công, có thể thực hiện các thao tác tiếp theo
+				window.location.reload();
+				notification.success({
+					message: 'Thông báo',
+					description: 'Xóa thành công',
+				});
+			} catch (error) {
+				// Xử lý lỗi
+				notification.error({
+					message: 'Đã xảy ra lỗi',
+					description: error.message,
+				});
+			}
+		}
+	};
 	// Loading
 	if (isLoading) {
 		return <span>Loading...</span>;
@@ -206,7 +232,7 @@ const ListProduct = () => {
 											<Link className='me-3' to={`/admin/edit-product?id=${prod.id_product}`}>
 												<img src={edit} alt='img' />
 											</Link>
-											<Link className='confirm-text' href='javascript:void(0);'>
+											<Link className='me-3' onClick={() => deleteProduct(prod.id_product)}>
 												<img src={delete_icon} alt='img' />
 											</Link>
 										</td>

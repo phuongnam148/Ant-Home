@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { Link } from 'react-router-dom';
 import plus from '../../layout/assets/img/icons/plus.svg';
@@ -11,27 +11,45 @@ import printer from '../../layout/assets/img/icons/printer.svg';
 import eye from '../../layout/assets/img/icons/eye.svg';
 import edit from '../../layout/assets/img/icons/edit.svg';
 import delete_icon from '../../layout/assets/img/icons/delete.svg';
-// import { useQuery } from '@tanstack/react-query';
-// import newRequest from '../../utils/newRequest';
+import { useQuery } from '@tanstack/react-query';
+import newRequest from '../../utils/newRequest';
 //
 
 const AdBrand = () => {
-	// const {
-	// 	isLoading,
-	// 	error,
-	// 	data: brands,
-	// } = useQuery({
-	// 	queryKey: ['Categorys'],
-	// 	queryFn: () =>
-	// 		newRequest.get('/categories/all').then((res) => {
-	// 			return res.data;
-	// 		}),
-	// });
-	// // console.log(dataCate);
+	//thêm brand mới
+	const [brand, setBrand] = useState('');
+
+	const AddBrand = async () => {
+		// e.preventDefault();
+
+		try {
+			const response = await newRequest.post('/brand', { name_brand: brand });
+			// Xử lý phản hồi từ server
+			console.log(response);
+		} catch (error) {
+			// Xử lý lỗi
+			console.log(error);
+		}
+	};
+	const {
+		isLoading,
+		error,
+		data: brands,
+	} = useQuery({
+		queryKey: ['Brands'],
+		queryFn: () =>
+			newRequest
+				.get('/brand')
+				.then((res) => {
+					return res.data;
+				})
+				.catch((error) => console.log(error)),
+	});
+	// console.log(brands);
 
 	// Loading
-	// if (isLoading) return 'Loading...';
-	// if (error) return 'An error has occurred: ' + error.message;
+	if (isLoading) return 'Loading...';
+	if (error) return 'An error has occurred: ' + error.message;
 	return (
 		<div className='content'>
 			<div className='page-header'>
@@ -39,12 +57,19 @@ const AdBrand = () => {
 					<h4>Danh sách thương hiệu</h4>
 					<h6>Quản lý thương hiệu sản phẩm</h6>
 				</div>
-				<div className='page-btn'>
-					<Link to='/admin/add-product' className='btn btn-added'>
-						<img src={plus} alt='img' className='me-1' />
-						Thêm thương hiệu
-					</Link>
-				</div>
+			</div>
+			<div className='page-btn'>
+				<input
+					type='text'
+					name='name_brand'
+					onChange={(e) => {
+						setBrand(e.target.value);
+					}}
+				/>
+				<button className='btn btn-added' onClick={AddBrand}>
+					<img src={plus} alt='img' className='me-1' />
+					Thêm thương hiệu
+				</button>
 			</div>
 
 			<div className='card'>
@@ -167,24 +192,29 @@ const AdBrand = () => {
 							</thead>
 							<tbody>
 								{/* Xuất Product Card */}
-								{/* {brands.map((br) => ( */}
-								<tr>
-									<td>ten brand</td>
-									{/* <td>{prod.Brand.name_brand}</td> */}
+								{brands.map((br) => (
+									<tr key={br.index}>
+										<td>
+											<label className='checkboxs'>
+												<input type='checkbox' id='select-one' />
+												<span className='checkmarks'></span>
+											</label>
+										</td>
+										<td>{br.name_brand}</td>
 
-									<td>
-										<Link className='me-3' to={`/admin/product-detail?id=`}>
-											<img src={eye} alt='img' />
-										</Link>
-										<Link className='me-3' to={`/admin/edit-product?id=`}>
-											<img src={edit} alt='img' />
-										</Link>
-										<Link className='confirm-text' href='javascript:void(0);'>
-											<img src={delete_icon} alt='img' />
-										</Link>
-									</td>
-								</tr>
-								{/* ))} */}
+										<td>
+											<Link className='me-3' to={`/admin/product-detail?id=`}>
+												<img src={eye} alt='img' />
+											</Link>
+											<Link className='me-3' to={`/admin/edit-product?id=`}>
+												<img src={edit} alt='img' />
+											</Link>
+											<Link className='confirm-text' href='javascript:void(0);'>
+												<img src={delete_icon} alt='img' />
+											</Link>
+										</td>
+									</tr>
+								))}
 							</tbody>
 						</table>
 					</div>

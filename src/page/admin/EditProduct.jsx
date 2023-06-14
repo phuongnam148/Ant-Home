@@ -13,7 +13,7 @@ const EditProduct = () => {
 	// Lấy giá trị của Category
 	const [selectedCategory] = useState(null);
 	// Lấy giá trị của Brand
-	// const [brands, setBrands] = useState(null);
+	const [selectedBrand] = useState(null);
 
 	// GỌI API CATEGORIES
 	const {
@@ -23,11 +23,23 @@ const EditProduct = () => {
 	} = useQuery({
 		queryKey: ['Categorys'],
 		queryFn: () =>
-			newRequest.get('/categories/all').then((res) => {
+			newRequest.get('/categories').then((res) => {
 				return res.data;
 			}),
 	});
 	// console.log(dataCate);
+	//GỌI API TẤT CẢ BRAND
+	const { data: brand } = useQuery({
+		queryKey: ['Brands'],
+		queryFn: () =>
+			newRequest
+				.get('/brand')
+				.then((res) => {
+					return res.data;
+				})
+				.catch((error) => console.log(error)),
+	});
+	// // console.log(brands);
 
 	//GỌI API Prod-detail
 	const { data: proddetail } = useQuery({
@@ -38,18 +50,6 @@ const EditProduct = () => {
 			}),
 	});
 	console.log(proddetail);
-
-	// //GỌI API BRAND
-	// useEffect(() => {
-	// 	newRequest
-	// 		.get('/brands')
-	// 		.then((data) => {
-	// 			setBrands(data.data);
-	// 			setIsLoading(false);
-	// 		})
-	// 		.catch((error) => console.log(error));
-	// }, []);
-	// // console.log(brands);
 
 	const createProduct = async (e) => {
 		e.preventDefault();
@@ -118,19 +118,19 @@ const EditProduct = () => {
 								</div>
 							</div>
 
-							{/* <div className='col-lg-3 col-sm-6 col-12'>
-							<div className='form-group'>
-								<label>Thương hiệu</label>
-								<select className='select' name='brand_prod'>
-									<option>Chọn thương hiệu</option>
-									{brands.map((item) => (
-										<option key={item.id_brand} onChange={handlechange} value={item.id_brand}>
-											{item.name_brand}
-										</option>
-									))}
-								</select>
+							<div className='col-lg-3 col-sm-6 col-12'>
+								<div className='form-group'>
+									<label>Thương hiệu</label>
+									<select className='select' name='brand_prod' value={selectedBrand}>
+										{/* <option value={proddetail.brands.id_brand}>{proddetail.brands.name_brand}</option> */}
+										{brand.map((item) => (
+											<option key={item.id_brand} value={item.id_brand}>
+												{item.name_brand}
+											</option>
+										))}
+									</select>
+								</div>
 							</div>
-						</div> */}
 							<div className='col-lg-3 col-sm-6 col-12'>
 								<div className='form-group'>
 									<label>Vật liệu</label>
