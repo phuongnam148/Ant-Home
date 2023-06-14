@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Header.scss';
 import logo from '../../../images/logo3.png';
@@ -6,6 +6,61 @@ import store from '../../../images/store.png';
 import img1 from '../../../images/mega-1-image.webp';
 
 const Header = () => {
+	const [cartItems, setCartItems] = useState([]);
+	useEffect(() => {
+		const storedCartItems = JSON.parse(localStorage.getItem('productsInCart'));
+		setCartItems(storedCartItems);
+	}, [setCartItems]);
+	// console.log(cartItems);
+
+	const btnRemove = (id_product) => {
+		if (window.confirm('Bạn có chắc chắn muốn xóa không?')) {
+			let cartItems = JSON.parse(localStorage.getItem('productsInCart'));
+
+			if (cartItems) {
+				cartItems = cartItems.filter((value) => value.id_product !== id_product);
+
+				localStorage.setItem('productsInCart', JSON.stringify(cartItems));
+
+				const itemDelete = document.querySelector(`#itemDelete-${id_product}`);
+				if (itemDelete) {
+					itemDelete.remove();
+				}
+			}
+			updateCart();
+		}
+	};
+	const updateCart = () => {
+		// Lấy dữ liệu từ LocalStorage
+		let cartItems = JSON.parse(localStorage.getItem('productsInCart'));
+
+		// Lấy phần tử DOM của giỏ hàng trên trang home
+		const cartElement = document.querySelector('#aaa');
+
+		// Xóa các phần tử con hiện tại của giỏ hàng
+		while (cartElement.firstChild) {
+			cartElement.removeChild(cartElement.firstChild);
+		}
+
+		// Kiểm tra nếu có dữ liệu trong giỏ hàng
+		if (cartItems && cartItems.length > 0) {
+			// Duyệt qua từng sản phẩm trong giỏ hàng
+			cartItems.forEach((item) => {
+				// Tạo phần tử li để hiển thị thông tin sản phẩm
+				const liElement = document.createElement('li');
+				liElement.textContent = item.name_product;
+
+				// Thêm phần tử li vào giỏ hàng
+				cartElement.appendChild(liElement);
+			});
+		} else {
+			// Nếu giỏ hàng trống, hiển thị thông báo không có sản phẩm
+			const emptyMessage = document.createElement('p');
+			emptyMessage.textContent = 'Không có sản phẩm trong giỏ hàng';
+			cartElement.appendChild(emptyMessage);
+		}
+	};
+
 	return (
 		<header className='header-p container-fluid px-0'>
 			<div className='container-lg'>
@@ -329,11 +384,66 @@ const Header = () => {
 					</h5>
 					<button type='button' className='btn-close' data-bs-dismiss='offcanvas' aria-label='Close'></button>
 				</div>
+
 				<div className='offcanvas-body p-0'>
-					<div className='icon-store text-center'>
+					{/* <div className='icon-store text-center'>
 						<img className='w-50 opacity-50' src={store} alt='' />
+					</div> */}
+					<div className='aaa'>
+						{cartItems.length === 0 ? (
+							<div className='icon-store text-center'>
+								<img className='w-50 opacity-50' src={store} alt='' />
+							</div>
+						) : (
+							<div>
+								{cartItems.map((value) => (
+									<div key={value.id_product} className='p-2 d-flex'>
+										<img className='w-25' src={value.img_thumbnail} alt='' />
+										<div className='ps-3'>
+											<h6 className='fw-bold'>{value.name_prod}</h6>
+											<span className='text-danger fw-bold'>{value.price_prod} VNĐ</span>
+
+											<div className='d-flex space-beete'>
+												<p className='fw-bold'>Số lượng</p>
+												<span className='ps-3 fw-bold'>{value.quantity}</span>
+												<button
+													className='ms-5 btn btn-danger'
+													type='button'
+													id={`itemDelete-${value.id_product}`}
+													onClick={() => btnRemove(value.id_product)}
+												>
+													Xóa
+												</button>
+											</div>
+										</div>
+									</div>
+								))}
+							</div>
+						)}
+						{/* {cartItems.map((value) => (
+							<div key={value.id_product} className='p-2 d-flex'>
+								<img className='w-25' src={value.img_thumbnail} alt='' />
+								<div className='ps-3'>
+									<h6 className='fw-bold'>{value.name_prod}</h6>
+									<span className='text-danger fw-bold'>{value.price_prod} VNĐ</span>
+
+									<div className='d-flex space-beete'>
+										<p className='fw-bold'>Số lượng</p>
+										<span className='ps-3 fw-bold'>{value.quantity}</span>
+										<button
+											className='ms-5 btn btn-danger'
+											type='button'
+											id={`itemDelete-${value.id_product}`}
+											onClick={() => btnRemove(value.id_product)}
+										>
+											Xóa
+										</button>
+									</div>
+								</div>
+							</div>
+						))} */}
 					</div>
-					<div className='d-flex justify-content-center'>
+					<div className='d-flex justify-content-center mt-2'>
 						<div
 							type='button'
 							className='btn-cart w-50 d-flex align-items-center justify-content-center'
