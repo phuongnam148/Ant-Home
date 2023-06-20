@@ -1,27 +1,78 @@
-import React from 'react';
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import './scss/products.scss';
 import Product_card from '../product-card/Product_card';
+import { useQuery } from '@tanstack/react-query';
+import newRequest from '../../utils/newRequest.js';
+import Category from '../Category/Category';
 import Slide from '../Slide/Slide';
-import { cards } from '../../data';
-
-// import { Swiper, SwiperSlide } from 'swiper/react';
-// import 'swiper/css';
-// import { Navigation, EffectFade, Autoplay, Pagination, Scrollbar, A11y } from 'swiper';
-// import 'swiper/css/navigation';
-// import 'swiper/css/pagination';
-// import 'swiper/css/effect-fade';
-// import 'swiper/css/autoplay';
-// import 'swiper/css/pagination';
 
 const Products = () => {
-	// const photo = [
-	// 	'Genshin-Impact-Raiden-Shogun-Wallpaper.jpg',
-	// 	'ahri-mua-12.jpg',
-	// 	'raiden shogun and miko.png',
-	// 	'Ruler.(Artoria.Pendragon).full.3666608.jpg',
-	// 	'Ruler.(Artoria.Pendragon).full.2905203.jpg',
-	// 	'dep.jpg',
-	// ];
+	// Check data Products
+	// console.log(productData);
+	const [productData, setProducts] = useState([]);
+
+	useEffect(() => {
+		newRequest
+			.get('/products')
+			.then((res) => {
+				setProducts(res.data);
+			})
+			.catch((error) => {
+				console.error(error);
+			});
+	}, []);
+	// Lọc sản phẩm
+	const [under100, setUnder100] = useState(false);
+	const [between100And200, setBetween100And200] = useState(false);
+
+	// Lấy data sản phẩm lọc theo giá
+	useEffect(() => {
+		let url = '';
+		if (under100) {
+			url += '/products-price?min=0&max=10000';
+		} else if (between100And200) {
+			url += '/products-price?min=11000&max=1000000';
+		}
+		if (!under100 && !between100And200) {
+			url = '/products';
+		}
+		newRequest
+			.get(url)
+			.then((response) => {
+				setProducts(response.data);
+			})
+			.catch((error) => {
+				console.error(error);
+			});
+	}, [under100, between100And200]);
+	// Kiểm tra checkbox lọc
+	const handleCheckboxChange = (event) => {
+		const { name, checked } = event.target;
+		if (name === 'under100') {
+			setUnder100(checked);
+			setBetween100And200(false);
+		} else {
+			setBetween100And200(checked);
+			setUnder100(false);
+		}
+	};
+	// Lấy category
+	const {
+		isLoading,
+		error,
+		data: dataCate,
+	} = useQuery({
+		queryKey: ['Categorys'],
+		queryFn: () =>
+			newRequest.get('/categories/all').then((res) => {
+				return res.data;
+			}),
+	});
+	console.log(dataCate);
+	if (isLoading) return 'Loading...';
+	if (error) return 'An error has occurred: ' + error.message;
 	return (
 		<div className='container'>
 			<div className='row'>
@@ -57,374 +108,16 @@ const Products = () => {
 						</div>
 					</div>
 					<div className='row my-5'>
-						<aside className='sidebar col-lg-3 col-md-12 col-sm-12 col-12 left-content'>
+						<aside className='sidebar-client col-lg-3 col-md-12 col-sm-12 col-12 left-content'>
 							<div className='aside-category card d-lg-block d-none margin-bottom-20'>
 								<div className='aside-title text-center card-header text-uppercase fs-6 fw-bold'>
 									Danh mục sản phẩm
 								</div>
 								<div className='aside-content'>
 									<ul className='navbar-pills my-2 '>
-										<li className='nav-item list-unstyled my-2 '>
-											<div className='row'>
-												<a
-													className='nav-link col-10'
-													href='#'
-													data-bs-toggle='collapse'
-													data-bs-target='#contentId'
-													aria-expanded='false'
-													aria-controls='contentId'
-												>
-													Nội thất
-												</a>
-
-												<i
-													className='fa-solid fa-caret-down icon2 col-2'
-													data-bs-toggle='collapse'
-													data-bs-target='#contentId'
-													aria-expanded='false'
-													aria-controls='contentId'
-												></i>
-											</div>
-											<div className='collapse' id='contentId'>
-												<ul>
-													<li className='nav-item2 list-unstyled my-2'>
-														<a href='#' className='nav-link'>
-															Phòng khách
-														</a>
-													</li>
-													<li className='nav-item2 list-unstyled my-2'>
-														<a href='#' className='nav-link'>
-															Phòng ăn
-														</a>
-													</li>
-													<li className='nav-item2 list-unstyled my-2'>
-														<a href='#' className='nav-link'>
-															Phòng ngủ
-														</a>
-													</li>
-													<li className='nav-item2 list-unstyled my-2'>
-														<a href='#' className='nav-link'>
-															Phòng làm việc
-														</a>
-													</li>
-													<li className='nav-item2 list-unstyled my-2'>
-														<a href='#' className='nav-link'>
-															Phòng cho bé
-														</a>
-													</li>
-													<li className='nav-item2 list-unstyled my-2'>
-														<a href='#' className='nav-link'>
-															Nội thất thông minh
-														</a>
-													</li>
-												</ul>
-											</div>
-										</li>
-										<li className='nav-item list-unstyled my-2'>
-											<div className='row'>
-												<a
-													className='nav-link  col-10'
-													href='#'
-													data-bs-toggle='collapse'
-													data-bs-target='#contentId1'
-													aria-expanded='false'
-													aria-controls='contentId1'
-												>
-													Đồ trang trí
-												</a>
-												<i
-													className='fa-solid fa-caret-down icon2 col-2'
-													data-bs-toggle='collapse'
-													data-bs-target='#contentId1'
-													aria-expanded='false'
-													aria-controls='contentId1'
-												></i>
-											</div>
-											<div className='collapse' id='contentId1'>
-												<ul>
-													<li className='nav-item2 list-unstyled my-2'>
-														<div className='row'>
-															<a
-																className='text-reset col-10'
-																href='#'
-																data-bs-toggle='collapse'
-																data-bs-target='#contentId3'
-																aria-expanded='false'
-																aria-controls='contentId3'
-															>
-																Tranh & Khung ảnh
-															</a>
-															<i
-																className='fa-solid fa-caret-down icon col-2'
-																data-bs-toggle='collapse'
-																data-bs-target='#contentId3'
-																aria-expanded='false'
-																aria-controls='contentId3'
-															></i>
-														</div>
-														<div className='collapse' id='contentId3'>
-															<ul>
-																<li className='nav-item list-unstyled my-2'>
-																	<a href='#' className='nav-link'>
-																		Tranh trang trí
-																	</a>
-																</li>
-																<li className='nav-item list-unstyled my-2'>
-																	<a href='#' className='nav-link'>
-																		Khung tranh ảnh
-																	</a>
-																</li>
-															</ul>
-														</div>
-													</li>
-													<li className='nav-item2 list-unstyled my-2'>
-														<div className='row'>
-															<a
-																className='text-reset col-10'
-																href='#'
-																data-bs-toggle='collapse'
-																data-bs-target='#contentId4'
-																aria-expanded='false'
-																aria-controls='contentId4'
-															>
-																Lọ & Bình trang trí
-															</a>
-															<i
-																className='fa-solid fa-caret-down icon col-2'
-																data-bs-toggle='collapse'
-																data-bs-target='#contentId4'
-																aria-expanded='false'
-																aria-controls='contentId4'
-															></i>
-														</div>
-														<div className='collapse' id='contentId4'>
-															<ul>
-																<li className='nav-item list-unstyled my-2'>
-																	<a href='#' className='nav-link'>
-																		Lọ đựng trang trí
-																	</a>
-																</li>
-																<li className='nav-item list-unstyled my-2'>
-																	<a href='#' className='nav-link'>
-																		Bình hoa
-																	</a>
-																</li>
-															</ul>
-														</div>
-													</li>
-													<li className='nav-item2 list-unstyled my-2'>
-														<div className='row'>
-															<a
-																className='text-reset col-10'
-																href='#'
-																data-bs-toggle='collapse'
-																data-bs-target='#contentId5'
-																aria-expanded='false'
-																aria-controls='contentId5'
-															>
-																Đồng hồ
-															</a>
-															<i
-																className='fa-solid fa-caret-down icon col-2'
-																data-bs-toggle='collapse'
-																data-bs-target='#contentId5'
-																aria-expanded='false'
-																aria-controls='contentId5'
-															></i>
-														</div>
-														<div className='collapse' id='contentId5'>
-															<ul>
-																<li className='nav-item list-unstyled my-2'>
-																	<a href='#' className='nav-link'>
-																		Đồng hồ treo tường
-																	</a>
-																</li>
-																<li className='nav-item list-unstyled my-2'>
-																	<a href='#' className='nav-link'>
-																		Đồng hồ để bàn
-																	</a>
-																</li>
-																<li className='nav-item list-unstyled my-2'>
-																	<a href='#' className='nav-link'>
-																		Đồng hồ cát
-																	</a>
-																</li>
-															</ul>
-														</div>
-													</li>
-													<li className='nav-item2 list-unstyled my-2'>
-														<div className='row'>
-															<a
-																className='text-reset col-10'
-																href='#'
-																data-bs-toggle='collapse'
-																data-bs-target='#contentId7'
-																aria-expanded='false'
-																aria-controls='contentId7'
-															>
-																Nến thơm & Đèn tinh dầu
-															</a>
-															<i
-																className='fa-solid fa-caret-down icon col-2'
-																data-bs-toggle='collapse'
-																data-bs-target='#contentId7'
-																aria-expanded='false'
-																aria-controls='contentId7'
-															></i>
-														</div>
-														<div className='collapse' id='contentId7'>
-															<ul>
-																<li className='nav-item list-unstyled my-2'>
-																	<a href='#' className='nav-link'>
-																		Nến thơm
-																	</a>
-																</li>
-																<li className='nav-item list-unstyled my-2'>
-																	<a href='#' className='nav-link'>
-																		Đèn tinh dầu
-																	</a>
-																</li>
-															</ul>
-														</div>
-													</li>
-													<li className='nav-item2 list-unstyled my-2'>
-														<div className='row'>
-															<a
-																className='text-reset col-10'
-																href='#'
-																data-bs-toggle='collapse'
-																data-bs-target='#contentId8'
-																aria-expanded='false'
-																aria-controls='contentId8'
-															>
-																Đồ dùng uống trà & Cafe
-															</a>
-															<i
-																className='fa-solid fa-caret-down icon col-2'
-																data-bs-toggle='collapse'
-																data-bs-target='#contentId8'
-																aria-expanded='false'
-																aria-controls='contentId8'
-															></i>
-														</div>
-														<div className='collapse' id='contentId8'>
-															<ul>
-																<li className='nav-item list-unstyled my-2'>
-																	<a href='#' className='nav-link'>
-																		Bộ ấm chén
-																	</a>
-																</li>
-																<li className='nav-item list-unstyled my-2'>
-																	<a href='#' className='nav-link'>
-																		Ly & cốc
-																	</a>
-																</li>
-																<li className='nav-item list-unstyled my-2'>
-																	<a href='#' className='nav-link'>
-																		Đế ly
-																	</a>
-																</li>
-																<li className='nav-item list-unstyled my-2'>
-																	<a href='#' className='nav-link'>
-																		Binh nước & Binh giữ nhiệt
-																	</a>
-																</li>
-															</ul>
-														</div>
-													</li>
-												</ul>
-											</div>
-										</li>
-										<li className='nav-item list-unstyled my-2 '>
-											<div className='row'>
-												<a
-													className='nav-link col-10'
-													href='#'
-													data-bs-toggle='collapse'
-													data-bs-target='#contentId9'
-													aria-expanded='false'
-													aria-controls='contentId9'
-												>
-													Đèn
-												</a>
-												<i
-													className='fa-solid fa-caret-down icon2 col-2'
-													data-bs-toggle='collapse'
-													data-bs-target='#contentId9'
-													aria-expanded='false'
-													aria-controls='contentId9'
-												></i>
-											</div>
-											<div className='collapse' id='contentId9'>
-												<ul>
-													<li className='nav-item2 list-unstyled my-2'>
-														<a href='#' className='nav-link'>
-															Đèn bàn
-														</a>
-													</li>
-													<li className='nav-item2 list-unstyled my-2'>
-														<a href='#' className='nav-link'>
-															Đèn sàn
-														</a>
-													</li>
-													<li className='nav-item2 list-unstyled my-2'>
-														<a href='#' className='nav-link'>
-															Đèn trần
-														</a>
-													</li>
-													<li className='nav-item2 list-unstyled my-2'>
-														<a href='#' className='nav-link'>
-															Đèn treo tường
-														</a>
-													</li>
-												</ul>
-											</div>
-										</li>
-										<li className='nav-item list-unstyled my-2 '>
-											<div className='row'>
-												<a
-													className='nav-link col-10'
-													href='#'
-													data-bs-toggle='collapse'
-													data-bs-target='#contentId10'
-													aria-expanded='false'
-													aria-controls='contentId10'
-												>
-													Ngoại thất
-												</a>
-												<i
-													className='fa-solid fa-caret-down icon2 col-2'
-													data-bs-toggle='collapse'
-													data-bs-target='#contentId10'
-													aria-expanded='false'
-													aria-controls='contentId10'
-												></i>
-											</div>
-											<div className='collapse' id='contentId10'>
-												<ul>
-													<li className='nav-item2 list-unstyled my-2'>
-														<a href='#' className='nav-link'>
-															Trang trí ngoài trời
-														</a>
-													</li>
-													<li className='nav-item2 list-unstyled my-2'>
-														<a href='#' className='nav-link'>
-															Trang trí sân vườn
-														</a>
-													</li>
-												</ul>
-											</div>
-										</li>
-										<li className='nav-item3 list-unstyled my-2 '>
-											<a href='#' className='nav-link col-10'>
-												Chăn, Ga, Gối & Niệm
-											</a>
-										</li>
-										<li className='nav-item3 list-unstyled my-2 '>
-											<a href='#' className='nav-link col-10'>
-												Đồ dùng trong nhà
-											</a>
-										</li>
+										{dataCate.map((Cate) => (
+											<Category key={Cate.id_categories} Cate={Cate} />
+										))}
 									</ul>
 								</div>
 							</div>
@@ -434,67 +127,7 @@ const Products = () => {
 								</div>
 								<div className='aside-hidden-mobile'>
 									<div className='fillter-container'>
-										<div className='fillter-containers '>
-											{/* <ul className='navbar-pills my-2 '>
-												<li className='nav-item4   list-unstyled my-2 '>
-													<div className='row'>
-														<a
-															className='nav-link col-10 fw-bold'
-															href='#'
-															data-bs-toggle='collapse'
-															data-bs-target='#contentId11'
-															aria-expanded='false'
-															aria-controls='contentId11'
-														>
-															Thương hiệu
-														</a>
-
-														<i
-															className='fa-solid fa-caret-down icon3 col-2'
-															data-bs-toggle='collapse'
-															data-bs-target='#contentId11'
-															aria-expanded='false'
-															aria-controls='contentId11'
-														></i>
-													</div>
-													<div className='collapse' id='contentId11'>
-														<div className='form-check'>
-															<input className='form-check-input' type='checkbox' value='IBIE' id='IBIE' />
-															<label className='form-check-label'>IBIE</label>
-														</div>
-													</div>
-												</li>
-												<hr className='hr' />
-												<li className='nav-item4  list-unstyled  my-2 '>
-													<div className='row'>
-														<a
-															className='nav-link col-10 fw-bold'
-															href='#'
-															data-bs-toggle='collapse'
-															data-bs-target='#contentId12'
-															aria-expanded='false'
-															aria-controls='contentId12'
-														>
-															Giá sản phẩm
-														</a>
-
-														<i
-															className='fa-solid fa-caret-down icon3 col-2'
-															data-bs-toggle='collapse'
-															data-bs-target='#contentId12'
-															aria-expanded='false'
-															aria-controls='contentId12'
-														></i>
-													</div>
-													<div className='collapse' id='contentId12'>
-														<div className='form-check'>
-															<input className='form-check-input' type='checkbox' value='IBIE' id='IBIE' />
-															<label className='form-check-label'>IBIE</label>
-														</div>
-													</div>
-												</li>
-											</ul> */}
-										</div>
+										<div className='fillter-containers '></div>
 										<aside className='aside-item nav-item4 my-3 '>
 											<div className='row'>
 												<a
@@ -535,6 +168,7 @@ const Products = () => {
 													data-bs-target='#contentId12'
 													aria-expanded='false'
 													aria-controls='contentId12'
+													// selectPrice={handelPrice}
 												>
 													Giá sản phẩm
 												</a>
@@ -553,8 +187,12 @@ const Products = () => {
 														<input
 															className='form-check-input'
 															type='checkbox'
-															value='Giá dưới 100.000đ'
+															name='under100'
+															checked={under100}
+															// value={selectPrice}
 															id='Giá dưới 100.000đ'
+															onChange={handleCheckboxChange}
+															// onClick={() => filterResult()}
 														/>
 														<label className='form-check-label' htmlFor='Giá dưới 100.000đ'>
 															Giá dưới 100.000đ
@@ -566,6 +204,10 @@ const Products = () => {
 															type='checkbox'
 															value='100.000đ - 200.000đ'
 															id='100.000đ - 200.000đ'
+															name='between100And200'
+															checked={between100And200}
+															onChange={handleCheckboxChange}
+															// onClick={() => filterResult()}
 														/>
 														<label className='form-check-label' htmlFor='100.000đ - 200.000đ'>
 															100.000đ - 200.000đ
@@ -731,8 +373,8 @@ const Products = () => {
 												</div>
 											</div>
 										</aside>
-										<hr />
-										<aside className='aside-item nav-item4 my-3'>
+										{/* <hr /> */}
+										{/* <aside className='aside-item nav-item4 my-3'>
 											<div className='row'>
 												<a
 													className='nav-link col-10 fw-bold'
@@ -793,7 +435,7 @@ const Products = () => {
 													</div>
 												</div>
 											</div>
-										</aside>
+										</aside> */}
 									</div>
 								</div>
 							</div>
@@ -878,13 +520,9 @@ const Products = () => {
 							</div>
 							<hr className='hr' />
 							<div className='products-view  row row-cols-3 justify-content-between gap-1'>
-								{cards.map((cards) => (
-									<Product_card key={cards.id} card={cards} />
+								{productData.map((prod) => (
+									<Product_card key={prod.id_product} prod={prod} />
 								))}
-
-								{/* <div className='col-6 col-sm-4 col-md-4 col-lg-4'>
-									
-								</div> */}
 							</div>
 							<div className='row'>
 								<div className='col-lg-12 col-sm-12 col-12 margin-top-20 fix-page'>
@@ -934,14 +572,14 @@ const Products = () => {
 						</section>
 					</div>
 				</section>
-				<div className='text-center evo-main-des col-12 col-lg-12 col-md-12 order-sm-first order-first order-lg-last order-md-last margin-bottom-10 margin-top-10'>
+				{/* <div className='text-center evo-main-des col-12 col-lg-12 col-md-12 order-sm-first order-first order-lg-last order-md-last margin-bottom-10 margin-top-10'>
 					Ant Home là sàn thương mại điện tử chuyên cung cấp các sản phẩm nội thất và trang trí nội thất cho
 					thị trường Việt Nam. Chúng tôi tin rằng hạnh phúc của mỗi gia đình đều được vun đắp từ nhà, không
 					gian sống tạo dựng giá trị cuộc sống. Chính vì vậy mục tiêu, sứ mệnh mà Ant Home hướng tới là đem
 					đến những giải pháp tối ưu về nội thất cho nhà ở, văn phòng… Với con đường mà Ant Home đã chọn,
 					chúng tôi mong muốn được cùng xây tổ ấm với triệu gia đình Việt đồng thời cùng chung tay kiến tạo
 					không gian làm việc chuyên nghiệp với các doanh nghiệp tại Việt Nam.
-				</div>
+				</div> */}
 			</div>
 			<hr />
 		</div>

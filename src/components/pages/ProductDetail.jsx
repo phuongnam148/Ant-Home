@@ -1,35 +1,121 @@
-import React, { useState } from 'react';
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
+import React, { useEffect, useState } from 'react';
 import './scss/product-detail.scss';
 import Slide from '../Slide/Slide';
+import { Link, useLocation } from 'react-router-dom';
+import newRequest from '../../utils/newRequest.js';
+import { useQuery } from '@tanstack/react-query';
 
 const ProductDetail = () => {
+	const location = useLocation();
+
+	const [favorite, setFavorite] = useState();
+	// const handleFavorite = () => {
+	// 	const searchParams = new URLSearchParams(location.search);
+	// 	const productID = searchParams.get('id');
+	// 	console.log(productID);
+	// };
+
+	const [showMore, setShowMore] = useState(false);
+	// Lấy ID Sản phẩm trên URL
+	const { search } = useLocation();
+	// Format tiền VND
+	const VND = new Intl.NumberFormat('vi-VN', {
+		style: 'currency',
+		currency: 'VND',
+	});
+
 	const [value, setValue] = useState(1);
 
 	const handleIncrement = () => {
 		setValue(value + 1);
 	};
-
 	const handleDecrement = () => {
 		if (value > 1) {
 			setValue(value - 1);
 		}
 	};
 
-	// eslint-disable-next-line no-unused-vars
 	const handleSubmit = (event) => {
 		event.preventDefault(); // Ngăn chặn gửi dữ liệu và tải lại trang mặc định
 	};
 	//xem thêm
-	// eslint-disable-next-line no-unused-vars
-	const [productDetail, setProductDetail] = useState(
-		'Mô tả chi tiết sản phẩm Mô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩmMô tả chi tiết sản phẩm	'
-	);
-	const [showMore, setShowMore] = useState(false);
-
 	const handleShowMore = () => {
 		setShowMore(!showMore);
 	};
 
+	// Get Data
+	const {
+		isLoading,
+		isError,
+		data: productDetail,
+		error,
+		refetch,
+	} = useQuery({
+		queryKey: [`productdetail${search}`],
+		queryFn: async () => {
+			try {
+				const res = await newRequest.get(`/product${search}`);
+				return res.data;
+			} catch (error) {
+				console.log(error);
+			}
+		},
+	});
+
+	// Kiểm tra thay đổi
+	useEffect(() => {
+		refetch();
+	}, [search]);
+
+	// cart
+	// console.log(productDetail);
+	const addToCart = () => {
+		let cartItems = JSON.parse(localStorage.getItem('productsInCart'));
+		const quantity = document.querySelector('#quantity');
+		let Product = {
+			id_product: productDetail.id_product,
+			name_prod: productDetail.name_prod,
+			img_thumbnail: productDetail.img_thumbnail,
+			price_prod: productDetail.price_prod,
+			quantity: Number(quantity.value),
+		};
+		const existingProduct = cartItems.find((item) => item.id_product === Product.id_product);
+		if (existingProduct) {
+			existingProduct.quantity += Product.quantity;
+		} else {
+			if (cartItems === null) {
+				cartItems = [];
+				cartItems.push(Product);
+				localStorage.setItem('productsInCart', JSON.stringify(cartItems));
+			} else {
+				let item = cartItems.find((item) => {
+					return item.id_product === Product.id_product;
+				});
+
+				if (item) {
+					item.quantity = item.quantity + Number(quantity.value);
+					localStorage.setItem('productsInCart', JSON.stringify(cartItems));
+				} else {
+					cartItems.push(Product);
+					localStorage.setItem('productsInCart', JSON.stringify(cartItems));
+				}
+			}
+		}
+
+		alert('Thêm thành công!');
+	};
+
+	// Loading
+	if (isLoading) {
+		return <span>Loading...</span>;
+	}
+	// Error
+	if (isError) {
+		return <span>Error: {error.message}</span>;
+	}
+	// End Get Data
 	return (
 		// Thanh breadcrumb
 		<div className='productDetail'>
@@ -37,149 +123,55 @@ const ProductDetail = () => {
 				<nav aria-label='breadcrumb'>
 					<ol className='breadcrumb'>
 						<li className='breadcrumb-item'>
-							<a href='#'>Trang chủ</a>
+							<Link to='/'>Trang chủ</Link>
 						</li>
 						<li className='breadcrumb-item active' aria-current='page'>
-							Bàn
+							Sản phẩm chi tiết
 						</li>
 					</ol>
 				</nav>
 				<div className='mt-2 row'>
-					{/* <div className='col-12 col-xl-6'>
-						<div className='d-flex flex-column flex-md-row-reverse'>
-							<div className='col-12 col-md-8'>
-								<div>
-									<img
-										className='img-fluid'
-										src='https://bizweb.dktcdn.net/thumb/large/100/396/362/products/da0045c9e48defd093797dfc83fa2c67-1590389087.jpg?v=1595556715920'
-										alt=''
-									/>
-								</div>
-								<div className='text-center'>
-									<i className='fa-solid fa-magnifying-glass me-2'></i>
-									<span>Click chuột lên hình để phóng to</span>
-								</div>
-							</div>
-							<div className='col-12 col-md-4'>
-								<div className='list-group img-product'>
-									<div href='#' className='list-group-item list-group-item-action'>
-										<img
-											className='img-fluid'
-											src='https://bizweb.dktcdn.net/thumb/large/100/396/362/products/z1404288110190-af6a21b6662a892b18ddb3ea9f7795fc-1595478380.jpg?v=1595556722557'
-											alt=''
-										/>
-									</div>
-									<div href='#' className='list-group-item list-group-item-action'>
-										<img
-											className='img-fluid'
-											src='https://bizweb.dktcdn.net/thumb/large/100/396/362/products/z1404288110190-af6a21b6662a892b18ddb3ea9f7795fc-1595478380.jpg?v=1595556722557'
-											alt=''
-										/>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div> */}
 					<div className='row col-12 col-xl-6'>
-						<div className='col-2'>
+						{/* <div className='col-2'>
 							<div className='list-group img-product' id='list-tab' role='tablist'>
-								<a
-									className='list-group-item list-group-item-action active'
-									id='list-home-list'
-									data-bs-toggle='list'
-									href='#list-home'
-									role='tab'
-									aria-controls='list-home'
-								>
-									<img
-										className='w-100'
-										src='https://bizweb.dktcdn.net/thumb/large/100/396/362/products/z1404288110190-af6a21b6662a892b18ddb3ea9f7795fc-1595478380.jpg?v=1595556722557'
-										alt=''
-									/>
-								</a>
-								<a
-									className='list-group-item list-group-item-action'
-									id='list-profile-list'
-									data-bs-toggle='list'
-									href='#list-profile'
-									role='tab'
-									aria-controls='list-profile'
-								>
-									<img
-										className='w-100'
-										src='https://bizweb.dktcdn.net/thumb/large/100/396/362/products/z1404288110190-af6a21b6662a892b18ddb3ea9f7795fc-1595478380.jpg?v=1595556722557'
-										alt=''
-									/>
-								</a>
-								<a
-									className='list-group-item list-group-item-action'
-									id='list-messages-list'
-									data-bs-toggle='list'
-									href='#list-messages'
-									role='tab'
-									aria-controls='list-messages'
-								>
-									<img
-										className='w-100'
-										src='https://bizweb.dktcdn.net/thumb/large/100/396/362/products/da0045c9e48defd093797dfc83fa2c67-1590389087.jpg?v=1595556715920'
-										alt=''
-									/>
-								</a>
+								{productDetail.img_prod.map((img) => (
+									<a
+										key={img}
+										className='list-group-item list-group-item-action active'
+										id='list-home-list'
+										data-bs-toggle='list'
+										href='#list-home'
+										role='tab'
+										aria-controls='list-home'
+									>
+										<img className='w-100' src={img} alt='' />
+									</a>
+								))}
 							</div>
-						</div>
-						<div className='col-10'>
+						</div> */}
+						{/* <div className='col-10'>
 							<div className='tab-content' id='nav-tabContent'>
-								<div
-									className='tab-pane fade show active'
-									id='list-home'
-									role='tabpanel'
-									aria-labelledby='list-home-list'
-								>
-									<img
-										src='https://bizweb.dktcdn.net/thumb/large/100/396/362/products/da0045c9e48defd093797dfc83fa2c67-1590389087.jpg?v=1595556715920'
-										alt=''
-									/>
-								</div>
-								<div
-									className='tab-pane fade'
-									id='list-profile'
-									role='tabpanel'
-									aria-labelledby='list-profile-list'
-								>
-									<img
-										src='https://bizweb.dktcdn.net/thumb/large/100/396/362/products/da0045c9e48defd093797dfc83fa2c67-1590389087.jpg?v=1595556715920'
-										alt=''
-									/>
-								</div>
-								<div
-									className='tab-pane fade'
-									id='list-messages'
-									role='tabpanel'
-									aria-labelledby='list-messages-list'
-								>
-									<img
-										src='https://bizweb.dktcdn.net/thumb/large/100/396/362/products/z1404288110190-af6a21b6662a892b18ddb3ea9f7795fc-1595478380.jpg?v=1595556722557'
-										alt=''
-									/>
-								</div>
-								<div
-									className='tab-pane fade'
-									id='list-settings'
-									role='tabpanel'
-									aria-labelledby='list-settings-list'
-								>
-									...
-								</div>
+								{productDetail.img_prod.map((img) => (
+									<div
+										key={img}
+										className='tab-pane fade show active'
+										id='list-home'
+										role='tabpanel'
+										aria-labelledby='list-home-list'
+									>
+										<img src={img} alt='' />
+									</div>
+								))}
 							</div>
-						</div>
+						</div> */}
 					</div>
 					<div className='col-12 col-xl-6'>
 						<div className='fw-semibold'>
-							<h3>Bộ 2 Bàn Sofa IGEA Việt Nam Phong Cách Scanvadian Màu Trắng</h3>
+							<h3>{productDetail.name_prod}</h3>
 						</div>
 						<div className='d-flex justify-content-between'>
 							<div className='trademark-product'>
-								<p>Thương hiệu: IGEA Việt Nam</p>
+								<p>Thương hiệu: ?</p>
 							</div>
 							<div className='code-product'>
 								<p>Mã sản phẩm: 290050037302</p>
@@ -187,7 +179,7 @@ const ProductDetail = () => {
 						</div>
 						<hr />
 						<div className='fw-semibold'>
-							<p className='gia'>569.000₫</p>
+							<p className='gia'>{VND.format(productDetail.price_prod)}</p>
 						</div>
 						<hr />
 						<form action='' className='' onSubmit={handleSubmit}>
@@ -214,24 +206,29 @@ const ProductDetail = () => {
 								className='soluong'
 								type='number'
 								min='1'
+								id='quantity'
 								value={value}
 								onChange={(event) => setValue(event.target.value)}
 							/>
 							<button className='giam me-3' type='button' onClick={handleIncrement}>
 								+
 							</button>
-							<button className='addsp' type='submit'>
+							<button className='addsp' type='submit' onClick={addToCart}>
 								Thêm vào giỏ
 							</button>
 						</form>
 						{/* Sp yêu thích */}
 						<div className='tym'>
 							<i className='fa-regular fa-heart me-2 my-3'></i>
-							<span>Thêm vào yêu thích</span>
+							<span>
+								{/* <a href='#' onClick={handleFavorite}>
+									Thêm vào yêu thích
+								</a> */}
+							</span>
 						</div>
 						{/* Thông tin chi tiết */}
 						<div className='showmore'>
-							<p className={!showMore ? 'show-more' : ''}>{productDetail}</p>
+							<p className={!showMore ? 'show-more' : ''}>{productDetail.detail_prod.detail_prod}</p>
 
 							<button className='xemthem' onClick={handleShowMore}>
 								<p className='more-text m-1'>{showMore ? 'Thu gọn' : 'Xem thêm'}</p>
@@ -295,7 +292,7 @@ const ProductDetail = () => {
 						role='tabpanel'
 						aria-labelledby='nav-home-tab'
 					>
-						<p className='fw-bold'>Bộ 2 Bàn Sofa IGEA Việt Nam Phong Cách Scanvadian Màu trắng</p>
+						<p className='fw-bold'>{productDetail.prod}</p>
 						<p>
 							{' '}
 							Bạn đang cần tìm bàn trà sofa, bàn trà cafe mà chưa tìm được sản phẩm ưng ý
@@ -362,7 +359,7 @@ const ProductDetail = () => {
 							</em>
 						</p>
 						<p>Không ngừng theo đuổi những tiêu chuẩn chất lượng khắt khe trong mọi quy trình.</p>
-						<p>
+						<div>
 							<p>
 								<em>
 									<strong>TÔN TRỌNG</strong>
@@ -372,8 +369,8 @@ const ProductDetail = () => {
 								Sẵn sàng đồng hành cùng khách hàng, đồng nghiệp và nhà cung cấp để đạt tới những kết quả tốt
 								nhất.
 							</p>
-						</p>
-						<p>
+						</div>
+						<div>
 							<p>
 								<em>
 									<strong>TING THẦN ĐỒNG ĐỘI</strong>
@@ -383,7 +380,7 @@ const ProductDetail = () => {
 								Sẵn sàng đồng hành cùng khách hàng, đồng nghiệp và nhà cung cấp để đạt tới những kết quả tốt
 								nhất.
 							</p>
-						</p>
+						</div>
 						<p>
 							<em>
 								<strong>CẢI TIẾN KHÔNG NGỪNG</strong>
@@ -432,7 +429,7 @@ const ProductDetail = () => {
 							</em>
 						</p>
 						<p>Không ngừng theo đuổi những tiêu chuẩn chất lượng khắt khe trong mọi quy trình.</p>
-						<p>
+						<div>
 							<p>
 								<em>
 									<strong>TÔN TRỌNG</strong>
@@ -442,8 +439,8 @@ const ProductDetail = () => {
 								Sẵn sàng đồng hành cùng khách hàng, đồng nghiệp và nhà cung cấp để đạt tới những kết quả tốt
 								nhất.
 							</p>
-						</p>
-						<p>
+						</div>
+						<div>
 							<p>
 								<em>
 									<strong>TING THẦN ĐỒNG ĐỘI</strong>
@@ -453,7 +450,7 @@ const ProductDetail = () => {
 								Sẵn sàng đồng hành cùng khách hàng, đồng nghiệp và nhà cung cấp để đạt tới những kết quả tốt
 								nhất.
 							</p>
-						</p>
+						</div>
 						<p>
 							<em>
 								<strong>CẢI TIẾN KHÔNG NGỪNG</strong>

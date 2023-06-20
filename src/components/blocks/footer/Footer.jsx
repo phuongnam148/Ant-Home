@@ -1,6 +1,6 @@
 import React from 'react';
 import './Footer.scss';
-import logo from '../../../images/logo.webp';
+import logo from '../../../images/logo2.png';
 import payment1 from '../../../images/payment_1.svg';
 import payment2 from '../../../images/payment_2.svg';
 import payment3 from '../../../images/payment_3.svg';
@@ -106,7 +106,7 @@ const Footer = () => {
 				<div className='p-1'>
 					<div className='text-center'>
 						<span>
-							© Bản quyền thuộc về <b>Kiến Vàng</b> | Cung cấp bởi Sapo
+							© Bản quyền thuộc về <b>ăn rồi báo</b> | Cung cấp bởi không ngại va chạm
 						</span>
 					</div>
 				</div>

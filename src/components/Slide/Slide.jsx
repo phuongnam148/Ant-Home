@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import { Navigation, EffectFade, Autoplay, Pagination, Scrollbar, A11y } from 'swiper';
@@ -8,8 +8,20 @@ import 'swiper/css/effect-fade';
 import 'swiper/css/autoplay';
 import 'swiper/css/pagination';
 import Product_card from '../product-card/Product_card';
-import { cards } from '../../data';
+import newRequest from '../../utils/newRequest.js';
+import './Slide.scss';
 const Slide = () => {
+	const [products, setProducts] = useState([]);
+	useEffect(() => {
+		newRequest
+			.get('/products')
+			.then((res) => {
+				setProducts(res.data);
+			})
+			.catch((error) => {
+				console.error(error);
+			});
+	}, []);
 	return (
 		<div>
 			<Swiper
@@ -28,9 +40,9 @@ const Slide = () => {
 				// loop
 				className='myswiper '
 			>
-				{cards.map((cards) => (
-					<SwiperSlide key={cards.id}>
-						<Product_card card={cards} />
+				{products.map((prod) => (
+					<SwiperSlide key={prod.id_product}>
+						<Product_card prod={prod} />
 					</SwiperSlide>
 				))}
 			</Swiper>

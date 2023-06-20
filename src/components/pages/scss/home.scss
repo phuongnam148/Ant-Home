@@ -32,7 +32,6 @@
 		cursor: pointer;
 		color: white;
 	}
-
 	.viewmore:hover::before {
 		transform-origin: center bottom;
 		transform: scaleY(1);
@@ -60,6 +59,7 @@
 				max-width: 16.66667%;
 				min-width: 16.66667%;
 				padding: 10px;
+				margin: 22px;
 				transition: all 0.3s;
 				box-sizing: border-box;
 				a {
@@ -107,7 +107,7 @@
 			background-position: center;
 			background-size: cover;
 			background-repeat: no-repeat;
-			background-image: url('https://bizweb.dktcdn.net/100/396/362/themes/777022/assets/feature_banner.jpg?1678155521674');
+			background-image: url('https://pops-shop-vn.akamaized.net/2023/02/1_coverfb.jpg');
 			.overlay {
 				width: 100%;
 				height: 100%;
